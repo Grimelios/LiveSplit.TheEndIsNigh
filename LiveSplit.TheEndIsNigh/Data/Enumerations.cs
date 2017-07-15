@@ -28,7 +28,8 @@ namespace LiveSplit.TheEndIsNigh.Data
 	/// </summary>
 	public enum Interactions
 	{
-		Friend
+		Friend,
+		FriendNuke
 	}
 
 	/// <summary>
@@ -51,6 +52,8 @@ namespace LiveSplit.TheEndIsNigh.Data
 		// The future.
 		Anguish,
 		Gloom,
-		Blight
+		Blight,
+		Ruin,
+		Acceptance
 	}
 }

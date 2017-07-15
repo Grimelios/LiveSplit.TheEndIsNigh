@@ -51,16 +51,26 @@
 
 	{
 		"Type": "Zone",
-		"Data": "Angiush"
-	},
-
-	{
-		"Type": "Zone",
 		"Data": "Gloom"
 	},
 
 	{
 		"Type": "Zone",
 		"Data": "Blight"
+	},
+
+	{
+		"Type": "Zone",
+		"Data": "Ruin"
+	},
+
+	{
+		"Type": "Zone",
+		"Data": "Acceptance"
+	},
+
+	{
+		"Type": "Interaction",
+		"Data": "FriendNuke"
 	}
 ]
