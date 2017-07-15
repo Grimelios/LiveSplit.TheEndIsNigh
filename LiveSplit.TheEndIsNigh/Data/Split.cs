@@ -12,6 +12,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 	public enum SplitTypes
 	{
 		BodyPart,
+		Interaction,
 		Zone
 	}
 
@@ -21,12 +22,23 @@ namespace LiveSplit.TheEndIsNigh.Data
 	public class Split
 	{
 		/// <summary>
-		/// Constructs the class.
+		/// Constructs the class. The data string is parsed based on split type. Using a string makes it easier to load splits from Json
+		/// files.
 		/// </summary>
-		public Split(SplitTypes type, object data)
+		public Split(SplitTypes type, string data)
 		{
 			Type = type;
-			Data = data;
+
+			switch (type)
+			{
+				case SplitTypes.BodyPart:
+					Data = Enum.Parse(typeof(BodyParts), data);
+					break;
+			
+				case SplitTypes.Zone:
+					Data = Enum.Parse(typeof(Zones), data);
+					break;
+			}
 		}
 
 		/// <summary>

@@ -1,0 +1,51 @@
+﻿[
+	{
+		"Type": "Zone",
+		"Data": "AridFlats"
+	},
+
+	{
+		"Type": "Zone",
+		"Data": "Overflow"
+	},
+
+	{
+		"Type": "Zone",
+		"Data": "TheSplit"
+	},
+
+	{
+		"Type": "Zone",
+		"Data": "WallOfSorrow"
+	},
+
+	{
+		"Type": "BodyPart",
+		"Data": "Head"
+	},
+
+	{
+		"Type": "Retrograde",
+		"Data": "TheSplit"
+	},
+
+	{
+		"Type": "BodyPart",
+		"Data": "Heart"
+	},
+
+	{
+		"Type": "Zone",
+		"Data": "TheHollows"
+	},
+
+	{
+		"Type": "BodyPart",
+		"Data": "Body"
+	},
+
+	{
+		"Type": "Interaction",
+		"Data": "Friend"
+	}
+]
