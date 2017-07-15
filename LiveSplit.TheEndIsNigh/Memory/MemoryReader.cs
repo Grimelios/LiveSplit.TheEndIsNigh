@@ -6,88 +6,109 @@ using System.Text;
 
 namespace LiveSplit.TheEndIsNigh.Memory
 {
+	/// <summary>
+	/// Static class used to store functions related to Windows memory. Many of these functions are extension methods on the Process class.
+	/// </summary>
 	public static class MemoryReader
 	{
 		private static Dictionary<int, Module64[]> ModuleCache = new Dictionary<int, Module64[]>();
-		public static T Read<T>(this Process targetProcess, IntPtr address, params int[] offsets) where T : struct
-		{
-			if (targetProcess == null || targetProcess.HasExited || address == IntPtr.Zero) { return default(T); }
 
-			int last = OffsetAddress(targetProcess, ref address, offsets);
+		/// <summary>
+		/// Reads a value from the given address.
+		/// </summary>
+		public static T Read<T>(this Process process, IntPtr address, params int[] offsets) where T : struct
+		{
+			int last = OffsetAddress(process, ref address, offsets);
 
 			Type type = typeof(T);
-			type = (type.IsEnum ? Enum.GetUnderlyingType(type) : type);
+			type = type.IsEnum ? Enum.GetUnderlyingType(type) : type;
 
-			int count = (type == typeof(bool)) ? 1 : Marshal.SizeOf(type);
-			byte[] buffer = Read(targetProcess, address + last, count);
+			int count = type == typeof(bool) ? 1 : Marshal.SizeOf(type);
+			byte[] buffer = Read(process, address + last, count);
 
-			object obj = ResolveToType(buffer, type);
-			return (T)((object)obj);
+			return (T)ResolveToType(buffer, type);
 		}
+
+		/// <summary>
+		/// Converts the given array of bytes to an object of the given type.
+		/// </summary>
 		private static object ResolveToType(byte[] bytes, Type type)
 		{
 			if (type == typeof(int))
 			{
 				return BitConverter.ToInt32(bytes, 0);
 			}
-			else if (type == typeof(uint))
+
+			if (type == typeof(uint))
 			{
 				return BitConverter.ToUInt32(bytes, 0);
 			}
-			else if (type == typeof(float))
+
+			if (type == typeof(float))
 			{
 				return BitConverter.ToSingle(bytes, 0);
 			}
-			else if (type == typeof(double))
+
+			if (type == typeof(double))
 			{
 				return BitConverter.ToDouble(bytes, 0);
 			}
-			else if (type == typeof(byte))
+
+			if (type == typeof(byte))
 			{
 				return bytes[0];
 			}
-			else if (type == typeof(bool))
+
+			if (type == typeof(bool))
 			{
 				return bytes != null && bytes[0] > 0;
 			}
-			else if (type == typeof(short))
+
+			if (type == typeof(short))
 			{
 				return BitConverter.ToInt16(bytes, 0);
 			}
-			else if (type == typeof(ushort))
+
+			if (type == typeof(ushort))
 			{
 				return BitConverter.ToUInt16(bytes, 0);
 			}
-			else if (type == typeof(long))
+
+			if (type == typeof(long))
 			{
 				return BitConverter.ToInt64(bytes, 0);
 			}
-			else if (type == typeof(ulong))
+
+			if (type == typeof(ulong))
 			{
 				return BitConverter.ToUInt64(bytes, 0);
 			}
-			else
+
+			GCHandle gcHandle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+
+			try
 			{
-				GCHandle gCHandle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-				try
-				{
-					return Marshal.PtrToStructure(gCHandle.AddrOfPinnedObject(), type);
-				}
-				finally
-				{
-					gCHandle.Free();
-				}
+				return Marshal.PtrToStructure(gcHandle.AddrOfPinnedObject(), type);
+			}
+			finally
+			{
+				gcHandle.Free();
 			}
 		}
-		public static byte[] Read(this Process targetProcess, IntPtr address, int numBytes)
+
+		/// <summary>
+		/// Reads an array of bytes starting at the given address. 
+		/// </summary>
+		public static byte[] Read(this Process process, IntPtr address, int numBytes)
 		{
 			byte[] buffer = new byte[numBytes];
-			if (targetProcess == null || targetProcess.HasExited || address == IntPtr.Zero) { return buffer; }
-
 			int bytesRead;
-			WinAPI.ReadProcessMemory(targetProcess.Handle, address, buffer, numBytes, out bytesRead);
+
+			WinAPI.ReadProcessMemory(process.Handle, address, buffer, numBytes, out bytesRead);
+
 			return buffer;
 		}
+
 		public static string Read(this Process targetProcess, IntPtr address)
 		{
 			if (targetProcess == null || targetProcess.HasExited || address == IntPtr.Zero) { return string.Empty; }
@@ -166,15 +187,22 @@ namespace LiveSplit.TheEndIsNigh.Memory
 			int bytesWritten;
 			WinAPI.WriteProcessMemory(targetProcess.Handle, address + last, data, data.Length, out bytesWritten);
 		}
-		private static int OffsetAddress(this Process targetProcess, ref IntPtr address, params int[] offsets)
+
+		/// <summary>
+		/// Offsets the given address.
+		/// </summary>
+		private static int OffsetAddress(this Process process, ref IntPtr address, params int[] offsets)
 		{
-			bool is64bit = Is64Bit(targetProcess);
-			byte[] buffer = new byte[is64bit ? 8 : 4];
-			int bytesWritten;
+			bool is64Bit = Is64Bit(process);
+			byte[] buffer = new byte[is64Bit ? 8 : 4];
+
 			for (int i = 0; i < offsets.Length - 1; i++)
 			{
-				WinAPI.ReadProcessMemory(targetProcess.Handle, address + offsets[i], buffer, buffer.Length, out bytesWritten);
-				if (is64bit)
+				int bytesWritten;
+
+				WinAPI.ReadProcessMemory(process.Handle, address + offsets[i], buffer, buffer.Length, out bytesWritten);
+
+				if (is64Bit)
 				{
 					address = (IntPtr)BitConverter.ToUInt64(buffer, 0);
 				}
@@ -183,6 +211,7 @@ namespace LiveSplit.TheEndIsNigh.Memory
 					address = (IntPtr)BitConverter.ToUInt32(buffer, 0);
 				}
 			}
+
 			return offsets.Length > 0 ? offsets[offsets.Length - 1] : 0;
 		}
 
@@ -302,13 +331,19 @@ namespace LiveSplit.TheEndIsNigh.Memory
 			}
 			return false;
 		}
+
+		/// <summary>
+		/// Determines whether the given process is 64-bit.
+		/// </summary>
 		public static bool Is64Bit(this Process process)
 		{
-			if (process == null || process.HasExited) { return false; }
 			bool flag;
+
 			WinAPI.IsWow64Process(process.Handle, out flag);
+
 			return Environment.Is64BitOperatingSystem && !flag;
 		}
+
 		public static Module64 MainModule64(this Process p)
 		{
 			Module64[] modules = p.Modules64();

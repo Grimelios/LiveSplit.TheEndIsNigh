@@ -66,6 +66,8 @@
     <Compile Include="Data\SplitCollection.cs" />
     <Compile Include="EndIsNighComponent.cs" />
     <Compile Include="EndIsNighFactory.cs" />
+    <Compile Include="Memory\EndIsNighMemory.cs" />
+    <Compile Include="Memory\MemoryConstants.cs" />
     <Compile Include="Memory\MemoryReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

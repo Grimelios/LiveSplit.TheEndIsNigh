@@ -9,6 +9,7 @@ using System.Xml;
 using LiveSplit.Model;
 using LiveSplit.TheEndIsNigh.Controls;
 using LiveSplit.TheEndIsNigh.Data;
+using LiveSplit.TheEndIsNigh.Memory;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
 
@@ -21,6 +22,7 @@ namespace LiveSplit.TheEndIsNigh
 	{
 		private TimerModel timer;
 		private EndIsNighControl settingsControl;
+		private EndIsNighMemory memory;
 		private SplitCollection splitCollection;
 
 		/// <summary>
@@ -28,6 +30,7 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public EndIsNighComponent()
 		{
+			memory = new EndIsNighMemory();
 			settingsControl = new EndIsNighControl();
 			splitCollection = new SplitCollection();
 		}
@@ -120,6 +123,11 @@ namespace LiveSplit.TheEndIsNigh
 				timer.OnUndoSplit += OnUndoSplit;
 				timer.OnSkipSplit += OnSkipSplit;
 				timer.OnReset += OnReset;
+			}
+
+			if (!memory.HookProcess())
+			{
+				return;
 			}
 		}
 
