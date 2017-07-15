@@ -62,6 +62,8 @@
       <DependentUpon>EndIsNighControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\Enumerations.cs" />
+    <Compile Include="Data\Events.cs" />
+    <Compile Include="Data\MapGrid.cs" />
     <Compile Include="Data\Split.cs" />
     <Compile Include="Data\SplitCollection.cs" />
     <Compile Include="EndIsNighComponent.cs" />
@@ -76,6 +78,7 @@
     <None Include="Json\AnyPercent.json" />
     <None Include="Json\FriendPercent.json" />
     <None Include="packages.config" />
+    <None Include="Resources\map.csv" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\DefaultCategoryControl.resx">

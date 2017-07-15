@@ -20,6 +20,7 @@ namespace LiveSplit.TheEndIsNigh
 	/// </summary>
 	public class EndIsNighComponent : IComponent
 	{
+		private MapGrid mapGrid;
 		private TimerModel timer;
 		private EndIsNighControl settingsControl;
 		private EndIsNighMemory memory;
@@ -30,9 +31,10 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public EndIsNighComponent()
 		{
+			mapGrid = new MapGrid();
 			memory = new EndIsNighMemory();
 			settingsControl = new EndIsNighControl();
-			splitCollection = new SplitCollection();
+			splitCollection = new SplitCollection(this);
 		}
 
 		/// <summary>
@@ -108,6 +110,14 @@ namespace LiveSplit.TheEndIsNigh
 		}
 
 		/// <summary>
+		/// Triggers the timer to split.
+		/// </summary>
+		public void Split()
+		{
+			timer.Split();
+		}
+
+		/// <summary>
 		/// Updates the component. This is where most of the actual autosplitting work is done.
 		/// </summary>
 		public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
@@ -129,6 +139,8 @@ namespace LiveSplit.TheEndIsNigh
 			{
 				return;
 			}
+
+			mapGrid.Update(memory.GetWorldLocation());
 		}
 
 		/// <summary>
