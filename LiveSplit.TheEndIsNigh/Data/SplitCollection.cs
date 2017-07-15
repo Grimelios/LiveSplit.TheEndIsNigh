@@ -24,6 +24,22 @@ namespace LiveSplit.TheEndIsNigh.Data
 		}
 
 		/// <summary>
+		/// Called when a split is undone.
+		/// </summary>
+		public void OnUndoSplit()
+		{
+			splitIndex--;
+		}
+
+		/// <summary>
+		/// Called when a split is skipped.
+		/// </summary>
+		public void OnSkipSplit()
+		{
+			splitIndex++;
+		}
+
+		/// <summary>
 		/// Called when the timer resets.
 		/// </summary>
 		public void OnReset()

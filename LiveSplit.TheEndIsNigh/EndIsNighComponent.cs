@@ -117,6 +117,8 @@ namespace LiveSplit.TheEndIsNigh
 				};
 
 				timer.OnSplit += OnSplit;
+				timer.OnUndoSplit += OnUndoSplit;
+				timer.OnSkipSplit += OnSkipSplit;
 				timer.OnReset += OnReset;
 			}
 		}
@@ -127,6 +129,22 @@ namespace LiveSplit.TheEndIsNigh
 		private void OnSplit(object sender, EventArgs e)
 		{
 			splitCollection.OnSplit();
+		}
+
+		/// <summary>
+		/// Called when a split is undone.
+		/// </summary>
+		private void OnUndoSplit(object sender, EventArgs e)
+		{
+			splitCollection.OnUndoSplit();
+		}
+
+		/// <summary>
+		/// Called when a split is skipped.
+		/// </summary>
+		private void OnSkipSplit(object sender, EventArgs e)
+		{
+			splitCollection.OnSkipSplit();
 		}
 
 		/// <summary>
