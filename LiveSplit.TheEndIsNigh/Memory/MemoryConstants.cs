@@ -15,6 +15,6 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		/// Byte array used to find the address of the player's X coordinate in the world grid. The Y coordinate will always be located
 		/// four bytes after the X coordinate.
 		/// </summary>
-		public const string LocationByteArray = null;
+		public const string LocationByteArray = "00 00 00 00 11 00 00 00 00 00 01 00 3F 42 0F";
 	}
 }
