@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using LiveSplit.Model;
+using LiveSplit.TheEndIsNigh.Controls;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
 
@@ -18,6 +19,15 @@ namespace LiveSplit.TheEndIsNigh
 	public class EndIsNighComponent : IComponent
 	{
 		private TimerModel timer;
+		private EndIsNighControl settingsControl;
+
+		/// <summary>
+		/// Constructs the component.
+		/// </summary>
+		public EndIsNighComponent()
+		{
+			settingsControl = new EndIsNighControl();
+		}
 
 		/// <summary>
 		/// Component name.
@@ -84,11 +94,11 @@ namespace LiveSplit.TheEndIsNigh
 		}
 
 		/// <summary>
-		/// Returns a setting control for the component.
+		/// Returns the settings control for the component.
 		/// </summary>
 		public Control GetSettingsControl(LayoutMode mode)
 		{
-			return null;
+			return settingsControl;
 		}
 
 		/// <summary>
