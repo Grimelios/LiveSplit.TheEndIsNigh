@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Xml;
 using LiveSplit.Model;
 using LiveSplit.TheEndIsNigh.Controls;
+using LiveSplit.TheEndIsNigh.Data;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
 
@@ -20,6 +21,7 @@ namespace LiveSplit.TheEndIsNigh
 	{
 		private TimerModel timer;
 		private EndIsNighControl settingsControl;
+		private SplitCollection splitCollection;
 
 		/// <summary>
 		/// Constructs the component.
@@ -27,6 +29,7 @@ namespace LiveSplit.TheEndIsNigh
 		public EndIsNighComponent()
 		{
 			settingsControl = new EndIsNighControl();
+			splitCollection = new SplitCollection();
 		}
 
 		/// <summary>
@@ -112,7 +115,26 @@ namespace LiveSplit.TheEndIsNigh
 				{
 					CurrentState = state
 				};
+
+				timer.OnSplit += OnSplit;
+				timer.OnReset += OnReset;
 			}
+		}
+
+		/// <summary>
+		/// Called when the timer splits.
+		/// </summary>
+		private void OnSplit(object sender, EventArgs e)
+		{
+			splitCollection.OnSplit();
+		}
+
+		/// <summary>
+		/// Called when the timer resets.
+		/// </summary>
+		private void OnReset(object sender, TimerPhase e)
+		{
+			splitCollection.OnReset();
 		}
 
 		/// <summary>

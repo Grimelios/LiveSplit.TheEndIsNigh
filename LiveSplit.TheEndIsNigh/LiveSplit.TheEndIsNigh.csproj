@@ -58,6 +58,8 @@
       <DependentUpon>EndIsNighControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\Enumerations.cs" />
+    <Compile Include="Data\Split.cs" />
+    <Compile Include="Data\SplitCollection.cs" />
     <Compile Include="EndIsNighComponent.cs" />
     <Compile Include="EndIsNighFactory.cs" />
     <Compile Include="Memory\MemoryReader.cs" />
