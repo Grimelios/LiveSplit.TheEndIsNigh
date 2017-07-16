@@ -247,7 +247,7 @@ namespace LiveSplit.TheEndIsNigh.Memory
 					break;
 				}
 
-				if ((memInfo.Protect & 0x40) != 0 && (memInfo.Type & 0x20000) != 0 && memInfo.State == 0x1000)
+				if ((memInfo.Protect & 0x4) != 0 && (memInfo.Type & 0x20000) != 0 && memInfo.State == 0x1000)
 				{
 					byte[] buffer = new byte[regionSize];
 					int bytesRead;
@@ -323,24 +323,34 @@ namespace LiveSplit.TheEndIsNigh.Memory
 				j = 0;
 			}
 		}
+
+		/// <summary>
+		/// Searches a process's memory for the given data.
+		/// </summary>
 		private static bool SearchMemory(byte[] buffer, MemorySignature byteCode, IntPtr currentAddress, ref IntPtr foundAddress)
 		{
 			byte[] bytes = byteCode.byteCode;
 			byte[] wild = byteCode.wildCards;
+
 			for (int i = 0, j = 0; i <= buffer.Length - bytes.Length; i++)
 			{
 				int k = i;
+
 				while (j < bytes.Length && (wild[j] == 1 || buffer[k] == bytes[j]))
 				{
 					k++; j++;
 				}
+
 				if (j == bytes.Length)
 				{
 					foundAddress = currentAddress + i + bytes.Length + byteCode.offset;
+
 					return true;
 				}
+
 				j = 0;
 			}
+
 			return false;
 		}
 

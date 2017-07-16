@@ -32,8 +32,10 @@ namespace LiveSplit.TheEndIsNigh.Memory
 				{
 					return false;
 				}
+				
+				dataPointer = process.MainModule.BaseAddress + MemoryOffsets.StructureOffset;
 
-				dataPointer = process.FindSignatures(MemoryConstants.SearchString)[0];
+				Console.WriteLine($"Process hooked (data pointer: {dataPointer}).");
 			}
 
 			return true;
@@ -44,7 +46,7 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		/// </summary>
 		public int GetDeathCount()
 		{
-			return process.Read<int>(dataPointer, MemoryConstants.DeathCount);
+			return process.Read<int>(dataPointer, MemoryOffsets.DeathCount);
 		}
 
 		/// <summary>
@@ -52,7 +54,7 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		/// </summary>
 		public int GetTumorCount()
 		{
-			return process.Read<int>(dataPointer, MemoryConstants.TumorCount);
+			return process.Read<int>(dataPointer, MemoryOffsets.TumorCount);
 		}
 
 		/// <summary>
@@ -60,7 +62,7 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		/// </summary>
 		public int GetCartridgeCount()
 		{
-			return process.Read<int>(dataPointer, MemoryConstants.CartridgeCount);
+			return process.Read<int>(dataPointer, MemoryOffsets.CartridgeCount);
 		}
 
 		/// <summary>
@@ -68,7 +70,7 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		/// </summary>
 		public bool CheckInGame()
 		{
-			return process.Read<bool>(dataPointer, MemoryConstants.InGame);
+			return process.Read<bool>(dataPointer, MemoryOffsets.InGame);
 		}
 
 		/// <summary>
@@ -81,15 +83,15 @@ namespace LiveSplit.TheEndIsNigh.Memory
 			switch (bodyPart)
 			{
 				case BodyParts.Head:
-					offset = MemoryConstants.Head;
+					offset = MemoryOffsets.Head;
 					break;
 
 				case BodyParts.Heart:
-					offset = MemoryConstants.Heart;
+					offset = MemoryOffsets.Heart;
 					break;
 
 				case BodyParts.Body:
-					offset = MemoryConstants.Body;
+					offset = MemoryOffsets.Body;
 					break;
 			}
 
@@ -106,11 +108,11 @@ namespace LiveSplit.TheEndIsNigh.Memory
 			switch (worldEvent)
 			{
 				case WorldEvents.Friend:
-					offset = MemoryConstants.AssembledFriend;
+					offset = MemoryOffsets.AssembledFriend;
 					break;
 
 				case WorldEvents.Escape:
-					offset = MemoryConstants.Escaping;
+					offset = MemoryOffsets.Escaping;
 					break;
 			}
 
@@ -122,8 +124,8 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		/// </summary>
 		public Point GetWorldLocation()
 		{
-			int x = process.Read<int>(dataPointer, MemoryConstants.WorldGridX);
-			int y = process.Read<int>(dataPointer, MemoryConstants.WorldGridY);
+			int x = process.Read<int>(dataPointer, MemoryOffsets.WorldGridX);
+			int y = process.Read<int>(dataPointer, MemoryOffsets.WorldGridY);
 
 			return new Point(x, y);
 		}

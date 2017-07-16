@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace LiveSplit.TheEndIsNigh.Memory
 {
 	/// <summary>
-	/// Static class used to store memory locations for the game. These locations were found pretty meticulously using Cheat Engine.
+	/// Static class used to store memory offsets for the game.
 	/// </summary>
-	public static class MemoryConstants
+	public static class MemoryOffsets
 	{
 		/// <summary>
-		/// Search string used to find the autosplit data structure created by Tyler.
+		/// Static offset to the autosplit data structure created by Tyler.
 		/// </summary>
-		public const string SearchString = "LookHereInMemory";
+		public const int StructureOffset = 0x25DFD0;
 
 		/// <summary>
 		/// Offset to in-game time (frame count).

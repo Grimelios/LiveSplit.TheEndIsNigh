@@ -134,7 +134,13 @@ namespace LiveSplit.TheEndIsNigh
 				timer.OnSkipSplit += OnSkipSplit;
 				timer.OnReset += OnReset;
 			}
+		}
 
+		/// <summary>
+		/// Secondary update function used to do most of the actual autosplitting work. Also useful for testing.
+		/// </summary>
+		public void Autosplit()
+		{
 			if (!memory.HookProcess())
 			{
 				return;

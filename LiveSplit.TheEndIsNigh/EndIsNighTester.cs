@@ -6,6 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LiveSplit.TheEndIsNigh.Controls;
+using LiveSplit.TheEndIsNigh.Data;
+using LiveSplit.TheEndIsNigh.Memory;
 
 namespace LiveSplit.TheEndIsNigh
 {
@@ -19,7 +21,16 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public static void Main(string[] args)
 		{
-			Application.Run(new TestingForm());
+			EndIsNighComponent component = new EndIsNighComponent();
+
+			while (true)
+			{
+				component.Autosplit();
+
+				Thread.Sleep(100);
+			}
+
+			//Application.Run(new TestingForm());
 		}
 	}
 }
