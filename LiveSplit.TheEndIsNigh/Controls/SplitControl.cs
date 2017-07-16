@@ -87,6 +87,10 @@ namespace LiveSplit.TheEndIsNigh.Controls
 					break;
 
 				case SplitTypes.TumorCount:
+					splitDataComboBox.Items.Clear();
+					splitDataComboBox.Visible = false;
+					tumorCountTextbox.Visible = true;
+
 					break;
 
 				case SplitTypes.WorldEvent:
@@ -107,6 +111,8 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			splitDataComboBox.Items.Clear();
 			splitDataComboBox.Items.AddRange(items);
 			splitDataComboBox.Visible = true;
+
+			tumorCountTextbox.Visible = false;
 		}
 	}
 }

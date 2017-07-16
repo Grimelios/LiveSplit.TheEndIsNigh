@@ -33,6 +33,7 @@
 			this.downButton = new System.Windows.Forms.Button();
 			this.deleteButton = new System.Windows.Forms.Button();
 			this.splitDataComboBox = new System.Windows.Forms.ComboBox();
+			this.tumorCountTextbox = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// splitTypeComboBox
@@ -88,10 +89,20 @@
 			this.splitDataComboBox.TabIndex = 4;
 			this.splitDataComboBox.Visible = false;
 			// 
+			// tumorCountTextbox
+			// 
+			this.tumorCountTextbox.Location = new System.Drawing.Point(132, 4);
+			this.tumorCountTextbox.MaxLength = 3;
+			this.tumorCountTextbox.Name = "tumorCountTextbox";
+			this.tumorCountTextbox.Size = new System.Drawing.Size(100, 20);
+			this.tumorCountTextbox.TabIndex = 5;
+			this.tumorCountTextbox.Visible = false;
+			// 
 			// SplitControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.tumorCountTextbox);
 			this.Controls.Add(this.splitDataComboBox);
 			this.Controls.Add(this.deleteButton);
 			this.Controls.Add(this.downButton);
@@ -100,6 +111,7 @@
 			this.Name = "SplitControl";
 			this.Size = new System.Drawing.Size(526, 127);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -110,5 +122,6 @@
 		private System.Windows.Forms.Button downButton;
 		private System.Windows.Forms.Button deleteButton;
 		private System.Windows.Forms.ComboBox splitDataComboBox;
+		private System.Windows.Forms.TextBox tumorCountTextbox;
 	}
 }
