@@ -78,7 +78,7 @@
     <None Include="Json\AnyPercent.json" />
     <None Include="Json\FriendPercent.json" />
     <None Include="packages.config" />
-    <None Include="Resources\map.csv" />
+    <None Include="Reference\map.csv" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\DefaultCategoryControl.resx">
@@ -87,6 +87,9 @@
     <EmbeddedResource Include="Controls\EndIsNighControl.resx">
       <DependentUpon>EndIsNighControl.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reference\AutosplitData.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

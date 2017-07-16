@@ -215,33 +215,44 @@ namespace LiveSplit.TheEndIsNigh.Memory
 			return offsets.Length > 0 ? offsets[offsets.Length - 1] : 0;
 		}
 
-		public static IntPtr[] FindSignatures(this Process targetProcess, params string[] searchStrings)
+		/// <summary>
+		/// Searches the process's memory for the given strings.
+		/// </summary>
+		public static IntPtr[] FindSignatures(this Process process, params string[] searchStrings)
 		{
 			IntPtr[] returnAddresses = new IntPtr[searchStrings.Length];
 			MemorySignature[] byteCodes = new MemorySignature[searchStrings.Length];
+
 			for (int i = 0; i < searchStrings.Length; i++)
 			{
 				byteCodes[i] = GetSignature(searchStrings[i]);
 			}
 
 			long minAddress = 65536;
-			long maxAddress = Is64Bit(targetProcess) ? 140737488289791L : 2147418111L;
+			long maxAddress = Is64Bit(process) ? 140737488289791L : 2147418111L;
 			uint memInfoSize = (uint)Marshal.SizeOf(typeof(MemInfo));
+
 			MemInfo memInfo;
 
 			int foundAddresses = 0;
+
 			while (minAddress < maxAddress && foundAddresses < searchStrings.Length)
 			{
-				WinAPI.VirtualQueryEx(targetProcess.Handle, (IntPtr)minAddress, out memInfo, memInfoSize);
+				WinAPI.VirtualQueryEx(process.Handle, (IntPtr)minAddress, out memInfo, memInfoSize);
+
 				long regionSize = (long)memInfo.RegionSize;
-				if (regionSize <= 0) { break; }
+
+				if (regionSize <= 0)
+				{
+					break;
+				}
 
 				if ((memInfo.Protect & 0x40) != 0 && (memInfo.Type & 0x20000) != 0 && memInfo.State == 0x1000)
 				{
 					byte[] buffer = new byte[regionSize];
+					int bytesRead;
 
-					int bytesRead = 0;
-					if (WinAPI.ReadProcessMemory(targetProcess.Handle, memInfo.BaseAddress, buffer, (int)regionSize, out bytesRead))
+					if (WinAPI.ReadProcessMemory(process.Handle, memInfo.BaseAddress, buffer, (int)regionSize, out bytesRead))
 					{
 						for (int i = 0; i < searchStrings.Length; i++)
 						{
@@ -261,6 +272,7 @@ namespace LiveSplit.TheEndIsNigh.Memory
 
 			return returnAddresses;
 		}
+
 		public static List<IntPtr> FindAllSignatures(this Process targetProcess, string searchString)
 		{
 			List<IntPtr> returnAddresses = new List<IntPtr>();

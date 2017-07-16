@@ -24,12 +24,12 @@ namespace LiveSplit.TheEndIsNigh.Data
 	}
 
 	/// <summary>
-	/// Enumeration storing objects the player can interact with.
+	/// Enumeration storing world events (often triggered by player interaction).
 	/// </summary>
-	public enum Interactions
+	public enum WorldEvents
 	{
 		Friend,
-		FriendNuke
+		Escape
 	}
 
 	/// <summary>

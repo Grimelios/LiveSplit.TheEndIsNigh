@@ -45,7 +45,7 @@
 	},
 
 	{
-		"Type": "Interaction",
+		"Type": "WorldEvent",
 		"Data": "Friend"
 	},
 
@@ -70,7 +70,12 @@
 	},
 
 	{
-		"Type": "Interaction",
-		"Data": "FriendNuke"
+		"Type": "WorldEvent",
+		"Data": "Escape"
+	},
+
+	{
+		"Type": "WorldEvent",
+		"Data": "BeatEndOne"
 	}
 ]
