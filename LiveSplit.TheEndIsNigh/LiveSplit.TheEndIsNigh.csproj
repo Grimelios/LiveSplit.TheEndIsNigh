@@ -90,6 +90,7 @@
     <Compile Include="EndIsNighComponent.cs" />
     <Compile Include="EndIsNighFactory.cs" />
     <Compile Include="EndIsNighTester.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Memory\EndIsNighMemory.cs" />
     <Compile Include="Memory\MemoryConstants.cs" />
     <Compile Include="Memory\MemoryReader.cs" />
