@@ -31,17 +31,17 @@ namespace LiveSplit.TheEndIsNigh
 		/// <summary>
 		/// Update name for the component. Equivalent to component name.
 		/// </summary>
-		public string UpdateName => ComponentName;
+		public string UpdateName => ComponentName + " " + Version;
 
 		/// <summary>
 		/// URL used to update the component.
 		/// </summary>
-		public string UpdateURL => null;
+		public string UpdateURL => "https://raw.githubusercontent.com/Grimelios/LiveSplit.TheEndIsNigh/master/";
 
 		/// <summary>
 		/// XML update filename.
 		/// </summary>
-		public string XMLURL => null;
+		public string XMLURL => UpdateURL + "LiveSplit.TheEndIsNigh.Updates.xml";
 
 		/// <summary>
 		/// Component version.

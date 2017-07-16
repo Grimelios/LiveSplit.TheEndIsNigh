@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using LiveSplit.TheEndIsNigh.Controls;
 
 namespace LiveSplit.TheEndIsNigh
 {
@@ -17,6 +19,7 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public static void Main(string[] args)
 		{
+			Application.Run(new TestingForm());
 		}
 	}
 }
