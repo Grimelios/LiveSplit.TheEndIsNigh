@@ -54,11 +54,13 @@
 			// 
 			// defaultsBox
 			// 
+			this.defaultsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.defaultsBox.Controls.Add(this.friendPercentButton);
 			this.defaultsBox.Controls.Add(this.anyPercentButton);
 			this.defaultsBox.Location = new System.Drawing.Point(3, 3);
 			this.defaultsBox.Name = "defaultsBox";
-			this.defaultsBox.Size = new System.Drawing.Size(376, 49);
+			this.defaultsBox.Size = new System.Drawing.Size(471, 49);
 			this.defaultsBox.TabIndex = 3;
 			this.defaultsBox.TabStop = false;
 			this.defaultsBox.Text = "Defaults";
@@ -69,7 +71,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.defaultsBox);
 			this.Name = "DefaultCategoryControl";
-			this.Size = new System.Drawing.Size(477, 269);
+			this.Size = new System.Drawing.Size(477, 55);
 			this.defaultsBox.ResumeLayout(false);
 			this.ResumeLayout(false);
 

@@ -18,7 +18,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 	/// </summary>
 	public partial class EndIsNighControl : UserControl
 	{
-		private const int FontSize = 16;
+		private const int FontSize = 14;
 
 		// Taken from http://stackoverflow.com/questions/556147/how-to-quickly-and-easily-embed-fonts-in-winforms-app-in-c-sharp.
 		[DllImport("gdi32.dll")]

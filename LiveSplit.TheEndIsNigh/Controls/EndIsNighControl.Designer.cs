@@ -44,7 +44,7 @@
 			// 
 			// splitCollectionControl1
 			// 
-			this.splitCollectionControl1.Location = new System.Drawing.Point(3, 94);
+			this.splitCollectionControl1.Location = new System.Drawing.Point(0, 79);
 			this.splitCollectionControl1.Name = "splitCollectionControl1";
 			this.splitCollectionControl1.Size = new System.Drawing.Size(483, 295);
 			this.splitCollectionControl1.SplitCollection = null;
@@ -52,7 +52,7 @@
 			// 
 			// defaultCategoryControl1
 			// 
-			this.defaultCategoryControl1.Location = new System.Drawing.Point(3, 39);
+			this.defaultCategoryControl1.Location = new System.Drawing.Point(0, 24);
 			this.defaultCategoryControl1.Name = "defaultCategoryControl1";
 			this.defaultCategoryControl1.Size = new System.Drawing.Size(465, 65);
 			this.defaultCategoryControl1.TabIndex = 0;
