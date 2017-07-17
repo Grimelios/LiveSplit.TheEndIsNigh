@@ -23,8 +23,9 @@ namespace LiveSplit.TheEndIsNigh.Data
 	{
 		Friend,
 		Escape,
-		BeatEnd1,
-		BeatEnd2
+		End1,
+		End2,
+		Invalid
 	}
 
 	/// <summary>
@@ -50,6 +51,8 @@ namespace LiveSplit.TheEndIsNigh.Data
 		Blight,
 		Ruin,
 		Acceptance,
-		Nevermore
+		Nevermore,
+
+		Invalid
 	}
 }

@@ -35,37 +35,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 		}
 
 		/// <summary>
-		/// Constructs the class. This constructor is used when loading splits from a Json file. The data string is parsed based on split
-		/// type.
-		/// </summary>
-		[JsonConstructor]
-		public Split(SplitTypes type, string data)
-		{
-			Type = type;
-
-			// The Start type doesn't have any associated data.
-			switch (type)
-			{
-				case SplitTypes.BodyPart:
-					Data = Enum.Parse(typeof(BodyParts), data);
-					break;
-
-				case SplitTypes.CartridgeCount:
-				case SplitTypes.TumorCount:
-					Data = int.Parse(data);
-					break;
-
-				case SplitTypes.WorldEvent:
-					Data = Enum.Parse(typeof(WorldEvents), data);
-					break;
-			
-				case SplitTypes.Zone:
-					Data = Enum.Parse(typeof(Zones), data);
-					break;
-			}
-		}
-
-		/// <summary>
 		/// Split type.
 		/// </summary>
 		public SplitTypes Type { get; }

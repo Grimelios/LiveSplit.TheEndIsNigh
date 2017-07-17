@@ -96,6 +96,7 @@
     <Compile Include="EndIsNighFactory.cs" />
     <Compile Include="EndIsNighTester.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Json\JsonUtilities.cs" />
     <Compile Include="Memory\EndIsNighMemory.cs" />
     <Compile Include="Memory\MemoryOffsets.cs" />
     <Compile Include="Memory\MemoryReader.cs" />
@@ -107,8 +108,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Json\AnyPercent.json" />
-    <None Include="Json\FriendPercent.json" />
+    <None Include="Json\AnyPercent.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Json\FriendPercent.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Reference\map.csv" />
     <None Include="Resources\TheEnd.ttf" />

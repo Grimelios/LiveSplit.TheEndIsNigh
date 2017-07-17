@@ -72,6 +72,70 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		}
 
 		/// <summary>
+		/// Split type for the control.
+		/// </summary>
+		public SplitTypes SplitType
+		{
+			get
+			{
+				int typeIndex = splitTypeComboBox.SelectedIndex;
+
+				return typeIndex != -1 ? (SplitTypes)typeIndex : SplitTypes.Unassigned;
+			}
+		}
+
+		/// <summary>
+		/// Split data for the control (parsed based on split type).
+		/// </summary>
+		public object SplitData
+		{
+			get
+			{
+				SplitTypes splitType = SplitType;
+
+				string data = splitType == SplitTypes.CartridgeCount || splitType == SplitTypes.TumorCount
+					? tumorCountTextbox.Text
+					: splitDataComboBox.Text;
+
+				return ParseData(splitType, splitDataComboBox.SelectedIndex, data);
+			}
+		}
+
+		/// <summary>
+		/// Parses split data based on the given type and raw string.
+		/// </summary>
+		private object ParseData(SplitTypes splitType, int dataIndex, string data)
+		{
+			switch (splitType)
+			{
+				case SplitTypes.BodyPart:
+					return (BodyParts)dataIndex;
+
+				case SplitTypes.CartridgeCount:
+				case SplitTypes.TumorCount:
+					return int.Parse(data);
+
+				case SplitTypes.WorldEvent:
+					return Enum.Parse(typeof(WorldEvents), RemoveSpaces(data));
+
+				case SplitTypes.Zone:
+					// Wall of Sorrow is the only string that won't correctly convert to an enumeration value when spaces are removed (due
+					// to the lower-case o).
+					return dataIndex == 4 ? Zones.WallOfSorrow : Enum.Parse(typeof(Zones), RemoveSpaces(data));
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Removes spaces from the given string. Used to more easily parse enumeration values from human-readable strings.
+		/// </summary>
+		private string RemoveSpaces(string value)
+		{
+			return value.Replace(" ", "");
+		}
+
+		/// <summary>
 		/// Called when the selected index changes for the split type dropdown.
 		/// </summary>
 		private void splitTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,6 +149,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				case SplitTypes.CartridgeCount:
 				case SplitTypes.TumorCount:
 					splitDataComboBox.Items.Clear();
+					splitDataComboBox.SelectedIndex = -1;
 					splitDataComboBox.Visible = false;
 					tumorCountTextbox.Visible = true;
 

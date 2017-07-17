@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LiveSplit.TheEndIsNigh.Data;
+using LiveSplit.TheEndIsNigh.Json;
 
 namespace LiveSplit.TheEndIsNigh.Controls
 {
@@ -59,26 +60,12 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			for (int i = 0; i < splits.Length; i++)
 			{
 				SplitControl control = (SplitControl)splitControls[i];
-				splits[i] = new Split(GetSplitType(control), GetSplitData(control));
+				splits[i] = new Split(control.SplitType, control.SplitData);
 			}
 
-			SplitCollection.Splits = splits;
-		}
+			//SplitCollection.Splits = splits;
 
-		/// <summary>
-		/// Gets split type for the given control.
-		/// </summary>
-		private SplitTypes GetSplitType(SplitControl control)
-		{
-			return SplitTypes.Unassigned;
-		}
-
-		/// <summary>
-		/// Gets split data for the given control.
-		/// </summary>
-		private object GetSplitData(SplitControl control)
-		{
-			return null;
+			JsonUtilities.Serialize(splits, "UserSplits.json");
 		}
 
 		/// <summary>
