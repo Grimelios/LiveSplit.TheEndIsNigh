@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{23F518B6-FA2F-45D5-AFB9-BA3AF9A3637A}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit.TheEndIsNigh</RootNamespace>
     <AssemblyName>LiveSplit.TheEndIsNigh</AssemblyName>
@@ -107,6 +107,7 @@
     <None Include="Json\FriendPercent.json" />
     <None Include="packages.config" />
     <None Include="Reference\map.csv" />
+    <None Include="Resources\TheEnd.ttf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\DefaultCategoryControl.resx">
@@ -130,10 +131,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\Add.png" />
-    <Content Include="Images\Delete.png" />
-    <Content Include="Images\Down.png" />
-    <Content Include="Images\Up.png" />
+    <Content Include="Resources\Add.png" />
+    <Content Include="Resources\Delete.png" />
+    <Content Include="Resources\Down.png" />
+    <Content Include="Resources\Up.png" />
     <Content Include="Reference\AutosplitData.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
