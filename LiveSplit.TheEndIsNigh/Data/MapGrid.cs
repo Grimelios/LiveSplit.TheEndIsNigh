@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LiveSplit.TheEndIsNigh.Events;
+using LiveSplit.TheEndIsNigh.Memory;
 
 namespace LiveSplit.TheEndIsNigh.Data
 {
@@ -17,25 +19,49 @@ namespace LiveSplit.TheEndIsNigh.Data
 		// boolean grid to track visited levels.
 		private bool[,] visited;
 
+		private EndIsNighMemory memory;
+
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
-		public MapGrid()
+		public MapGrid(EndIsNighMemory memory)
 		{
+			this.memory = memory;
+
 			visited = new bool[GridWidth, GridHeight];
 		}
 
 		/// <summary>
-		/// Updates the grid with the given player location.
+		/// Resets the map grid.
 		/// </summary>
-		public void Update(Point location)
+		public void Reset()
 		{
+			for (int i = 0; i < GridHeight; i++)
+			{
+				for (int j = 0; j < GridWidth; j++)
+				{
+					visited[j, i] = false;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Updates the grid. Triggers zone events when a new zone is reached for the first time.
+		/// </summary>
+		public void Update()
+		{
+			Point location = memory.GetWorldLocation();
+
 			int x = location.X;
 			int y = location.Y;
 
 			if (!visited[x, y])
 			{
 				visited[x, y] = true;
+
+				Console.WriteLine($"Zone reached ({location.X}, {location.Y}).");
+
+				//EventSystem.Send(EventTypes.ZoneReached, location);
 			}
 		}
 	}

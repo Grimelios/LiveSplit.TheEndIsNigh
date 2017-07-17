@@ -21,6 +21,8 @@ namespace LiveSplit.TheEndIsNigh
 	public class EndIsNighComponent : IComponent
 	{
 		private MapGrid mapGrid;
+		private TumorCollection tumorCollection;
+		private BodyPartCollection bodyPartCollection;
 		private TimerModel timer;
 		private EndIsNighControl settingsControl;
 		private EndIsNighMemory memory;
@@ -31,8 +33,10 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public EndIsNighComponent()
 		{
-			mapGrid = new MapGrid();
 			memory = new EndIsNighMemory();
+			mapGrid = new MapGrid(memory);
+			tumorCollection = new TumorCollection(memory);
+			bodyPartCollection = new BodyPartCollection(memory);
 			settingsControl = new EndIsNighControl();
 			splitCollection = new SplitCollection(this);
 		}
@@ -134,6 +138,8 @@ namespace LiveSplit.TheEndIsNigh
 				timer.OnSkipSplit += OnSkipSplit;
 				timer.OnReset += OnReset;
 			}
+
+			Autosplit();
 		}
 
 		/// <summary>
@@ -146,7 +152,9 @@ namespace LiveSplit.TheEndIsNigh
 				return;
 			}
 
-			mapGrid.Update(memory.GetWorldLocation());
+			mapGrid.Update();
+			tumorCollection.Update();
+			bodyPartCollection.Update();
 		}
 
 		/// <summary>

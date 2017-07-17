@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LiveSplit.TheEndIsNigh.Events;
 
 namespace LiveSplit.TheEndIsNigh.Data
 {
@@ -24,20 +25,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 		public SplitCollection(EndIsNighComponent parent)
 		{
 			this.parent = parent;
-
-			Events.NewLocationEvent += OnNewLocation;
-		}
-
-		/// <summary>
-		/// Called when the player enters a new level for the first time.
-		/// </summary>
-		private void OnNewLocation(Point location)
-		{
-			if (currentSplit.Type == SplitTypes.Zone && (Point)currentSplit.Data == location)
-			{
-				parent.Split();
-				splitIndex++;
-			}
 		}
 
 		/// <summary>
@@ -45,7 +32,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnSplit()
 		{
-			splitIndex++;
+			currentSplit = splits[++splitIndex];
 		}
 
 		/// <summary>
@@ -53,7 +40,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnUndoSplit()
 		{
-			splitIndex--;
+			currentSplit = splits[--splitIndex];
 		}
 
 		/// <summary>
@@ -61,7 +48,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnSkipSplit()
 		{
-			splitIndex++;
+			currentSplit = splits[++splitIndex];
 		}
 
 		/// <summary>
@@ -69,7 +56,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnReset()
 		{
-			splitIndex = 0;
+			currentSplit = splits[splitIndex = 0];
 		}
 	}
 }
