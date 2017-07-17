@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LiveSplit.TheEndIsNigh.Data;
-using LiveSplit.TheEndIsNigh.Json;
 using LiveSplit.TheEndIsNigh.Properties;
 
 namespace LiveSplit.TheEndIsNigh.Controls

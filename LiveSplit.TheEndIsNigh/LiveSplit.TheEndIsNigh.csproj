@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{23F518B6-FA2F-45D5-AFB9-BA3AF9A3637A}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit.TheEndIsNigh</RootNamespace>
     <AssemblyName>LiveSplit.TheEndIsNigh</AssemblyName>
@@ -36,10 +36,6 @@
   <ItemGroup>
     <Reference Include="LiveSplit.Core">
       <HintPath>..\..\..\..\..\..\..\LiveSplitFolder\LiveSplit.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -94,9 +90,9 @@
     <Compile Include="Data\SplitCollection.cs" />
     <Compile Include="EndIsNighComponent.cs" />
     <Compile Include="EndIsNighFactory.cs" />
+    <Compile Include="EndIsNighSettings.cs" />
     <Compile Include="EndIsNighTester.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Json\JsonUtilities.cs" />
     <Compile Include="Memory\EndIsNighMemory.cs" />
     <Compile Include="Memory\MemoryOffsets.cs" />
     <Compile Include="Memory\MemoryReader.cs" />
@@ -108,13 +104,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Json\AnyPercent.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Json\FriendPercent.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
+    <None Include="Json\AnyPercent.json" />
+    <None Include="Json\FriendPercent.json" />
     <None Include="Reference\map.csv" />
     <None Include="Resources\TheEnd.ttf" />
   </ItemGroup>

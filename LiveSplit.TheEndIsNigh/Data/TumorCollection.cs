@@ -37,11 +37,11 @@ namespace LiveSplit.TheEndIsNigh.Data
 		{
 			int newTumorCount = Memory.GetTumorCount();
 
-			if (tumorCount != newTumorCount)
+			if (newTumorCount > tumorCount)
 			{
 				tumorCount = newTumorCount;
 
-				if (tumorCount == (int)data)
+				if (tumorCount >= (int)data)
 				{
 					return true;
 				}

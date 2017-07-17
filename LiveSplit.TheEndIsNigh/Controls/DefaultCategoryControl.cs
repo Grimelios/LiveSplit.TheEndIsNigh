@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LiveSplit.TheEndIsNigh.Data;
-using LiveSplit.TheEndIsNigh.Json;
 
 namespace LiveSplit.TheEndIsNigh.Controls
 {
@@ -51,7 +50,6 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		private void LoadDefaultSplits(string filename)
 		{
-			CollectionControl.SetDefaultSplits(JsonUtilities.Deserialize<Split[]>(filename));
 		}
 	}
 }

@@ -22,12 +22,28 @@ namespace LiveSplit.TheEndIsNigh.Data
 		// boolean grid to track visited levels.
 		private bool[,] visited;
 
+		private Point[] zoneMap;
+
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
 		public MapGrid(EndIsNighMemory memory) : base(memory)
 		{
 			visited = new bool[GridWidth, GridHeight];
+
+			zoneMap = new []
+			{
+				new Point(0, 17),
+				new Point(20, 17),
+				new Point(40, 17),
+				new Point(61, 17),
+				new Point(61, 16),
+				new Point(69, 10),
+				new Point(62, 17),
+				new Point(77, 17),
+				new Point(61, 18),
+				new Point(71, 23),
+			};
 		}
 
 		/// <summary>
@@ -60,7 +76,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public override bool QueryData(object data)
 		{
-			Point targetLocation = (Point)data;
+			Point targetLocation = zoneMap[(int)data];
 			Point location = Memory.GetWorldLocation();
 
 			int x = location.X;

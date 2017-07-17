@@ -35,6 +35,13 @@ namespace LiveSplit.TheEndIsNigh.Data
 			bodyPartCollection = (BodyPartCollection)dataClasses[2];
 			cartridgeCollection = (CartridgeCollection)dataClasses[3];
 			worldEventCollection = (WorldEventCollection)dataClasses[4];
+
+			Splits = new []
+			{
+				new Split(SplitTypes.CartridgeCount, 1)
+			};
+
+			currentSplit = Splits[0];
 		}
 
 		/// <summary>
@@ -115,7 +122,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 					return worldEventCollection.QueryData((WorldEvents)data);
 
 				case SplitTypes.Zone:
-					return mapGrid.QueryData((Point)data);
+					return mapGrid.QueryData((Zones)data);
 			}
 
 			return false;

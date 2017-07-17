@@ -121,7 +121,7 @@ namespace LiveSplit.TheEndIsNigh
 		{
 			return settingsControl;
 		}
-
+		
 		/// <summary>
 		/// Triggers the timer to split.
 		/// </summary>
@@ -165,7 +165,7 @@ namespace LiveSplit.TheEndIsNigh
 			{
 				if (((MapGrid)dataClasses[0]).QueryStart())
 				{
-					timer.Start();
+					timer?.Start();
 					runStarted = true;
 				}
 				else
@@ -212,6 +212,8 @@ namespace LiveSplit.TheEndIsNigh
 			{
 				dataClass.Reset();
 			}
+
+			runStarted = false;
 		}
 
 		/// <summary>

@@ -34,8 +34,6 @@ namespace LiveSplit.TheEndIsNigh.Memory
 				}
 				
 				dataPointer = process.MainModule.BaseAddress + MemoryOffsets.StructureOffset;
-
-				Console.WriteLine($"Process hooked (data pointer: {dataPointer}).");
 			}
 
 			return true;

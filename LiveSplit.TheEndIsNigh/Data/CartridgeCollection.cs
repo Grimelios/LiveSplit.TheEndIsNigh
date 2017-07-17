@@ -30,18 +30,18 @@ namespace LiveSplit.TheEndIsNigh.Data
 		}
 
 		/// <summary>
-		/// Checks whether the given cartridge count has been reached. Like tumors, cartridge count only updates when you collect a
-		/// cartridge and then move offscreen.
+		/// Checks whether the given cartridge count has been reached. Unlike tumors, cartridges update the moment you collect them (i.e.
+		/// you don't need to move offscreen).
 		/// </summary>
 		public override bool QueryData(object data)
 		{
 			int newCartridgeCount = Memory.GetCartridgeCount();
 
-			if (cartridgeCount != newCartridgeCount)
+			if (newCartridgeCount > cartridgeCount)
 			{
 				cartridgeCount = newCartridgeCount;
 
-				if (cartridgeCount == (int)data)
+				if (cartridgeCount >= (int)data)
 				{
 					return true;
 				}
