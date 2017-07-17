@@ -42,6 +42,14 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		}
 
 		/// <summary>
+		/// Returns the number of frames the game has been running (i.e. in-game frames). This value only updates during gameplay.
+		/// </summary>
+		public long GetInGameTime()
+		{
+			return process.Read<long>(dataPointer, MemoryOffsets.InGameTime);
+		}
+
+		/// <summary>
 		/// Gets the current death count.
 		/// </summary>
 		public int GetDeathCount()
