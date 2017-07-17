@@ -151,7 +151,7 @@ namespace LiveSplit.TheEndIsNigh
 			{
 				return;
 			}
-
+			
 			mapGrid.Update();
 			tumorCollection.Update();
 			bodyPartCollection.Update();

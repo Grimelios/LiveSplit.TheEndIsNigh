@@ -25,6 +25,14 @@ namespace LiveSplit.TheEndIsNigh.Data
 		}
 
 		/// <summary>
+		/// Resets tumor count.
+		/// </summary>
+		public void Reset()
+		{
+			tumorCount = 0;
+		}
+
+		/// <summary>
 		/// Updates the collection. Triggers tumor events when a new tumor is collected (confirmed collection, i.e. when you collect a
 		/// tumor and then move offscreen).
 		/// </summary>

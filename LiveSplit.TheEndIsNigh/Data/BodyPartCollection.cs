@@ -27,6 +27,17 @@ namespace LiveSplit.TheEndIsNigh.Data
 		}
 
 		/// <summary>
+		/// Resets the collection.
+		/// </summary>
+		public void Reset()
+		{
+			for (int i = 0; i < bodyParts.Length; i++)
+			{
+				bodyParts[i] = false;
+			}
+		}
+
+		/// <summary>
 		/// Updates the collection. Triggers body events when a new body part is collected.
 		/// </summary>
 		public void Update()

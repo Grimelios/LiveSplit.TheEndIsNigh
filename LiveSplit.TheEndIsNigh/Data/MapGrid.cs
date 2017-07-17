@@ -19,6 +19,8 @@ namespace LiveSplit.TheEndIsNigh.Data
 		// boolean grid to track visited levels.
 		private bool[,] visited;
 
+		private bool gameStarted;
+
 		private EndIsNighMemory memory;
 
 		/// <summary>
@@ -43,10 +45,13 @@ namespace LiveSplit.TheEndIsNigh.Data
 					visited[j, i] = false;
 				}
 			}
+
+			gameStarted = false;
 		}
 
 		/// <summary>
-		/// Updates the grid. Triggers zone events when a new zone is reached for the first time.
+		/// Updates the grid. Triggers zone events when a new zone is reached for the first time. The map grid also triggers the Start
+		/// event when a new file is selected.
 		/// </summary>
 		public void Update()
 		{
@@ -58,6 +63,15 @@ namespace LiveSplit.TheEndIsNigh.Data
 			if (!visited[x, y])
 			{
 				visited[x, y] = true;
+
+				if (location == new Point(0, 37) && !gameStarted)
+				{
+					Console.WriteLine("Game started.");
+
+					gameStarted = true;
+
+					return;
+				}
 
 				Console.WriteLine($"Zone reached ({location.X}, {location.Y}).");
 

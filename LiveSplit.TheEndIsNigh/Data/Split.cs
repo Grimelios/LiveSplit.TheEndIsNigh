@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace LiveSplit.TheEndIsNigh.Data
 {
 	/// <summary>
-	/// Enumeration storing split types. Split type is used by the main component to determine how and when to split.
+	/// Enumeration storing split types. Split type is used to determine when and how to split.
 	/// </summary>
 	public enum SplitTypes
 	{
 		BodyPart,
 		Cartridge,
+		Start,
 		TumorCount,
 		WorldEvent,
 		Zone
@@ -31,6 +32,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		{
 			Type = type;
 
+			// The Start type doesn't have any associated data.
 			switch (type)
 			{
 				case SplitTypes.BodyPart:
