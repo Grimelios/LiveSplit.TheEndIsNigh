@@ -9,6 +9,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveSplit.TheEndIsNigh.Data;
+using LiveSplit.TheEndIsNigh.Json;
 using LiveSplit.TheEndIsNigh.Properties;
 
 namespace LiveSplit.TheEndIsNigh.Controls
@@ -31,6 +33,8 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		{
 			InitializeComponent();
 			LoadFont();
+
+			Controls.OfType<DefaultCategoryControl>().First().CollectionControl = Controls.OfType<SplitCollectionControl>().First();
 		}
 
 		/// <summary>

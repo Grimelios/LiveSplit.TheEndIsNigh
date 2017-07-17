@@ -42,6 +42,7 @@
 			this.friendPercentButton.TabIndex = 0;
 			this.friendPercentButton.Text = "Friend%";
 			this.friendPercentButton.UseVisualStyleBackColor = true;
+			this.friendPercentButton.Click += new System.EventHandler(this.friendPercentButton_Click);
 			// 
 			// anyPercentButton
 			// 
@@ -51,6 +52,7 @@
 			this.anyPercentButton.TabIndex = 2;
 			this.anyPercentButton.Text = "Any%";
 			this.anyPercentButton.UseVisualStyleBackColor = true;
+			this.anyPercentButton.Click += new System.EventHandler(this.anyPercentButton_Click);
 			// 
 			// defaultsBox
 			// 
