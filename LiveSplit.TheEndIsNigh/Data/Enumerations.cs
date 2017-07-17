@@ -50,7 +50,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 		Gloom,
 		Blight,
 		Ruin,
-		Acceptance,
 		Nevermore,
 
 		Invalid

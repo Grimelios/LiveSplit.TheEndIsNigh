@@ -54,7 +54,6 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				"Gloom",
 				"Blight",
 				"Ruin",
-				"Acceptance",
 				"Nevermore"
 			};
 		}

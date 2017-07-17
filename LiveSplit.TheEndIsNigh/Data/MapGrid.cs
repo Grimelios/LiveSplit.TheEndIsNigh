@@ -43,6 +43,11 @@ namespace LiveSplit.TheEndIsNigh.Data
 				new Point(77, 17),
 				new Point(61, 18),
 				new Point(71, 23),
+				new Point(0, 26),
+				new Point(20, 26),
+				new Point(40, 26),
+				new Point(60, 30),
+				new Point(40, 31),
 			};
 		}
 
