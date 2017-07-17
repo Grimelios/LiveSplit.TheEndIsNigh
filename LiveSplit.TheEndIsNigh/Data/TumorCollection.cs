@@ -8,44 +8,46 @@ using LiveSplit.TheEndIsNigh.Memory;
 namespace LiveSplit.TheEndIsNigh.Data
 {
 	/// <summary>
-	/// Data class used to store the player's tumor count during gameplay.
+	/// Data class used to track the player's tumor count.
 	/// </summary>
-	public class TumorCollection
+	public class TumorCollection : AutosplitDataClass
 	{
 		private int tumorCount;
-
-		private EndIsNighMemory memory;
 
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
-		public TumorCollection(EndIsNighMemory memory)
+		public TumorCollection(EndIsNighMemory memory) : base(memory)
 		{
-			this.memory = memory;
 		}
 
 		/// <summary>
-		/// Resets tumor count.
+		/// Resets the collection.
 		/// </summary>
-		public void Reset()
+		public override void Reset()
 		{
 			tumorCount = 0;
 		}
 
 		/// <summary>
-		/// Updates the collection. Triggers tumor events when a new tumor is collected (confirmed collection, i.e. when you collect a
-		/// tumor and then move offscreen).
+		/// Checks whether the given tumor count has been reached. Note that for the purposes of this autosplitter, tumors are only
+		/// considered collected when they are confirmed (i.e. a tumor is collected and then the player moves to a new level). 
 		/// </summary>
-		public void Update()
+		public override bool QueryData(object data)
 		{
-			int newTumorCount = memory.GetTumorCount();
+			int newTumorCount = Memory.GetTumorCount();
 
 			if (tumorCount != newTumorCount)
 			{
 				tumorCount = newTumorCount;
 
-				Console.WriteLine($"Tumor collected ({tumorCount} total).");
+				if (tumorCount == (int)data)
+				{
+					return true;
+				}
 			}
+
+			return false;
 		}
 	}
 }

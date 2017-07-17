@@ -8,46 +8,46 @@ using LiveSplit.TheEndIsNigh.Memory;
 namespace LiveSplit.TheEndIsNigh.Data
 {
 	/// <summary>
-	/// Represents a collection of body parts. Used to track when the player picks up a body part.
+	/// Data class used to track the player's collected body parts.
 	/// </summary>
-	public class BodyPartCollection
+	public class BodyPartCollection : AutosplitDataClass
 	{
 		private bool[] bodyParts;
-
-		private EndIsNighMemory memory;
 
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
-		public BodyPartCollection(EndIsNighMemory memory)
+		public BodyPartCollection(EndIsNighMemory memory) : base(memory)
 		{
-			this.memory = memory;
-
 			bodyParts = new bool[3];
 		}
 
 		/// <summary>
 		/// Resets the collection.
 		/// </summary>
-		public void Reset()
-		{
-			bodyParts.Reset();
-		}
-
-		/// <summary>
-		/// Updates the collection. Triggers body events when a new body part is collected.
-		/// </summary>
-		public void Update()
+		public override void Reset()
 		{
 			for (int i = 0; i < bodyParts.Length; i++)
 			{
-				if (!bodyParts[i] && memory.CheckBodyPart((BodyParts)i))
-				{
-					bodyParts[i] = true;
-
-					Console.WriteLine($"{(BodyParts)i} collected.");
-				}
+				bodyParts[i] = false;
 			}
+		}
+
+		/// <summary>
+		/// Checks whether the given body part has been collected. Body part collection triggers immediately when you touch the body prt.
+		/// </summary>
+		public override bool QueryData(object data)
+		{
+			int index = (int)data;
+
+			if (!bodyParts[index] && Memory.CheckBodyPart((BodyParts)index))
+			{
+				bodyParts[index] = true;
+
+				return true;
+			}
+
+			return false;
 		}
 	}
 }

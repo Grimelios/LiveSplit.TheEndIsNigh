@@ -42,7 +42,8 @@
 			this.splitTypeComboBox.FormattingEnabled = true;
 			this.splitTypeComboBox.Items.AddRange(new object[] {
             "Body Part",
-            "Cartridge",
+            "Cartridge Count",
+            "Start",
             "Tumor Count",
             "World Event",
             "Zone"});

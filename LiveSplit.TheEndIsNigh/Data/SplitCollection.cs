@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LiveSplit.TheEndIsNigh.Events;
 
 namespace LiveSplit.TheEndIsNigh.Data
 {
@@ -17,14 +16,26 @@ namespace LiveSplit.TheEndIsNigh.Data
 		private Split currentSplit;
 		private EndIsNighComponent parent;
 
+		private MapGrid mapGrid;
+		private TumorCollection tumorCollection;
+		private BodyPartCollection bodyPartCollection;
+		private CartridgeCollection cartridgeCollection;
+		private WorldEventCollection worldEventCollection;
+
 		private int splitIndex;
 
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
-		public SplitCollection(EndIsNighComponent parent)
+		public SplitCollection(EndIsNighComponent parent, AutosplitDataClass[] dataClasses)
 		{
 			this.parent = parent;
+
+			mapGrid = (MapGrid)dataClasses[0];
+			tumorCollection = (TumorCollection)dataClasses[1];
+			bodyPartCollection = (BodyPartCollection)dataClasses[2];
+			cartridgeCollection = (CartridgeCollection)dataClasses[3];
+			worldEventCollection = (WorldEventCollection)dataClasses[4];
 		}
 
 		/// <summary>
@@ -32,7 +43,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnSplit()
 		{
-			currentSplit = splits[++splitIndex];
+			AdvanceSplit();
 		}
 
 		/// <summary>
@@ -48,7 +59,15 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnSkipSplit()
 		{
-			currentSplit = splits[++splitIndex];
+			AdvanceSplit();
+		}
+
+		/// <summary>
+		/// Advances the current split.
+		/// </summary>
+		private void AdvanceSplit()
+		{
+			currentSplit = ++splitIndex < splits.Length ? splits[splitIndex] : null;
 		}
 
 		/// <summary>
@@ -57,6 +76,48 @@ namespace LiveSplit.TheEndIsNigh.Data
 		public void OnReset()
 		{
 			currentSplit = splits[splitIndex = 0];
+		}
+
+		/// <summary>
+		/// Updates the split collection. During update, different data classes are queried for data based on the current split.
+		/// </summary>
+		public void Update()
+		{
+			if (CheckSplit())
+			{
+				parent.Split();
+			}
+		}
+
+		/// <summary>
+		/// Checks whether the split criteria for the current split have been met.
+		/// </summary>
+		private bool CheckSplit()
+		{
+			object data = currentSplit.Data;
+
+			switch (currentSplit.Type)
+			{
+				case SplitTypes.BodyPart:
+					return bodyPartCollection.QueryData((BodyParts)data);
+
+				case SplitTypes.CartridgeCount:
+					return cartridgeCollection.QueryData((int)data);
+
+				case SplitTypes.Start:
+					return mapGrid.QueryStart();
+
+				case SplitTypes.TumorCount:
+					return tumorCollection.QueryData((int)data);
+
+				case SplitTypes.WorldEvent:
+					return worldEventCollection.QueryData((WorldEvents)data);
+
+				case SplitTypes.Zone:
+					return mapGrid.QueryData((Point)data);
+			}
+
+			return false;
 		}
 	}
 }

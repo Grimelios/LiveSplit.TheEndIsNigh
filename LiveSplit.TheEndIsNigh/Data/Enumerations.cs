@@ -17,13 +17,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 	}
 
 	/// <summary>
-	/// Enumeration listing all cartridges.
-	/// </summary>
-	public enum Cartridges
-	{
-	}
-
-	/// <summary>
 	/// Enumeration storing world events (often triggered by player interaction).
 	/// </summary>
 	public enum WorldEvents

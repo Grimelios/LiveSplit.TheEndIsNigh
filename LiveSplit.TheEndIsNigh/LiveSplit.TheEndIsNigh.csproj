@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{23F518B6-FA2F-45D5-AFB9-BA3AF9A3637A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit.TheEndIsNigh</RootNamespace>
     <AssemblyName>LiveSplit.TheEndIsNigh</AssemblyName>
@@ -83,19 +83,18 @@
     <Compile Include="Controls\TestingForm.Designer.cs">
       <DependentUpon>TestingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\AutosplitDataClass.cs" />
     <Compile Include="Data\BodyPartCollection.cs" />
     <Compile Include="Data\CartridgeCollection.cs" />
     <Compile Include="Data\Enumerations.cs" />
     <Compile Include="Data\TumorCollection.cs" />
     <Compile Include="Data\WorldEventCollection.cs" />
-    <Compile Include="Events\EventSystem.cs" />
     <Compile Include="Data\MapGrid.cs" />
     <Compile Include="Data\Split.cs" />
     <Compile Include="Data\SplitCollection.cs" />
     <Compile Include="EndIsNighComponent.cs" />
     <Compile Include="EndIsNighFactory.cs" />
     <Compile Include="EndIsNighTester.cs" />
-    <Compile Include="Events\IEventListener.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Memory\EndIsNighMemory.cs" />
     <Compile Include="Memory\MemoryOffsets.cs" />

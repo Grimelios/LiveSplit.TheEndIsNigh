@@ -10,44 +10,44 @@ namespace LiveSplit.TheEndIsNigh.Data
 	/// <summary>
 	/// Data class used to track world events.
 	/// </summary>
-	public class WorldEventCollection
+	public class WorldEventCollection : AutosplitDataClass
 	{
 		private bool[] worldEvents;
-
-		private EndIsNighMemory memory;
 
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
-		public WorldEventCollection(EndIsNighMemory memory)
+		public WorldEventCollection(EndIsNighMemory memory) : base(memory)
 		{
-			this.memory = memory;
-
 			worldEvents = new bool[4];
 		}
 
 		/// <summary>
 		/// Resets the collection.
 		/// </summary>
-		public void Reset()
-		{
-			worldEvents.Reset();
-		}
-
-		/// <summary>
-		/// Updates the collection. Triggers world events when they are detected.
-		/// </summary>
-		public void Update()
+		public override void Reset()
 		{
 			for (int i = 0; i < worldEvents.Length; i++)
 			{
-				if (!worldEvents[i] && memory.CheckWorldEvent((WorldEvents)i))
-				{
-					worldEvents[i] = true;
-
-					Console.WriteLine($"{(WorldEvents)i} event triggered.");
-				}
+				worldEvents[i] = false;
 			}
+		}
+
+		/// <summary>
+		/// Checks whether the given world event has been triggered.
+		/// </summary>
+		public override bool QueryData(object data)
+		{
+			int index = (int)data;
+
+			if (!worldEvents[index] && Memory.CheckWorldEvent((WorldEvents)index))
+			{
+				worldEvents[index] = true;
+
+				return true;
+			}
+
+			return false;
 		}
 	}
 }

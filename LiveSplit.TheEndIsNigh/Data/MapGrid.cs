@@ -4,12 +4,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LiveSplit.TheEndIsNigh.Events;
 using LiveSplit.TheEndIsNigh.Memory;
 
 namespace LiveSplit.TheEndIsNigh.Data
 {
-	public class MapGrid
+	/// <summary>
+	/// Data class used to track the player's location within the world grid. The map grid is unique in that it can trigger multiple kinds
+	/// of splits (zone and start).
+	/// </summary>
+	public class MapGrid : AutosplitDataClass
 	{
 		// These values are taken from the CSV file in Resources (map.csv).
 		private const int GridWidth = 100;
@@ -19,24 +22,18 @@ namespace LiveSplit.TheEndIsNigh.Data
 		// boolean grid to track visited levels.
 		private bool[,] visited;
 
-		private bool gameStarted;
-
-		private EndIsNighMemory memory;
-
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
-		public MapGrid(EndIsNighMemory memory)
+		public MapGrid(EndIsNighMemory memory) : base(memory)
 		{
-			this.memory = memory;
-
 			visited = new bool[GridWidth, GridHeight];
 		}
 
 		/// <summary>
 		/// Resets the map grid.
 		/// </summary>
-		public void Reset()
+		public override void Reset()
 		{
 			for (int i = 0; i < GridHeight; i++)
 			{
@@ -45,17 +42,26 @@ namespace LiveSplit.TheEndIsNigh.Data
 					visited[j, i] = false;
 				}
 			}
-
-			gameStarted = false;
 		}
 
 		/// <summary>
-		/// Updates the grid. Triggers zone events when a new zone is reached for the first time. The map grid also triggers the Start
-		/// event when a new file is selected.
+		/// Checks whether the game is starting (i.e. a new file was just selected).
 		/// </summary>
-		public void Update()
+		public bool QueryStart()
 		{
-			Point location = memory.GetWorldLocation();
+			// The visited array is intentionally not updated here (because, when starting a new game, the player doesn't actually visit
+			// the (0, 37) cell. (0, 37) also happens to be the first level of The End Is Nigh, so marking it visited would cause the
+			// cartridge zone to not trigger when running categories that visit that cart.
+			return Memory.GetWorldLocation() == new Point(0, 37);
+		}
+		
+		/// <summary>
+		/// Checks whether the given zone (i.e. map cell) has been reached. Only returns true the first time the zone is entered.
+		/// </summary>
+		public override bool QueryData(object data)
+		{
+			Point targetLocation = (Point)data;
+			Point location = Memory.GetWorldLocation();
 
 			int x = location.X;
 			int y = location.Y;
@@ -64,19 +70,13 @@ namespace LiveSplit.TheEndIsNigh.Data
 			{
 				visited[x, y] = true;
 
-				if (location == new Point(0, 37) && !gameStarted)
+				if (location == targetLocation)
 				{
-					Console.WriteLine("Game started.");
-
-					gameStarted = true;
-
-					return;
+					return true;
 				}
-
-				Console.WriteLine($"Zone reached ({location.X}, {location.Y}).");
-
-				//EventSystem.Send(EventTypes.ZoneReached, location);
 			}
+
+			return false;
 		}
 	}
 }

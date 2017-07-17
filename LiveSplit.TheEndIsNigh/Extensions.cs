@@ -19,16 +19,5 @@ namespace LiveSplit.TheEndIsNigh
 		{
 			return new Point(localPoint.X + point.X, localPoint.Y + point.Y);
 		}
-
-		/// <summary>
-		/// Resets the given boolean array to all false.
-		/// </summary>
-		public static void Reset(this bool[] array)
-		{
-			for (int i = 0; i < array.Length; i++)
-			{
-				array[i] = false;
-			}
-		}
 	}
 }

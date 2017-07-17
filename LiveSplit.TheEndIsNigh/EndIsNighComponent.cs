@@ -20,16 +20,11 @@ namespace LiveSplit.TheEndIsNigh
 	/// </summary>
 	public class EndIsNighComponent : IComponent
 	{
-		private MapGrid mapGrid;
-		private SplitCollection splitCollection;
-		private TumorCollection tumorCollection;
-		private BodyPartCollection bodyPartCollection;
-		private CartridgeCollection cartridgeCollection;
-		private WorldEventCollection worldEventCollection;
-
 		private TimerModel timer;
 		private EndIsNighControl settingsControl;
 		private EndIsNighMemory memory;
+		private AutosplitDataClass[] dataClasses;
+		private SplitCollection splitCollection;
 
 		private bool inGame;
 
@@ -39,15 +34,18 @@ namespace LiveSplit.TheEndIsNigh
 		public EndIsNighComponent()
 		{
 			memory = new EndIsNighMemory();
-			mapGrid = new MapGrid(memory);
-			splitCollection = new SplitCollection(this);
-			tumorCollection = new TumorCollection(memory);
-			bodyPartCollection = new BodyPartCollection(memory);
-			cartridgeCollection = new CartridgeCollection(memory);
-			worldEventCollection = new WorldEventCollection(memory);
 			settingsControl = new EndIsNighControl();
 
-			Console.WriteLine("Component created.");
+			dataClasses = new AutosplitDataClass[]
+			{
+				new MapGrid(memory),
+				new TumorCollection(memory),
+				new BodyPartCollection(memory),
+				new CartridgeCollection(memory),
+				new WorldEventCollection(memory),   
+			};
+
+			splitCollection = new SplitCollection(this, dataClasses);
 		}
 
 		/// <summary>
@@ -161,18 +159,19 @@ namespace LiveSplit.TheEndIsNigh
 				return;
 			}
 
-			if (!inGame && memory.CheckInGame())
+			if (!inGame)
 			{
-				inGame = true;
-
-				Console.WriteLine("In-game.");
+				if (memory.CheckInGame())
+				{
+					inGame = true;
+				}
+				else
+				{
+					return;
+				}
 			}
 			
-			mapGrid.Update();
-			tumorCollection.Update();
-			bodyPartCollection.Update();
-			cartridgeCollection.Update();
-			worldEventCollection.Update();
+			splitCollection.Update();
 		}
 
 		/// <summary>
@@ -205,11 +204,11 @@ namespace LiveSplit.TheEndIsNigh
 		private void OnReset(object sender, TimerPhase e)
 		{
 			splitCollection.OnReset();
-			mapGrid.Reset();
-			tumorCollection.Reset();
-			bodyPartCollection.Reset();
-			cartridgeCollection.Reset();
-			worldEventCollection.Reset();
+
+			foreach (AutosplitDataClass dataClass in dataClasses)
+			{
+				dataClass.Reset();
+			}
 		}
 
 		/// <summary>

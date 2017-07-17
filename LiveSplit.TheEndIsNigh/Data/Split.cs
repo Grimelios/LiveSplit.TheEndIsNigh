@@ -12,7 +12,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 	public enum SplitTypes
 	{
 		BodyPart,
-		Cartridge,
+		CartridgeCount,
 		Start,
 		TumorCount,
 		WorldEvent,
@@ -39,9 +39,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 					Data = Enum.Parse(typeof(BodyParts), data);
 					break;
 
-				case SplitTypes.Cartridge:
-					break;
-
+				case SplitTypes.CartridgeCount:
 				case SplitTypes.TumorCount:
 					Data = int.Parse(data);
 					break;

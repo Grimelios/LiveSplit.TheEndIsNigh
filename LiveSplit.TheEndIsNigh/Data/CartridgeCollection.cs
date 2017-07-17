@@ -8,37 +8,46 @@ using LiveSplit.TheEndIsNigh.Memory;
 namespace LiveSplit.TheEndIsNigh.Data
 {
 	/// <summary>
-	/// Data class used to track cartridges.
+	/// Data class used to track cartridge count.
 	/// </summary>
-	public class CartridgeCollection
+	public class CartridgeCollection : AutosplitDataClass
 	{
-		private bool[] cartridges;
-
-		private EndIsNighMemory memory;
+		private int cartridgeCount;
 
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
-		public CartridgeCollection(EndIsNighMemory memory)
+		public CartridgeCollection(EndIsNighMemory memory) : base(memory)
 		{
-			this.memory = memory;
-
-			cartridges = new bool[0];
 		}
 
 		/// <summary>
 		/// Resets the collection.
 		/// </summary>
-		public void Reset()
+		public override void Reset()
 		{
-			cartridges.Reset();
+			cartridgeCount = 0;
 		}
 
 		/// <summary>
-		/// Updates the collection. Triggers cartridge events when a new cartridge is collected and confirmed (similar to tumors).
+		/// Checks whether the given cartridge count has been reached. Like tumors, cartridge count only updates when you collect a
+		/// cartridge and then move offscreen.
 		/// </summary>
-		public void Update()
+		public override bool QueryData(object data)
 		{
+			int newCartridgeCount = Memory.GetCartridgeCount();
+
+			if (cartridgeCount != newCartridgeCount)
+			{
+				cartridgeCount = newCartridgeCount;
+
+				if (cartridgeCount == (int)data)
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}
 }

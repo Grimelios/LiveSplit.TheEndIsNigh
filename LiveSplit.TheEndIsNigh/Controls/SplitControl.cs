@@ -86,10 +86,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 					RepopulateData(bodyPartItems);
 					break;
 
-				case SplitTypes.Cartridge:
-					RepopulateData(cartridgeItems);
-					break;
-
+				case SplitTypes.CartridgeCount:
 				case SplitTypes.TumorCount:
 					splitDataComboBox.Items.Clear();
 					splitDataComboBox.Visible = false;
