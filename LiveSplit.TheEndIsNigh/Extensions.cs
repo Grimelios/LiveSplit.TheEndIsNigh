@@ -19,5 +19,13 @@ namespace LiveSplit.TheEndIsNigh
 		{
 			return new Point(localPoint.X + point.X, localPoint.Y + point.Y);
 		}
+
+		/// <summary>
+		/// Subtracts the given point from the source point.
+		/// </summary>
+		public static Point Subtract(this Point localPoint, Point point)
+		{
+			return new Point(localPoint.X - point.X, localPoint.Y - point.Y);
+		}
 	}
 }

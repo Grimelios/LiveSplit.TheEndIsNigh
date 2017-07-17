@@ -19,6 +19,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 	{
 		private const int SplitSpacing = 30;
 
+		private Point spacing;
 		private ControlCollection splitControls;
 
 		/// <summary>
@@ -28,6 +29,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		{
 			InitializeComponent();
 
+			spacing = new Point(0, SplitSpacing);
 			splitControls = splitPanel.Controls;
 		}
 
@@ -45,7 +47,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 
 			if (splitControls.Count > 0)
 			{
-				newSplit.Location = splitControls[splitControls.Count - 1].Location.Add(new Point(0, SplitSpacing));
+				newSplit.Location = splitControls[splitControls.Count - 1].Location.Add(spacing);
 			}
 
 			splitControls.Add(newSplit);
@@ -78,6 +80,12 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			int index = splitControls.IndexOf(control);
 
 			splitControls.RemoveAt(index);
+
+			for (int i = index; i < splitControls.Count; i++)
+			{
+				Control toMove = splitControls[i];
+				toMove.Location = toMove.Location.Subtract(spacing);
+			}
 		}
 	}
 }
