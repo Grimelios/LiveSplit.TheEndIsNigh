@@ -21,12 +21,14 @@ namespace LiveSplit.TheEndIsNigh
 	public class EndIsNighComponent : IComponent
 	{
 		private MapGrid mapGrid;
+		private SplitCollection splitCollection;
 		private TumorCollection tumorCollection;
 		private BodyPartCollection bodyPartCollection;
+		private WorldEventCollection worldEventCollection;
+
 		private TimerModel timer;
 		private EndIsNighControl settingsControl;
 		private EndIsNighMemory memory;
-		private SplitCollection splitCollection;
 
 		private bool inGame;
 
@@ -37,10 +39,11 @@ namespace LiveSplit.TheEndIsNigh
 		{
 			memory = new EndIsNighMemory();
 			mapGrid = new MapGrid(memory);
+			splitCollection = new SplitCollection(this);
 			tumorCollection = new TumorCollection(memory);
 			bodyPartCollection = new BodyPartCollection(memory);
+			worldEventCollection = new WorldEventCollection(memory);
 			settingsControl = new EndIsNighControl();
-			splitCollection = new SplitCollection(this);
 
 			Console.WriteLine("Component created.");
 		}
@@ -166,6 +169,7 @@ namespace LiveSplit.TheEndIsNigh
 			mapGrid.Update();
 			tumorCollection.Update();
 			bodyPartCollection.Update();
+			worldEventCollection.Update();
 		}
 
 		/// <summary>
@@ -193,11 +197,15 @@ namespace LiveSplit.TheEndIsNigh
 		}
 
 		/// <summary>
-		/// Called when the timer resets.
+		/// Called when the timer is reset.
 		/// </summary>
 		private void OnReset(object sender, TimerPhase e)
 		{
 			splitCollection.OnReset();
+			mapGrid.Reset();
+			tumorCollection.Reset();
+			bodyPartCollection.Reset();
+			worldEventCollection.Reset();
 		}
 
 		/// <summary>
