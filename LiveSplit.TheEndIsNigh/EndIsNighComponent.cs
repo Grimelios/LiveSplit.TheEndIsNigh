@@ -34,7 +34,6 @@ namespace LiveSplit.TheEndIsNigh
 		public EndIsNighComponent()
 		{
 			memory = new EndIsNighMemory();
-			settingsControl = new EndIsNighControl();
 
 			dataClasses = new AutosplitDataClass[]
 			{
@@ -46,6 +45,9 @@ namespace LiveSplit.TheEndIsNigh
 			};
 
 			splitCollection = new SplitCollection(this, dataClasses);
+
+			settingsControl = new EndIsNighControl();
+			settingsControl.Controls.OfType<SplitCollectionControl>().First().SplitCollection = splitCollection;
 		}
 
 		/// <summary>
