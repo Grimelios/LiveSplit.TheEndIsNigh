@@ -110,7 +110,7 @@
 			this.Controls.Add(this.upButton);
 			this.Controls.Add(this.splitTypeComboBox);
 			this.Name = "SplitControl";
-			this.Size = new System.Drawing.Size(802, 129);
+			this.Size = new System.Drawing.Size(641, 29);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

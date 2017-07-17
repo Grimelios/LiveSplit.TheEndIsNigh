@@ -41,12 +41,14 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		private void addSplitButton_Click(object sender, EventArgs e)
 		{
-			foreach (Control splitControl in splitControls)
+			SplitControl newSplit = new SplitControl(this);
+
+			if (splitControls.Count > 0)
 			{
-				splitControl.Location = splitControl.Location.Add(new Point(0, SplitSpacing));
+				newSplit.Location = splitControls[splitControls.Count - 1].Location.Add(new Point(0, SplitSpacing));
 			}
 
-			splitControls.Add(new SplitControl(this));
+			splitControls.Add(newSplit);
 			splitPanel.Height += SplitSpacing;
 		}
 
