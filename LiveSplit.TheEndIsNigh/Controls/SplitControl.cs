@@ -200,5 +200,21 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		{
 			parent.MoveDown(this);
 		}
+
+		/// <summary>
+		/// Toggles the Up button.
+		/// </summary>
+		public void ToggleUp(bool enabled)
+		{
+			upButton.Enabled = enabled;
+		}
+
+		/// <summary>
+		/// Toggles the Down button.
+		/// </summary>
+		public void ToggleDown(bool enabled)
+		{
+			downButton.Enabled = enabled;
+		}
 	}
 }
