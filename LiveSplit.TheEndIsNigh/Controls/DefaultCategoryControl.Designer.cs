@@ -35,7 +35,7 @@
 			// 
 			// friendPercentButton
 			// 
-			this.friendPercentButton.Location = new System.Drawing.Point(3, 20);
+			this.friendPercentButton.Location = new System.Drawing.Point(3, 21);
 			this.friendPercentButton.Name = "friendPercentButton";
 			this.friendPercentButton.Size = new System.Drawing.Size(75, 23);
 			this.friendPercentButton.TabIndex = 0;
@@ -53,7 +53,7 @@
 			// 
 			// anyPercentButton
 			// 
-			this.anyPercentButton.Location = new System.Drawing.Point(85, 20);
+			this.anyPercentButton.Location = new System.Drawing.Point(85, 21);
 			this.anyPercentButton.Name = "anyPercentButton";
 			this.anyPercentButton.Size = new System.Drawing.Size(75, 23);
 			this.anyPercentButton.TabIndex = 2;
@@ -68,7 +68,7 @@
 			this.Controls.Add(this.defaultCategoryLabel);
 			this.Controls.Add(this.friendPercentButton);
 			this.Name = "DefaultCategoryControl";
-			this.Size = new System.Drawing.Size(207, 47);
+			this.Size = new System.Drawing.Size(207, 64);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
