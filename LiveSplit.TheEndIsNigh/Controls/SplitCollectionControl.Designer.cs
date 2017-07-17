@@ -35,6 +35,7 @@
 			this.saveSplitsButton = new System.Windows.Forms.Button();
 			this.splitsBox = new System.Windows.Forms.GroupBox();
 			this.splitCountLabel = new System.Windows.Forms.Label();
+			this.statusLabel = new System.Windows.Forms.Label();
 			this.splitsBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -95,6 +96,7 @@
 			this.splitsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.splitsBox.Controls.Add(this.statusLabel);
 			this.splitsBox.Controls.Add(this.splitCountLabel);
 			this.splitsBox.Controls.Add(this.addSplitButton);
 			this.splitsBox.Controls.Add(this.splitPanel);
@@ -116,6 +118,14 @@
 			this.splitCountLabel.Size = new System.Drawing.Size(39, 13);
 			this.splitCountLabel.TabIndex = 5;
 			this.splitCountLabel.Text = "0 splits";
+			// 
+			// statusLabel
+			// 
+			this.statusLabel.AutoSize = true;
+			this.statusLabel.Location = new System.Drawing.Point(213, 24);
+			this.statusLabel.Name = "statusLabel";
+			this.statusLabel.Size = new System.Drawing.Size(0, 13);
+			this.statusLabel.TabIndex = 6;
 			// 
 			// SplitCollectionControl
 			// 
@@ -139,5 +149,6 @@
 		private System.Windows.Forms.Button saveSplitsButton;
 		private System.Windows.Forms.GroupBox splitsBox;
 		private System.Windows.Forms.Label splitCountLabel;
+		private System.Windows.Forms.Label statusLabel;
 	}
 }

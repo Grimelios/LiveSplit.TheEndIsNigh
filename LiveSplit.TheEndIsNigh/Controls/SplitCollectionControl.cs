@@ -72,14 +72,11 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			}
 
 			SplitCollection.Splits = splits;
-		}
 
-		/// <summary>
-		/// Updates the text in the split count label.
-		/// </summary>
-		private void UpdateCountLabel()
-		{
-			splitCountLabel.Text = splitControls.Count + " " + (splitControls.Count == 1 ? "split" : "splits");
+			if (ValidateSplits())
+			{
+				UpdateStatusLabel("Splits saved.", Color.Green);
+			}
 		}
 
 		/// <summary>
@@ -167,6 +164,43 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		{
 			control.ToggleUp(index > 0);
 			control.ToggleDown(index < splitControls.Count - 1);
+		}
+
+		/// <summary>
+		/// Validates whether the current list of splits is valid.
+		/// </summary>
+		private bool ValidateSplits()
+		{
+			for (int i = 0; i < splitControls.Count; i++)
+			{
+				SplitControl control = (SplitControl)splitControls[i];
+
+				if (control.SplitType == SplitTypes.Unassigned || control.SplitData == null)
+				{
+					UpdateStatusLabel($"Invalid split (line {i}).", Color.Red);
+
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Updates the text in the split count label.
+		/// </summary>
+		private void UpdateCountLabel()
+		{
+			splitCountLabel.Text = splitControls.Count + " " + (splitControls.Count == 1 ? "split" : "splits");
+		}
+
+		/// <summary>
+		/// Updates the status label with the given text and color.
+		/// </summary>
+		private void UpdateStatusLabel(string text, Color color)
+		{
+			statusLabel.Text = text;
+			statusLabel.ForeColor = color;
 		}
 	}
 }

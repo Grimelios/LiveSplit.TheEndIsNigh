@@ -13,7 +13,8 @@ namespace LiveSplit.TheEndIsNigh.Data
 	{
 		Head,
 		Heart,
-		Body
+		Body,
+		Unassigned
 	}
 
 	/// <summary>
@@ -25,7 +26,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		Escape,
 		End1,
 		End2,
-		Invalid
+		Unassigned
 	}
 
 	/// <summary>
@@ -52,6 +53,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 		Ruin,
 		Nevermore,
 
-		Invalid
+		Unassigned
 	}
 }

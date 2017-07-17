@@ -25,7 +25,12 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		static SplitControl()
 		{
-			bodyPartItems = Enum.GetNames(typeof(BodyParts));
+			bodyPartItems = new []
+			{
+				"Head",
+				"Heart",
+				"Body"
+			};
 
 			worldEventItems = new []
 			{
@@ -92,19 +97,23 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			{
 				SplitTypes splitType = SplitType;
 
-				string data = splitType == SplitTypes.CartridgeCount || splitType == SplitTypes.TumorCount
-					? dataCountTextbox.Text
-					: splitDataComboBox.Text;
+				bool countType = splitType == SplitTypes.CartridgeCount || splitType == SplitTypes.TumorCount;
+				string data = countType ? dataCountTextbox.Text : splitDataComboBox.Text;
 
-				return ParseData(splitType, splitDataComboBox.SelectedIndex, data);
+				return ParseData(splitType, countType, splitDataComboBox.SelectedIndex, data);
 			}
 		}
 
 		/// <summary>
 		/// Parses split data based on the given type and raw string.
 		/// </summary>
-		private object ParseData(SplitTypes splitType, int dataIndex, string data)
+		private object ParseData(SplitTypes splitType, bool countType, int dataIndex, string data)
 		{
+			if (!countType && dataIndex == -1)
+			{
+				return null;
+			}
+
 			switch (splitType)
 			{
 				case SplitTypes.BodyPart:
@@ -112,7 +121,14 @@ namespace LiveSplit.TheEndIsNigh.Controls
 
 				case SplitTypes.CartridgeCount:
 				case SplitTypes.TumorCount:
-					return int.Parse(data);
+					int result;
+
+					if (int.TryParse(data, out result))
+					{
+						return result;
+					}
+
+					return null;
 
 				case SplitTypes.WorldEvent:
 					return Enum.Parse(typeof(WorldEvents), RemoveSpaces(data));
@@ -151,6 +167,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 					splitDataComboBox.SelectedIndex = -1;
 					splitDataComboBox.Visible = false;
 					dataCountTextbox.Visible = true;
+					dataCountTextbox.Text = "";
 
 					break;
 
