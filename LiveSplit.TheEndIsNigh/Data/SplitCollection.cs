@@ -12,7 +12,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 	/// </summary>
 	public class SplitCollection
 	{
-		private Split[] splits;
 		private Split currentSplit;
 		private EndIsNighComponent parent;
 
@@ -39,6 +38,11 @@ namespace LiveSplit.TheEndIsNigh.Data
 		}
 
 		/// <summary>
+		/// Array of splits. Can be set directly from the collection control.
+		/// </summary>
+		public Split[] Splits { get; set; }
+
+		/// <summary>
 		/// Called when the timer splits.
 		/// </summary>
 		public void OnSplit()
@@ -51,7 +55,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnUndoSplit()
 		{
-			currentSplit = splits[--splitIndex];
+			currentSplit = Splits[--splitIndex];
 		}
 
 		/// <summary>
@@ -67,7 +71,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		private void AdvanceSplit()
 		{
-			currentSplit = ++splitIndex < splits.Length ? splits[splitIndex] : null;
+			currentSplit = ++splitIndex < Splits.Length ? Splits[splitIndex] : null;
 		}
 
 		/// <summary>
@@ -75,7 +79,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnReset()
 		{
-			currentSplit = splits[splitIndex = 0];
+			currentSplit = Splits[splitIndex = 0];
 		}
 
 		/// <summary>

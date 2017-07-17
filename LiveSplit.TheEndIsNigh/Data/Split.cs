@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace LiveSplit.TheEndIsNigh.Data
 {
@@ -15,7 +16,8 @@ namespace LiveSplit.TheEndIsNigh.Data
 		CartridgeCount,
 		TumorCount,
 		WorldEvent,
-		Zone
+		Zone,
+		Unassigned
 	}
 
 	/// <summary>
@@ -24,9 +26,19 @@ namespace LiveSplit.TheEndIsNigh.Data
 	public class Split
 	{
 		/// <summary>
-		/// Constructs the class. The data string is parsed based on split type. Using a string makes it easier to load splits from Json
-		/// files.
+		/// Constructs the class.
 		/// </summary>
+		public Split(SplitTypes type, object data)
+		{
+			Type = type;
+			Data = data;
+		}
+
+		/// <summary>
+		/// Constructs the class. This constructor is used when loading splits from a Json file. The data string is parsed based on split
+		/// type.
+		/// </summary>
+		[JsonConstructor]
 		public Split(SplitTypes type, string data)
 		{
 			Type = type;

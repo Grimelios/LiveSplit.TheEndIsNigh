@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveSplit.TheEndIsNigh.Data;
 
 namespace LiveSplit.TheEndIsNigh.Controls
 {
@@ -30,6 +31,11 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		}
 
 		/// <summary>
+		/// Reference to the split collection. The collection's splits are updated directly from this control.
+		/// </summary>
+		public SplitCollection SplitCollection { get; set; }
+
+		/// <summary>
 		/// Called when the Add Split button is pressed.
 		/// </summary>
 		private void addSplitButton_Click(object sender, EventArgs e)
@@ -41,7 +47,38 @@ namespace LiveSplit.TheEndIsNigh.Controls
 
 			splitControls.Add(new SplitControl(this));
 			splitPanel.Height += SplitSpacing;
-			addSplitButton.Location = new Point(addSplitButton.Location.X, splitPanel.Bottom);
+		}
+
+		/// <summary>
+		/// Called when the Save Splits button is pressed.
+		/// </summary>
+		private void saveSplitsButton_Click(object sender, EventArgs e)
+		{
+			Split[] splits = new Split[splitControls.Count];
+
+			for (int i = 0; i < splits.Length; i++)
+			{
+				SplitControl control = (SplitControl)splitControls[i];
+				splits[i] = new Split(GetSplitType(control), GetSplitData(control));
+			}
+
+			SplitCollection.Splits = splits;
+		}
+
+		/// <summary>
+		/// Gets split type for the given control.
+		/// </summary>
+		private SplitTypes GetSplitType(SplitControl control)
+		{
+			return SplitTypes.Unassigned;
+		}
+
+		/// <summary>
+		/// Gets split data for the given control.
+		/// </summary>
+		private object GetSplitData(SplitControl control)
+		{
+			return null;
 		}
 
 		/// <summary>

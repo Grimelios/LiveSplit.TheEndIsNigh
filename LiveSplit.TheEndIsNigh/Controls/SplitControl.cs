@@ -17,7 +17,6 @@ namespace LiveSplit.TheEndIsNigh.Controls
 	public partial class SplitControl : UserControl
 	{
 		private static string[] bodyPartItems;
-		private static string[] cartridgeItems;
 		private static string[] worldEventItems;
 		private static string[] zoneItems;
 
@@ -28,15 +27,12 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		{
 			bodyPartItems = Enum.GetNames(typeof(BodyParts));
 
-			cartridgeItems = new []
-			{
-				""
-			};
-
 			worldEventItems = new []
 			{
 				"Friend",
-				"Escape"
+				"Escape",
+				"End 1",
+				"End 2"
 			};
 
 			zoneItems = new []

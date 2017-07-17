@@ -32,6 +32,7 @@
 			this.splitDataLabel = new System.Windows.Forms.Label();
 			this.addSplitButton = new System.Windows.Forms.Button();
 			this.splitPanel = new System.Windows.Forms.Panel();
+			this.saveSplitsButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// splitTypeLabel
@@ -55,7 +56,7 @@
 			// addSplitButton
 			// 
 			this.addSplitButton.Image = global::LiveSplit.TheEndIsNigh.Properties.Resources.Add;
-			this.addSplitButton.Location = new System.Drawing.Point(7, 27);
+			this.addSplitButton.Location = new System.Drawing.Point(162, 4);
 			this.addSplitButton.Name = "addSplitButton";
 			this.addSplitButton.Size = new System.Drawing.Size(36, 23);
 			this.addSplitButton.TabIndex = 2;
@@ -69,10 +70,21 @@
 			this.splitPanel.Size = new System.Drawing.Size(500, 0);
 			this.splitPanel.TabIndex = 3;
 			// 
+			// saveSplitsButton
+			// 
+			this.saveSplitsButton.Location = new System.Drawing.Point(205, 4);
+			this.saveSplitsButton.Name = "saveSplitsButton";
+			this.saveSplitsButton.Size = new System.Drawing.Size(75, 23);
+			this.saveSplitsButton.TabIndex = 4;
+			this.saveSplitsButton.Text = "Save Splits";
+			this.saveSplitsButton.UseVisualStyleBackColor = true;
+			this.saveSplitsButton.Click += new System.EventHandler(this.saveSplitsButton_Click);
+			// 
 			// SplitCollectionControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.saveSplitsButton);
 			this.Controls.Add(this.addSplitButton);
 			this.Controls.Add(this.splitPanel);
 			this.Controls.Add(this.splitDataLabel);
@@ -90,5 +102,6 @@
 		private System.Windows.Forms.Label splitDataLabel;
 		private System.Windows.Forms.Button addSplitButton;
 		private System.Windows.Forms.Panel splitPanel;
+		private System.Windows.Forms.Button saveSplitsButton;
 	}
 }
