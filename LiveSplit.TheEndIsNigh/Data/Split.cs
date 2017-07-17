@@ -13,7 +13,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 	{
 		BodyPart,
 		CartridgeCount,
-		Start,
 		TumorCount,
 		WorldEvent,
 		Zone

@@ -104,9 +104,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 				case SplitTypes.CartridgeCount:
 					return cartridgeCollection.QueryData((int)data);
 
-				case SplitTypes.Start:
-					return mapGrid.QueryStart();
-
 				case SplitTypes.TumorCount:
 					return tumorCollection.QueryData((int)data);
 

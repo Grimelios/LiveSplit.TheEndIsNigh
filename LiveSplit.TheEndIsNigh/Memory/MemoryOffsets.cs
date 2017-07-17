@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LiveSplit.TheEndIsNigh.Memory
 {
 	/// <summary>
-	/// Static class used to store memory offsets for the game.
+	/// Static class used to store memory offsets for the game. See AutosplitData.jpg in the Reference folder for more information.
 	/// </summary>
 	public static class MemoryOffsets
 	{

@@ -26,7 +26,7 @@ namespace LiveSplit.TheEndIsNigh
 		private AutosplitDataClass[] dataClasses;
 		private SplitCollection splitCollection;
 
-		private bool inGame;
+		private bool runStarted;
 
 		/// <summary>
 		/// Constructs the component.
@@ -159,18 +159,19 @@ namespace LiveSplit.TheEndIsNigh
 				return;
 			}
 
-			if (!inGame)
+			if (!runStarted)
 			{
-				if (memory.CheckInGame())
+				if (((MapGrid)dataClasses[0]).QueryStart())
 				{
-					inGame = true;
+					timer.Start();
+					runStarted = true;
 				}
 				else
 				{
 					return;
 				}
 			}
-			
+
 			splitCollection.Update();
 		}
 
