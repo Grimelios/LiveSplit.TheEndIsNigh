@@ -184,5 +184,21 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		{
 			parent.Remove(this);
 		}
+
+		/// <summary>
+		/// Called when the Up button is pressed.
+		/// </summary>
+		private void upButton_Click(object sender, EventArgs e)
+		{
+			parent.MoveUp(this);
+		}
+
+		/// <summary>
+		/// Called when the Down button is pressed.
+		/// </summary>
+		private void downButton_Click(object sender, EventArgs e)
+		{
+			parent.MoveDown(this);
+		}
 	}
 }

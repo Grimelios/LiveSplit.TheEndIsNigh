@@ -86,5 +86,41 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				toMove.Location = toMove.Location.Subtract(spacing);
 			}
 		}
+
+		/// <summary>
+		/// Moves the given control up.
+		/// </summary>
+		public void MoveUp(SplitControl control)
+		{
+			int index = splitControls.IndexOf(control);
+
+			Swap(index, index - 1);
+		}
+
+		/// <summary>
+		/// Moves the given control down.
+		/// </summary>
+		public void MoveDown(SplitControl control)
+		{
+			int index = splitControls.IndexOf(control);
+
+			Swap(index, index + 1);
+		}
+
+		/// <summary>
+		/// Swaps the two split controls with the given indices.
+		/// </summary>
+		private void Swap(int index1, int index2)
+		{
+			Control control1 = splitControls[index1];
+			Control control2 = splitControls[index2];
+
+			Point temporaryLocation = control1.Location;
+			control1.Location = control2.Location;
+			control2.Location = temporaryLocation;
+
+			splitControls.SetChildIndex(control1, index2);
+			splitControls.SetChildIndex(control2, index1);
+		}
 	}
 }

@@ -60,6 +60,7 @@
 			this.upButton.Size = new System.Drawing.Size(36, 23);
 			this.upButton.TabIndex = 1;
 			this.upButton.UseVisualStyleBackColor = true;
+			this.upButton.Click += new System.EventHandler(this.upButton_Click);
 			// 
 			// downButton
 			// 
@@ -69,6 +70,7 @@
 			this.downButton.Size = new System.Drawing.Size(36, 23);
 			this.downButton.TabIndex = 2;
 			this.downButton.UseVisualStyleBackColor = true;
+			this.downButton.Click += new System.EventHandler(this.downButton_Click);
 			// 
 			// deleteButton
 			// 
