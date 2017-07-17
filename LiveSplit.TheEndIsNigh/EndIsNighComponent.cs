@@ -28,6 +28,8 @@ namespace LiveSplit.TheEndIsNigh
 		private EndIsNighMemory memory;
 		private SplitCollection splitCollection;
 
+		private bool inGame;
+
 		/// <summary>
 		/// Constructs the component.
 		/// </summary>
@@ -39,6 +41,8 @@ namespace LiveSplit.TheEndIsNigh
 			bodyPartCollection = new BodyPartCollection(memory);
 			settingsControl = new EndIsNighControl();
 			splitCollection = new SplitCollection(this);
+
+			Console.WriteLine("Component created.");
 		}
 
 		/// <summary>
@@ -150,6 +154,13 @@ namespace LiveSplit.TheEndIsNigh
 			if (!memory.HookProcess())
 			{
 				return;
+			}
+
+			if (!inGame && memory.CheckInGame())
+			{
+				inGame = true;
+
+				Console.WriteLine("In-game.");
 			}
 			
 			mapGrid.Update();

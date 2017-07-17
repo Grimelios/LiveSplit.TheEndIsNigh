@@ -86,6 +86,7 @@
     <Compile Include="Data\BodyPartCollection.cs" />
     <Compile Include="Data\Enumerations.cs" />
     <Compile Include="Data\TumorCollection.cs" />
+    <Compile Include="Data\WorldEventCollection.cs" />
     <Compile Include="Events\EventSystem.cs" />
     <Compile Include="Data\MapGrid.cs" />
     <Compile Include="Data\Split.cs" />
