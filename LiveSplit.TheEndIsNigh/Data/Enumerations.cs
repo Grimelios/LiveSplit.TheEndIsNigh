@@ -29,7 +29,9 @@ namespace LiveSplit.TheEndIsNigh.Data
 	public enum WorldEvents
 	{
 		Friend,
-		Escape
+		Escape,
+		BeatEnd1,
+		BeatEnd2
 	}
 
 	/// <summary>

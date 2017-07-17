@@ -15,7 +15,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 	/// </summary>
 	public partial class SplitCollectionControl : UserControl
 	{
-		private const int SplitSpacing = 40;
+		private const int SplitSpacing = 30;
 
 		private ControlCollection splitControls;
 
@@ -39,9 +39,19 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				splitControl.Location = splitControl.Location.Add(new Point(0, SplitSpacing));
 			}
 
-			splitControls.Add(new SplitControl());
+			splitControls.Add(new SplitControl(this));
 			splitPanel.Height += SplitSpacing;
 			addSplitButton.Location = new Point(addSplitButton.Location.X, splitPanel.Bottom);
+		}
+
+		/// <summary>
+		/// Removes the given split control from the panel's collection.
+		/// </summary>
+		public void Remove(SplitControl control)
+		{
+			int index = splitControls.IndexOf(control);
+
+			splitControls.RemoveAt(index);
 		}
 	}
 }

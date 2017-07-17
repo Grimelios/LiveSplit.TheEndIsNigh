@@ -28,24 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.defaultCategoryControl1 = new LiveSplit.TheEndIsNigh.Controls.DefaultCategoryControl();
-			this.splitCollectionControl1 = new LiveSplit.TheEndIsNigh.Controls.SplitCollectionControl();
 			this.autosplitterLabel = new System.Windows.Forms.Label();
+			this.splitCollectionControl1 = new LiveSplit.TheEndIsNigh.Controls.SplitCollectionControl();
+			this.defaultCategoryControl1 = new LiveSplit.TheEndIsNigh.Controls.DefaultCategoryControl();
 			this.SuspendLayout();
-			// 
-			// defaultCategoryControl1
-			// 
-			this.defaultCategoryControl1.Location = new System.Drawing.Point(3, 39);
-			this.defaultCategoryControl1.Name = "defaultCategoryControl1";
-			this.defaultCategoryControl1.Size = new System.Drawing.Size(207, 47);
-			this.defaultCategoryControl1.TabIndex = 0;
-			// 
-			// splitCollectionControl1
-			// 
-			this.splitCollectionControl1.Location = new System.Drawing.Point(3, 93);
-			this.splitCollectionControl1.Name = "splitCollectionControl1";
-			this.splitCollectionControl1.Size = new System.Drawing.Size(370, 258);
-			this.splitCollectionControl1.TabIndex = 1;
 			// 
 			// autosplitterLabel
 			// 
@@ -56,6 +42,20 @@
 			this.autosplitterLabel.TabIndex = 2;
 			this.autosplitterLabel.Text = "The End Is Nigh Autosplitter";
 			// 
+			// splitCollectionControl1
+			// 
+			this.splitCollectionControl1.Location = new System.Drawing.Point(3, 93);
+			this.splitCollectionControl1.Name = "splitCollectionControl1";
+			this.splitCollectionControl1.Size = new System.Drawing.Size(510, 258);
+			this.splitCollectionControl1.TabIndex = 1;
+			// 
+			// defaultCategoryControl1
+			// 
+			this.defaultCategoryControl1.Location = new System.Drawing.Point(3, 39);
+			this.defaultCategoryControl1.Name = "defaultCategoryControl1";
+			this.defaultCategoryControl1.Size = new System.Drawing.Size(207, 47);
+			this.defaultCategoryControl1.TabIndex = 0;
+			// 
 			// EndIsNighControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -64,7 +64,7 @@
 			this.Controls.Add(this.splitCollectionControl1);
 			this.Controls.Add(this.defaultCategoryControl1);
 			this.Name = "EndIsNighControl";
-			this.Size = new System.Drawing.Size(535, 408);
+			this.Size = new System.Drawing.Size(640, 408);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

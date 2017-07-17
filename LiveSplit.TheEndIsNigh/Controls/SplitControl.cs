@@ -63,11 +63,15 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			};
 		}
 
+		private SplitCollectionControl parent;
+
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
-		public SplitControl()
+		public SplitControl(SplitCollectionControl parent)
 		{
+			this.parent = parent;
+
 			InitializeComponent();
 		}
 
@@ -113,6 +117,14 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			splitDataComboBox.Visible = true;
 
 			tumorCountTextbox.Visible = false;
+		}
+
+		/// <summary>
+		/// Called when the Delete button is pressed.
+		/// </summary>
+		private void deleteButton_Click(object sender, EventArgs e)
+		{
+			parent.Remove(this);
 		}
 	}
 }

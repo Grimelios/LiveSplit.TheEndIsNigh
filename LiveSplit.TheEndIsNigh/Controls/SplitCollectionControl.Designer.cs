@@ -66,7 +66,7 @@
 			// 
 			this.splitPanel.Location = new System.Drawing.Point(7, 21);
 			this.splitPanel.Name = "splitPanel";
-			this.splitPanel.Size = new System.Drawing.Size(333, 0);
+			this.splitPanel.Size = new System.Drawing.Size(500, 0);
 			this.splitPanel.TabIndex = 3;
 			// 
 			// SplitCollectionControl
@@ -78,7 +78,7 @@
 			this.Controls.Add(this.splitDataLabel);
 			this.Controls.Add(this.splitTypeLabel);
 			this.Name = "SplitCollectionControl";
-			this.Size = new System.Drawing.Size(370, 381);
+			this.Size = new System.Drawing.Size(484, 381);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
