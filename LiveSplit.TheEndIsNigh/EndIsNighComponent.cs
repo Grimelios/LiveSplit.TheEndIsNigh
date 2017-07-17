@@ -24,6 +24,7 @@ namespace LiveSplit.TheEndIsNigh
 		private SplitCollection splitCollection;
 		private TumorCollection tumorCollection;
 		private BodyPartCollection bodyPartCollection;
+		private CartridgeCollection cartridgeCollection;
 		private WorldEventCollection worldEventCollection;
 
 		private TimerModel timer;
@@ -42,6 +43,7 @@ namespace LiveSplit.TheEndIsNigh
 			splitCollection = new SplitCollection(this);
 			tumorCollection = new TumorCollection(memory);
 			bodyPartCollection = new BodyPartCollection(memory);
+			cartridgeCollection = new CartridgeCollection(memory);
 			worldEventCollection = new WorldEventCollection(memory);
 			settingsControl = new EndIsNighControl();
 
@@ -169,6 +171,7 @@ namespace LiveSplit.TheEndIsNigh
 			mapGrid.Update();
 			tumorCollection.Update();
 			bodyPartCollection.Update();
+			cartridgeCollection.Update();
 			worldEventCollection.Update();
 		}
 
@@ -205,6 +208,7 @@ namespace LiveSplit.TheEndIsNigh
 			mapGrid.Reset();
 			tumorCollection.Reset();
 			bodyPartCollection.Reset();
+			cartridgeCollection.Reset();
 			worldEventCollection.Reset();
 		}
 

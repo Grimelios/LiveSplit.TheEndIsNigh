@@ -31,10 +31,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void Reset()
 		{
-			for (int i = 0; i < bodyParts.Length; i++)
-			{
-				bodyParts[i] = false;
-			}
+			bodyParts.Reset();
 		}
 
 		/// <summary>

@@ -8,22 +8,22 @@ using LiveSplit.TheEndIsNigh.Memory;
 namespace LiveSplit.TheEndIsNigh.Data
 {
 	/// <summary>
-	/// Data class used to track world events.
+	/// Data class used to track cartridges.
 	/// </summary>
-	public class WorldEventCollection
+	public class CartridgeCollection
 	{
-		private bool[] worldEvents;
+		private bool[] cartridges;
 
 		private EndIsNighMemory memory;
 
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
-		public WorldEventCollection(EndIsNighMemory memory)
+		public CartridgeCollection(EndIsNighMemory memory)
 		{
 			this.memory = memory;
 
-			worldEvents = new bool[4];
+			cartridges = new bool[0];
 		}
 
 		/// <summary>
@@ -31,23 +31,14 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void Reset()
 		{
-			worldEvents.Reset();
+			cartridges.Reset();
 		}
 
 		/// <summary>
-		/// Updates the collection. Triggers world events when they are detected.
+		/// Updates the collection. Triggers cartridge events when a new cartridge is collected and confirmed (similar to tumors).
 		/// </summary>
 		public void Update()
 		{
-			for (int i = 0; i < worldEvents.Length; i++)
-			{
-				if (!worldEvents[i] && memory.CheckWorldEvent((WorldEvents)i))
-				{
-					worldEvents[i] = true;
-
-					Console.WriteLine($"{(WorldEvents)i} event triggered.");
-				}
-			}
 		}
 	}
 }
