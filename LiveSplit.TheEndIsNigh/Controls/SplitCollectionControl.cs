@@ -54,6 +54,8 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			newSplit.ToggleUp(splitControls.Count > 0);
 			newSplit.ToggleDown(false);
 			splitControls.Add(newSplit);
+
+			UpdateCountLabel();
 		}
 
 		/// <summary>
@@ -70,6 +72,14 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			}
 
 			SplitCollection.Splits = splits;
+		}
+
+		/// <summary>
+		/// Updates the text in the split count label.
+		/// </summary>
+		private void UpdateCountLabel()
+		{
+			splitCountLabel.Text = splitControls.Count + " " + (splitControls.Count == 1 ? "split" : "splits");
 		}
 
 		/// <summary>
@@ -107,6 +117,8 @@ namespace LiveSplit.TheEndIsNigh.Controls
 					((SplitControl)splitControls[splitControls.Count - 1]).ToggleDown(false);
 				}
 			}
+
+			UpdateCountLabel();
 		}
 
 		/// <summary>
