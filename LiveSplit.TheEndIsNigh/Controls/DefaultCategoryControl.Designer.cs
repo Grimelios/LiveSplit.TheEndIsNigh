@@ -29,55 +29,56 @@
 		private void InitializeComponent()
 		{
 			this.friendPercentButton = new System.Windows.Forms.Button();
-			this.defaultCategoryLabel = new System.Windows.Forms.Label();
 			this.anyPercentButton = new System.Windows.Forms.Button();
+			this.defaultsBox = new System.Windows.Forms.GroupBox();
+			this.defaultsBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// friendPercentButton
 			// 
-			this.friendPercentButton.Location = new System.Drawing.Point(3, 21);
+			this.friendPercentButton.Location = new System.Drawing.Point(6, 19);
 			this.friendPercentButton.Name = "friendPercentButton";
 			this.friendPercentButton.Size = new System.Drawing.Size(75, 23);
 			this.friendPercentButton.TabIndex = 0;
 			this.friendPercentButton.Text = "Friend%";
 			this.friendPercentButton.UseVisualStyleBackColor = true;
 			// 
-			// defaultCategoryLabel
-			// 
-			this.defaultCategoryLabel.AutoSize = true;
-			this.defaultCategoryLabel.Location = new System.Drawing.Point(4, 4);
-			this.defaultCategoryLabel.Name = "defaultCategoryLabel";
-			this.defaultCategoryLabel.Size = new System.Drawing.Size(46, 13);
-			this.defaultCategoryLabel.TabIndex = 1;
-			this.defaultCategoryLabel.Text = "Defaults";
-			// 
 			// anyPercentButton
 			// 
-			this.anyPercentButton.Location = new System.Drawing.Point(85, 21);
+			this.anyPercentButton.Location = new System.Drawing.Point(87, 19);
 			this.anyPercentButton.Name = "anyPercentButton";
 			this.anyPercentButton.Size = new System.Drawing.Size(75, 23);
 			this.anyPercentButton.TabIndex = 2;
 			this.anyPercentButton.Text = "Any%";
 			this.anyPercentButton.UseVisualStyleBackColor = true;
 			// 
+			// defaultsBox
+			// 
+			this.defaultsBox.Controls.Add(this.friendPercentButton);
+			this.defaultsBox.Controls.Add(this.anyPercentButton);
+			this.defaultsBox.Location = new System.Drawing.Point(3, 3);
+			this.defaultsBox.Name = "defaultsBox";
+			this.defaultsBox.Size = new System.Drawing.Size(376, 49);
+			this.defaultsBox.TabIndex = 3;
+			this.defaultsBox.TabStop = false;
+			this.defaultsBox.Text = "Defaults";
+			// 
 			// DefaultCategoryControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.anyPercentButton);
-			this.Controls.Add(this.defaultCategoryLabel);
-			this.Controls.Add(this.friendPercentButton);
+			this.Controls.Add(this.defaultsBox);
 			this.Name = "DefaultCategoryControl";
-			this.Size = new System.Drawing.Size(207, 64);
+			this.Size = new System.Drawing.Size(477, 269);
+			this.defaultsBox.ResumeLayout(false);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
 		private System.Windows.Forms.Button friendPercentButton;
-		private System.Windows.Forms.Label defaultCategoryLabel;
 		private System.Windows.Forms.Button anyPercentButton;
+		private System.Windows.Forms.GroupBox defaultsBox;
 	}
 }

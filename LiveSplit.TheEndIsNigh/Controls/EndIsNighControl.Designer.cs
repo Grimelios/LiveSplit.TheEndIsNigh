@@ -44,16 +44,17 @@
 			// 
 			// splitCollectionControl1
 			// 
-			this.splitCollectionControl1.Location = new System.Drawing.Point(3, 93);
+			this.splitCollectionControl1.Location = new System.Drawing.Point(3, 94);
 			this.splitCollectionControl1.Name = "splitCollectionControl1";
-			this.splitCollectionControl1.Size = new System.Drawing.Size(510, 258);
+			this.splitCollectionControl1.Size = new System.Drawing.Size(483, 295);
+			this.splitCollectionControl1.SplitCollection = null;
 			this.splitCollectionControl1.TabIndex = 1;
 			// 
 			// defaultCategoryControl1
 			// 
 			this.defaultCategoryControl1.Location = new System.Drawing.Point(3, 39);
 			this.defaultCategoryControl1.Name = "defaultCategoryControl1";
-			this.defaultCategoryControl1.Size = new System.Drawing.Size(207, 47);
+			this.defaultCategoryControl1.Size = new System.Drawing.Size(465, 65);
 			this.defaultCategoryControl1.TabIndex = 0;
 			// 
 			// EndIsNighControl
