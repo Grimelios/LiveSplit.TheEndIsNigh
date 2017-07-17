@@ -51,7 +51,6 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			}
 
 			splitControls.Add(newSplit);
-			splitPanel.Height += SplitSpacing;
 		}
 
 		/// <summary>

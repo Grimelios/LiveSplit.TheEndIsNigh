@@ -94,7 +94,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				SplitTypes splitType = SplitType;
 
 				string data = splitType == SplitTypes.CartridgeCount || splitType == SplitTypes.TumorCount
-					? tumorCountTextbox.Text
+					? dataCountTextbox.Text
 					: splitDataComboBox.Text;
 
 				return ParseData(splitType, splitDataComboBox.SelectedIndex, data);
@@ -151,7 +151,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 					splitDataComboBox.Items.Clear();
 					splitDataComboBox.SelectedIndex = -1;
 					splitDataComboBox.Visible = false;
-					tumorCountTextbox.Visible = true;
+					dataCountTextbox.Visible = true;
 
 					break;
 
@@ -174,7 +174,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			splitDataComboBox.Items.AddRange(items);
 			splitDataComboBox.Visible = true;
 
-			tumorCountTextbox.Visible = false;
+			dataCountTextbox.Visible = false;
 		}
 
 		/// <summary>

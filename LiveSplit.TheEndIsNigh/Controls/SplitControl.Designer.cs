@@ -33,7 +33,7 @@
 			this.downButton = new System.Windows.Forms.Button();
 			this.deleteButton = new System.Windows.Forms.Button();
 			this.splitDataComboBox = new System.Windows.Forms.ComboBox();
-			this.tumorCountTextbox = new System.Windows.Forms.TextBox();
+			this.dataCountTextbox = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// splitTypeComboBox
@@ -55,7 +55,7 @@
 			// upButton
 			// 
 			this.upButton.Image = global::LiveSplit.TheEndIsNigh.Properties.Resources.Up;
-			this.upButton.Location = new System.Drawing.Point(262, 4);
+			this.upButton.Location = new System.Drawing.Point(259, 2);
 			this.upButton.Name = "upButton";
 			this.upButton.Size = new System.Drawing.Size(36, 23);
 			this.upButton.TabIndex = 1;
@@ -64,7 +64,7 @@
 			// downButton
 			// 
 			this.downButton.Image = global::LiveSplit.TheEndIsNigh.Properties.Resources.Down;
-			this.downButton.Location = new System.Drawing.Point(304, 4);
+			this.downButton.Location = new System.Drawing.Point(301, 2);
 			this.downButton.Name = "downButton";
 			this.downButton.Size = new System.Drawing.Size(36, 23);
 			this.downButton.TabIndex = 2;
@@ -73,7 +73,7 @@
 			// deleteButton
 			// 
 			this.deleteButton.Image = global::LiveSplit.TheEndIsNigh.Properties.Resources.Delete;
-			this.deleteButton.Location = new System.Drawing.Point(346, 4);
+			this.deleteButton.Location = new System.Drawing.Point(343, 2);
 			this.deleteButton.Name = "deleteButton";
 			this.deleteButton.Size = new System.Drawing.Size(36, 23);
 			this.deleteButton.TabIndex = 3;
@@ -90,27 +90,27 @@
 			this.splitDataComboBox.TabIndex = 4;
 			this.splitDataComboBox.Visible = false;
 			// 
-			// tumorCountTextbox
+			// dataCountTextbox
 			// 
-			this.tumorCountTextbox.Location = new System.Drawing.Point(132, 4);
-			this.tumorCountTextbox.MaxLength = 3;
-			this.tumorCountTextbox.Name = "tumorCountTextbox";
-			this.tumorCountTextbox.Size = new System.Drawing.Size(100, 20);
-			this.tumorCountTextbox.TabIndex = 5;
-			this.tumorCountTextbox.Visible = false;
+			this.dataCountTextbox.Location = new System.Drawing.Point(132, 4);
+			this.dataCountTextbox.MaxLength = 3;
+			this.dataCountTextbox.Name = "dataCountTextbox";
+			this.dataCountTextbox.Size = new System.Drawing.Size(120, 20);
+			this.dataCountTextbox.TabIndex = 5;
+			this.dataCountTextbox.Visible = false;
 			// 
 			// SplitControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.tumorCountTextbox);
+			this.Controls.Add(this.dataCountTextbox);
 			this.Controls.Add(this.splitDataComboBox);
 			this.Controls.Add(this.deleteButton);
 			this.Controls.Add(this.downButton);
 			this.Controls.Add(this.upButton);
 			this.Controls.Add(this.splitTypeComboBox);
 			this.Name = "SplitControl";
-			this.Size = new System.Drawing.Size(641, 29);
+			this.Size = new System.Drawing.Size(385, 29);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -123,6 +123,6 @@
 		private System.Windows.Forms.Button downButton;
 		private System.Windows.Forms.Button deleteButton;
 		private System.Windows.Forms.ComboBox splitDataComboBox;
-		private System.Windows.Forms.TextBox tumorCountTextbox;
+		private System.Windows.Forms.TextBox dataCountTextbox;
 	}
 }
