@@ -49,20 +49,6 @@ namespace LiveSplit.TheEndIsNigh
 			settingsControl = new EndIsNighControl();
 			settingsControl.CollectionControl.SplitCollection = splitCollection;
 			settings = new EndIsNighSettings(splitCollection, settingsControl.CollectionControl);
-
-			/*
-			splitCollection.Splits = new[]
-			{
-				new Split(SplitTypes.BodyPart, BodyParts.Heart),
-				new Split(SplitTypes.TumorCount, 11),
-				new Split(SplitTypes.CartridgeCount, 34),
-				new Split(SplitTypes.WorldEvent, WorldEvents.End2),
-				new Split(SplitTypes.Zone, Zones.Nevermore),
-			};
-
-			XmlNode node = GetSettings(new XmlDocument());
-			SetSettings(node);
-			*/
 		}
 
 		/// <summary>
