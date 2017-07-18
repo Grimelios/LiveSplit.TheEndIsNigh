@@ -62,7 +62,7 @@
 			this.defaultsBox.Controls.Add(this.anyPercentButton);
 			this.defaultsBox.Location = new System.Drawing.Point(3, 3);
 			this.defaultsBox.Name = "defaultsBox";
-			this.defaultsBox.Size = new System.Drawing.Size(471, 49);
+			this.defaultsBox.Size = new System.Drawing.Size(356, 49);
 			this.defaultsBox.TabIndex = 3;
 			this.defaultsBox.TabStop = false;
 			this.defaultsBox.Text = "Defaults";
@@ -73,7 +73,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.defaultsBox);
 			this.Name = "DefaultCategoryControl";
-			this.Size = new System.Drawing.Size(477, 55);
+			this.Size = new System.Drawing.Size(362, 55);
 			this.defaultsBox.ResumeLayout(false);
 			this.ResumeLayout(false);
 

@@ -34,8 +34,8 @@
 			this.splitPanel = new System.Windows.Forms.Panel();
 			this.saveSplitsButton = new System.Windows.Forms.Button();
 			this.splitsBox = new System.Windows.Forms.GroupBox();
-			this.splitCountLabel = new System.Windows.Forms.Label();
 			this.statusLabel = new System.Windows.Forms.Label();
+			this.splitCountLabel = new System.Windows.Forms.Label();
 			this.splitsBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -78,7 +78,7 @@
 			this.splitPanel.AutoScroll = true;
 			this.splitPanel.Location = new System.Drawing.Point(6, 70);
 			this.splitPanel.Name = "splitPanel";
-			this.splitPanel.Size = new System.Drawing.Size(466, 299);
+			this.splitPanel.Size = new System.Drawing.Size(373, 475);
 			this.splitPanel.TabIndex = 3;
 			// 
 			// saveSplitsButton
@@ -105,10 +105,18 @@
 			this.splitsBox.Controls.Add(this.splitTypeLabel);
 			this.splitsBox.Location = new System.Drawing.Point(3, 3);
 			this.splitsBox.Name = "splitsBox";
-			this.splitsBox.Size = new System.Drawing.Size(478, 375);
+			this.splitsBox.Size = new System.Drawing.Size(385, 551);
 			this.splitsBox.TabIndex = 5;
 			this.splitsBox.TabStop = false;
 			this.splitsBox.Text = "Splits";
+			// 
+			// statusLabel
+			// 
+			this.statusLabel.AutoSize = true;
+			this.statusLabel.Location = new System.Drawing.Point(213, 24);
+			this.statusLabel.Name = "statusLabel";
+			this.statusLabel.Size = new System.Drawing.Size(0, 13);
+			this.statusLabel.TabIndex = 6;
 			// 
 			// splitCountLabel
 			// 
@@ -119,21 +127,13 @@
 			this.splitCountLabel.TabIndex = 5;
 			this.splitCountLabel.Text = "0 splits";
 			// 
-			// statusLabel
-			// 
-			this.statusLabel.AutoSize = true;
-			this.statusLabel.Location = new System.Drawing.Point(213, 24);
-			this.statusLabel.Name = "statusLabel";
-			this.statusLabel.Size = new System.Drawing.Size(0, 13);
-			this.statusLabel.TabIndex = 6;
-			// 
 			// SplitCollectionControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.splitsBox);
 			this.Name = "SplitCollectionControl";
-			this.Size = new System.Drawing.Size(484, 381);
+			this.Size = new System.Drawing.Size(391, 557);
 			this.splitsBox.ResumeLayout(false);
 			this.splitsBox.PerformLayout();
 			this.ResumeLayout(false);
