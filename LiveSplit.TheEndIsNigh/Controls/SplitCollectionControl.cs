@@ -17,8 +17,10 @@ namespace LiveSplit.TheEndIsNigh.Controls
 	public partial class SplitCollectionControl : UserControl
 	{
 		private const int SplitSpacing = 30;
+		private const int StatusLifetime = 3000;
 
 		private Point spacing;
+		private Timer statusTimer;
 		private ControlCollection splitControls;
 
 		/// <summary>
@@ -72,7 +74,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				splits[i] = new Split(control.SplitType, control.SplitData);
 			}
 
-			SplitCollection.Splits = splits;
+			//SplitCollection.Splits = splits;
 
 			if (ValidateSplits())
 			{
@@ -224,6 +226,21 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		{
 			statusLabel.Text = text;
 			statusLabel.ForeColor = color;
+			statusLabel.Visible = true;
+
+			statusTimer?.Stop();
+			statusTimer = new Timer
+			{
+				Interval = StatusLifetime
+			};
+
+			statusTimer.Tick += (sender, e) =>
+			{
+				statusLabel.Visible = false;
+				statusTimer.Stop();
+			};
+
+			statusTimer.Start();
 		}
 	}
 }
