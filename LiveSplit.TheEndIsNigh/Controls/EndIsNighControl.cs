@@ -25,6 +25,8 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		[DllImport("gdi32.dll")]
 		private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
 
+		private HelpForm helpForm;
+
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
@@ -62,6 +64,31 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			Marshal.FreeCoTaskMem(fontPtr);
 
 			autosplitterLabel.Font = new Font(fontCollection.Families[0], FontSize);
+		}
+
+		/// <summary>
+		/// Called when the Help button is pressed.
+		/// </summary>
+		private void helpButton_Click(object sender, EventArgs e)
+		{
+			if (helpForm == null)
+			{
+				helpForm = new HelpForm();
+				helpForm.Disposed += (o, args) =>
+				{
+					helpForm = null;
+				};
+
+				helpForm.Show();
+			}
+			else if (helpForm.Visible)
+			{
+				helpForm.Hide();
+			}
+			else
+			{
+				helpForm.Show();
+			}
 		}
 	}
 }

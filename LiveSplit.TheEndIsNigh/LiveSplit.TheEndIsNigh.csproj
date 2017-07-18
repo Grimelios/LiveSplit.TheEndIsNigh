@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{23F518B6-FA2F-45D5-AFB9-BA3AF9A3637A}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit.TheEndIsNigh</RootNamespace>
     <AssemblyName>LiveSplit.TheEndIsNigh</AssemblyName>
@@ -60,6 +60,12 @@
     </Compile>
     <Compile Include="Controls\EndIsNighControl.Designer.cs">
       <DependentUpon>EndIsNighControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\SplitCollectionControl.cs">
       <SubType>UserControl</SubType>
@@ -117,6 +123,9 @@
     <EmbeddedResource Include="Controls\EndIsNighControl.resx">
       <DependentUpon>EndIsNighControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SplitCollectionControl.resx">
       <DependentUpon>SplitCollectionControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,6 +144,7 @@
     <Content Include="Resources\Add.png" />
     <Content Include="Resources\Delete.png" />
     <Content Include="Resources\Down.png" />
+    <Content Include="Resources\Question.png" />
     <Content Include="Resources\Up.png" />
     <Content Include="Reference\AutosplitData.jpg" />
   </ItemGroup>

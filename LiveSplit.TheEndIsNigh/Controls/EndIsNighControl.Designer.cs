@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.autosplitterLabel = new System.Windows.Forms.Label();
+			this.helpButton = new System.Windows.Forms.Button();
 			this.splitCollectionControl1 = new LiveSplit.TheEndIsNigh.Controls.SplitCollectionControl();
 			this.defaultCategoryControl1 = new LiveSplit.TheEndIsNigh.Controls.DefaultCategoryControl();
 			this.SuspendLayout();
@@ -41,6 +42,16 @@
 			this.autosplitterLabel.Size = new System.Drawing.Size(139, 13);
 			this.autosplitterLabel.TabIndex = 2;
 			this.autosplitterLabel.Text = "The End Is Nigh Autosplitter";
+			// 
+			// helpButton
+			// 
+			this.helpButton.Image = global::LiveSplit.TheEndIsNigh.Properties.Resources.Question;
+			this.helpButton.Location = new System.Drawing.Point(227, 8);
+			this.helpButton.Name = "helpButton";
+			this.helpButton.Size = new System.Drawing.Size(36, 23);
+			this.helpButton.TabIndex = 3;
+			this.helpButton.UseVisualStyleBackColor = true;
+			this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
 			// 
 			// splitCollectionControl1
 			// 
@@ -67,6 +78,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.helpButton);
 			this.Controls.Add(this.autosplitterLabel);
 			this.Controls.Add(this.splitCollectionControl1);
 			this.Controls.Add(this.defaultCategoryControl1);
@@ -82,5 +94,6 @@
 		private DefaultCategoryControl defaultCategoryControl1;
 		private SplitCollectionControl splitCollectionControl1;
 		private System.Windows.Forms.Label autosplitterLabel;
+		private System.Windows.Forms.Button helpButton;
 	}
 }
