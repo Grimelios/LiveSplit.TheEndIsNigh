@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
-	<update version="1.0">
+	<update version="1.0.1">
+		<files>
+			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
+		</files>
+		<changelog>
+			<change>Fixed saving splits.</change>
+			<change>Updated the UI to save splits as splits are modified (rather than having to click Save Splits).</change>
+			<change>Runs now start on file select rather than at the opening cutscene.</change>
+		</changelog>
+	</update>
+	<update version="1.0.0">
 		<files>
 			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
 		</files>
