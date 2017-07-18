@@ -46,9 +46,10 @@ namespace LiveSplit.TheEndIsNigh.Controls
 
 			if (splitControls.Count > 0)
 			{
-				newSplit.Location = splitControls[splitControls.Count - 1].Location.Add(spacing);
+				SplitControl control = (SplitControl)splitControls.Last();
 
-				((SplitControl)splitControls[splitControls.Count - 1]).ToggleDown(true);
+				newSplit.Location = control.Location.Add(spacing);
+				control.ToggleDown(true);
 			}
 
 			newSplit.ToggleUp(splitControls.Count > 0);
@@ -82,9 +83,31 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// <summary>
 		/// Sets splits based on the given array.
 		/// </summary>
-		public void SetDefaultSplits(Split[] splits)
+		public void SetSplits(Split[] splits)
 		{
+			// A zero-length array indicates loading settings where the user had previously not set up any splits.
+			if (splits.Length == 0)
+			{
+				return;
+			}
+
+			splitControls.Clear();
+
+			for (int i = 0; i < splits.Length; i++)
+			{
+				Split split = splits[i];
+
+				splitControls.Add(new SplitControl(this, split.Type, split.Data)
+				{
+					Location = new Point(0, SplitSpacing * i)
+				});
+			}
+
+			((SplitControl)splitControls[0]).ToggleUp(false);
+			((SplitControl)splitControls.Last()).ToggleDown(false);
+
 			SplitCollection.Splits = splits;
+			UpdateCountLabel();
 		}
 
 		/// <summary>
@@ -111,7 +134,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 
 				if (index == splitControls.Count)
 				{
-					((SplitControl)splitControls[splitControls.Count - 1]).ToggleDown(false);
+					((SplitControl)splitControls.Last()).ToggleDown(false);
 				}
 			}
 

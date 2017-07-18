@@ -52,6 +52,7 @@
 			// 
 			// defaultCategoryControl1
 			// 
+			this.defaultCategoryControl1.CollectionControl = null;
 			this.defaultCategoryControl1.Location = new System.Drawing.Point(0, 24);
 			this.defaultCategoryControl1.Name = "defaultCategoryControl1";
 			this.defaultCategoryControl1.Size = new System.Drawing.Size(465, 65);

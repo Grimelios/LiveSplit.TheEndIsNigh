@@ -33,8 +33,15 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			InitializeComponent();
 			LoadFont();
 
-			Controls.OfType<DefaultCategoryControl>().First().CollectionControl = Controls.OfType<SplitCollectionControl>().First();
+			CollectionControl = this.GetControl<SplitCollectionControl>();
+
+			this.GetControl<DefaultCategoryControl>().CollectionControl = CollectionControl;
 		}
+
+		/// <summary>
+		/// Reference to the split collection control. Used by several classes to update splits.
+		/// </summary>
+		public SplitCollectionControl CollectionControl { get; }
 
 		/// <summary>
 		/// Loads the The End font and applies it to the autosplitter label.

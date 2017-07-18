@@ -23,6 +23,7 @@ namespace LiveSplit.TheEndIsNigh
 		private TimerModel timer;
 		private EndIsNighControl settingsControl;
 		private EndIsNighMemory memory;
+		private EndIsNighSettings settings;
 		private AutosplitDataClass[] dataClasses;
 		private SplitCollection splitCollection;
 
@@ -45,9 +46,23 @@ namespace LiveSplit.TheEndIsNigh
 			};
 
 			splitCollection = new SplitCollection(this, dataClasses);
-
 			settingsControl = new EndIsNighControl();
-			settingsControl.Controls.OfType<SplitCollectionControl>().First().SplitCollection = splitCollection;
+			settingsControl.CollectionControl.SplitCollection = splitCollection;
+			settings = new EndIsNighSettings(splitCollection, settingsControl.CollectionControl);
+
+			/*
+			splitCollection.Splits = new[]
+			{
+				new Split(SplitTypes.BodyPart, BodyParts.Heart),
+				new Split(SplitTypes.TumorCount, 11),
+				new Split(SplitTypes.CartridgeCount, 34),
+				new Split(SplitTypes.WorldEvent, WorldEvents.End2),
+				new Split(SplitTypes.Zone, Zones.Nevermore),
+			};
+
+			XmlNode node = GetSettings(new XmlDocument());
+			SetSettings(node);
+			*/
 		}
 
 		/// <summary>
@@ -221,6 +236,7 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public void SetSettings(XmlNode settings)
 		{
+			this.settings.LoadSettings(settings);
 		}
 
 		/// <summary>
@@ -228,7 +244,7 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public XmlNode GetSettings(XmlDocument document)
 		{
-			return null;
+			return settings.SaveSettings(document);
 		}
 
 		/// <summary>

@@ -12,6 +12,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 	/// </summary>
 	public class SplitCollection
 	{
+		private Split[] splits;
 		private Split currentSplit;
 		private EndIsNighComponent parent;
 
@@ -36,18 +37,22 @@ namespace LiveSplit.TheEndIsNigh.Data
 			cartridgeCollection = (CartridgeCollection)dataClasses[3];
 			worldEventCollection = (WorldEventCollection)dataClasses[4];
 
-			Splits = new []
-			{
-				new Split(SplitTypes.CartridgeCount, 1)
-			};
-
-			currentSplit = Splits[0];
+			// Creating an empty array prevents null pointers in a few locations.
+			splits = new Split[0];
 		}
 
 		/// <summary>
-		/// Array of splits. Can be set directly from the collection control.
+		/// Array of splits. Can be set directly while loading or modifying splits.
 		/// </summary>
-		public Split[] Splits { get; set; }
+		public Split[] Splits
+		{
+			get { return splits; }
+			set
+			{
+				splits = value;
+				currentSplit = splits[0];
+			}
+		}
 
 		/// <summary>
 		/// Called when the timer splits.
@@ -62,7 +67,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnUndoSplit()
 		{
-			currentSplit = Splits[--splitIndex];
+			currentSplit = splits[--splitIndex];
 		}
 
 		/// <summary>
@@ -78,7 +83,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		private void AdvanceSplit()
 		{
-			currentSplit = ++splitIndex < Splits.Length ? Splits[splitIndex] : null;
+			currentSplit = ++splitIndex < splits.Length ? splits[splitIndex] : null;
 		}
 
 		/// <summary>
@@ -86,7 +91,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnReset()
 		{
-			currentSplit = Splits[splitIndex = 0];
+			currentSplit = splits[splitIndex = 0];
 		}
 
 		/// <summary>
@@ -94,6 +99,12 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void Update()
 		{
+			// Current split being null indicates that splits were never set up by the player.
+			if (currentSplit == null)
+			{
+				return;
+			}
+
 			if (CheckSplit())
 			{
 				parent.Split();

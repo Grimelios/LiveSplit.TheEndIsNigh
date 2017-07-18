@@ -76,6 +76,16 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		}
 
 		/// <summary>
+		/// Constructs the class with split type and data given directly.
+		/// </summary>
+		public SplitControl(SplitCollectionControl parent, SplitTypes splitType, object splitData) :
+			this(parent)
+		{
+			SplitType = splitType;
+			SplitData = splitData;
+		}
+
+		/// <summary>
 		/// Split type for the control.
 		/// </summary>
 		public SplitTypes SplitType
@@ -86,6 +96,8 @@ namespace LiveSplit.TheEndIsNigh.Controls
 
 				return typeIndex != -1 ? (SplitTypes)typeIndex : SplitTypes.Unassigned;
 			}
+
+			private set { splitTypeComboBox.SelectedIndex = (int)value; }
 		}
 
 		/// <summary>
@@ -101,6 +113,41 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				string data = countType ? dataCountTextbox.Text : splitDataComboBox.Text;
 
 				return ParseData(splitType, countType, splitDataComboBox.SelectedIndex, data);
+			}
+
+			private set
+			{
+				SplitTypes splitType = SplitType;
+
+				switch (splitType)
+				{
+					case SplitTypes.BodyPart:
+						RepopulateData(bodyPartItems);
+						break;
+
+					case SplitTypes.CartridgeCount:
+					case SplitTypes.TumorCount:
+						break;
+
+					case SplitTypes.WorldEvent:
+						RepopulateData(worldEventItems);
+						break;
+
+					case SplitTypes.Zone:
+						RepopulateData(zoneItems);
+						break;
+				}
+
+				if (splitType == SplitTypes.CartridgeCount || splitType == SplitTypes.TumorCount)
+				{
+					dataCountTextbox.Visible = true;
+					dataCountTextbox.Text = value.ToString();
+				}
+				else
+				{
+					splitDataComboBox.Visible = true;
+					splitDataComboBox.SelectedIndex = (int)value;
+				}
 			}
 		}
 

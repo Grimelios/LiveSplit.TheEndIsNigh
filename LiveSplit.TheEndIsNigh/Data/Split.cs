@@ -34,6 +34,15 @@ namespace LiveSplit.TheEndIsNigh.Data
 		}
 
 		/// <summary>
+		/// Constructs the class. The string data is parsed based on split type.
+		/// </summary>
+		public Split(SplitTypes type, string data)
+		{
+			Type = type;
+			Data = ParseData(type, data);
+		}
+
+		/// <summary>
 		/// Split type.
 		/// </summary>
 		public SplitTypes Type { get; }
@@ -42,5 +51,29 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// Data associated with the split. Using a pure object seemed simpler than creating extending classes for different split types.
 		/// </summary>
 		public object Data { get; }
+
+		/// <summary>
+		/// Parses the given string data based on split type.
+		/// </summary>
+		private object ParseData(SplitTypes type, string data)
+		{
+			switch (type)
+			{
+				case SplitTypes.BodyPart:
+					return (BodyParts)Enum.Parse(typeof(BodyParts), data);
+
+				case SplitTypes.CartridgeCount:
+				case SplitTypes.TumorCount:
+					return int.Parse(data);
+
+				case SplitTypes.WorldEvent:
+					return (WorldEvents)Enum.Parse(typeof(WorldEvents), data);
+
+				case SplitTypes.Zone:
+					return (Zones)Enum.Parse(typeof(Zones), data);
+			}
+
+			return null;
+		}
 	}
 }

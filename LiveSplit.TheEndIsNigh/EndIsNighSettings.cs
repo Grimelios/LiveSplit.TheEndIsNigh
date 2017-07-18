@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using LiveSplit.TheEndIsNigh.Controls;
 using LiveSplit.TheEndIsNigh.Data;
 
 namespace LiveSplit.TheEndIsNigh
@@ -14,20 +15,70 @@ namespace LiveSplit.TheEndIsNigh
 	public class EndIsNighSettings
 	{
 		private SplitCollection splitCollection;
+		private SplitCollectionControl collectionControl;
 
 		/// <summary>
-		/// Constructs the class.
+		/// Constructs the class. This constructor is useful for saving settings.
 		/// </summary>
-		public EndIsNighSettings(SplitCollection splitCollection)
+		public EndIsNighSettings(SplitCollection splitCollection, SplitCollectionControl collectionControl)
 		{
 			this.splitCollection = splitCollection;
+			this.collectionControl = collectionControl;
 		}
 
 		/// <summary>
-		/// Saves settings in the given XML document.
+		/// Loads settings from the given XML node.
 		/// </summary>
-		public void SaveSettings(XmlDocument document)
+		public void LoadSettings(XmlNode node)
 		{
+			XmlElement splitsElement = node["Splits"];
+			XmlNodeList splitNodes = splitsElement.GetElementsByTagName("Split");
+
+			Split[] splits = new Split[splitNodes.Count];
+
+			for (int i = 0; i < splitNodes.Count; i++)
+			{
+				XmlNode splitElement = splitNodes[i];
+
+				SplitTypes type = (SplitTypes)Enum.Parse(typeof(SplitTypes), splitElement.Attributes[0].InnerText);
+
+				string data = splitElement.Attributes[1].InnerText;
+
+				splits[i] = new Split(type, data);
+			}
+
+			// Setting splits on the collection control also updates the split collection.
+			collectionControl.SetSplits(splits);
+		}
+
+		/// <summary>
+		/// Saves settings in an XML node.
+		/// </summary>
+		public XmlNode SaveSettings(XmlDocument document)
+		{
+			Split[] splits = splitCollection.Splits;
+
+			XmlElement settingsElement = document.CreateElement("Settings");
+			XmlElement splitsElement = document.CreateElement("Splits");
+
+			foreach (Split split in splitCollection.Splits)
+			{
+				XmlAttribute splitType = document.CreateAttribute("Type");
+				splitType.InnerText = split.Type.ToString();
+
+				XmlAttribute splitData = document.CreateAttribute("Data");
+				splitData.InnerText = split.Data.ToString();
+
+				XmlElement splitElement = document.CreateElement("Split");
+				splitElement.Attributes.Append(splitType);
+				splitElement.Attributes.Append(splitData);
+
+				splitsElement.AppendChild(splitElement);
+			}
+
+			settingsElement.AppendChild(splitsElement);
+
+			return settingsElement;
 		}
 	}
 }
