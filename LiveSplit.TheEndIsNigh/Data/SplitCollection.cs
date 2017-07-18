@@ -59,6 +59,11 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnSplit()
 		{
+			if (splits.Length == 0)
+			{
+				return;
+			}
+
 			AdvanceSplit();
 		}
 
@@ -67,6 +72,11 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnUndoSplit()
 		{
+			if (splits.Length == 0)
+			{
+				return;
+			}
+
 			currentSplit = splits[--splitIndex];
 		}
 
@@ -75,6 +85,11 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnSkipSplit()
 		{
+			if (splits.Length == 0)
+			{
+				return;
+			}
+
 			AdvanceSplit();
 		}
 

@@ -21,7 +21,6 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public static void Main(string[] args)
 		{
-			/*
 			EndIsNighComponent component = new EndIsNighComponent();
 
 			while (true)
@@ -30,9 +29,8 @@ namespace LiveSplit.TheEndIsNigh
 
 				Thread.Sleep(100);
 			}
-			*/
 
-			Application.Run(new TestingForm());
+			//Application.Run(new TestingForm());
 		}
 	}
 }

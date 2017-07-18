@@ -144,10 +144,10 @@ namespace LiveSplit.TheEndIsNigh
 					CurrentState = state
 				};
 
-				timer.OnSplit += OnSplit;
-				timer.OnUndoSplit += OnUndoSplit;
-				timer.OnSkipSplit += OnSkipSplit;
-				timer.OnReset += OnReset;
+				state.OnSplit += OnSplit;
+				state.OnUndoSplit += OnUndoSplit;
+				state.OnSkipSplit += OnSkipSplit;
+				state.OnReset += OnReset;
 			}
 
 			Autosplit();
@@ -209,8 +209,6 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		private void OnReset(object sender, TimerPhase e)
 		{
-			File.CreateText("ResetCalled.txt");
-
 			splitCollection.OnReset();
 
 			foreach (AutosplitDataClass dataClass in dataClasses)

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{23F518B6-FA2F-45D5-AFB9-BA3AF9A3637A}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit.TheEndIsNigh</RootNamespace>
     <AssemblyName>LiveSplit.TheEndIsNigh</AssemblyName>
@@ -141,6 +141,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LiveSplit.TheEndIsNigh.Updates.xml" />
     <Content Include="Resources\Add.png" />
     <Content Include="Resources\Delete.png" />
     <Content Include="Resources\Down.png" />

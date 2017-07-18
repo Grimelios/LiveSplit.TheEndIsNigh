@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<updates>
+	<update version="1.0">
+		<files>
+			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
+		</files>
+		<changelog>
+			<change>Initial release.</change>
+		</changelog>
+	</update>
+</updates>
