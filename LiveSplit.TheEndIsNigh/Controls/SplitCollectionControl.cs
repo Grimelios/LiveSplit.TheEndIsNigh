@@ -66,6 +66,20 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		private void saveSplitsButton_Click(object sender, EventArgs e)
 		{
+			SaveSplits(true);
+		}
+
+		/// <summary>
+		/// Saves the current collection of splits (if valid).
+		/// </summary>
+		public void SaveSplits(bool updateStatus)
+		{
+			// This check prevents accidentialy wiping all splits on load.
+			if (splitControls.Count == 0)
+			{
+				return;
+			}
+
 			Split[] splits = new Split[splitControls.Count];
 
 			for (int i = 0; i < splits.Length; i++)
@@ -74,11 +88,20 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				splits[i] = new Split(control.SplitType, control.SplitData);
 			}
 
-			//SplitCollection.Splits = splits;
+			int invalidIndex;
 
-			if (ValidateSplits())
+			if (ValidateSplits(splits, out invalidIndex))
 			{
-				UpdateStatusLabel("Splits saved.", Color.Green);
+				SplitCollection.Splits = splits;
+
+				if (updateStatus)
+				{
+					UpdateStatusLabel("Splits saved.", Color.Green);
+				}
+			}
+			else if (updateStatus)
+			{
+				UpdateStatusLabel($"Invalid split (line {invalidIndex + 1}).", Color.Red);
 			}
 		}
 
@@ -141,6 +164,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			}
 
 			UpdateCountLabel();
+			SaveSplits(false);
 		}
 
 		/// <summary>
@@ -151,6 +175,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			int index = splitControls.IndexOf(control);
 
 			Swap(index, index - 1);
+			SaveSplits(false);
 		}
 
 		/// <summary>
@@ -161,6 +186,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			int index = splitControls.IndexOf(control);
 
 			Swap(index, index + 1);
+			SaveSplits(false);
 		}
 
 		/// <summary>
@@ -194,19 +220,21 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// <summary>
 		/// Validates whether the current list of splits is valid.
 		/// </summary>
-		private bool ValidateSplits()
+		private bool ValidateSplits(Split[] splits, out int invalidIndex)
 		{
-			for (int i = 0; i < splitControls.Count; i++)
+			for (int i = 0; i < splits.Length; i++)
 			{
-				SplitControl control = (SplitControl)splitControls[i];
+				Split split = splits[i];
 
-				if (control.SplitType == SplitTypes.Unassigned || control.SplitData == null)
+				if (split.Type == SplitTypes.Unassigned || split.Data == null)
 				{
-					UpdateStatusLabel($"Invalid split (line {i}).", Color.Red);
+					invalidIndex = i;
 
 					return false;
 				}
 			}
+
+			invalidIndex = -1;
 
 			return true;
 		}

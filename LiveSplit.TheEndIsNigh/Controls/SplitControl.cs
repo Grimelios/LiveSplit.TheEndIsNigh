@@ -226,6 +226,16 @@ namespace LiveSplit.TheEndIsNigh.Controls
 					RepopulateData(zoneItems);
 					break;
 			}
+
+			parent.SaveSplits(false);
+		}
+
+		/// <summary>
+		/// Called when the data textbox's value changes.
+		/// </summary>
+		private void dataCountTextbox_TextChanged(object sender, EventArgs e)
+		{
+			parent.SaveSplits(false);
 		}
 
 		/// <summary>

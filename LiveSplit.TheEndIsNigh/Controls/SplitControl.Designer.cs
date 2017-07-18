@@ -100,6 +100,7 @@
 			this.dataCountTextbox.Size = new System.Drawing.Size(120, 20);
 			this.dataCountTextbox.TabIndex = 5;
 			this.dataCountTextbox.Visible = false;
+			this.dataCountTextbox.TextChanged += new System.EventHandler(this.dataCountTextbox_TextChanged);
 			// 
 			// SplitControl
 			// 
