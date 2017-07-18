@@ -91,7 +91,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public void OnReset()
 		{
-			currentSplit = splits[splitIndex = 0];
+			currentSplit = splits.Length > 0 ? splits[splitIndex = 0] : null;
 		}
 
 		/// <summary>

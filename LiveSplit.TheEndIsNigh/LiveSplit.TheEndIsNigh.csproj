@@ -82,6 +82,7 @@
     <Compile Include="Data\AutosplitDataClass.cs" />
     <Compile Include="Data\BodyPartCollection.cs" />
     <Compile Include="Data\CartridgeCollection.cs" />
+    <Compile Include="Data\DefaultSplits.cs" />
     <Compile Include="Data\Enumerations.cs" />
     <Compile Include="Data\TumorCollection.cs" />
     <Compile Include="Data\WorldEventCollection.cs" />

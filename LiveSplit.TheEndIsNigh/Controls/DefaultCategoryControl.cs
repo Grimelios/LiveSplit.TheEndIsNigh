@@ -16,11 +16,15 @@ namespace LiveSplit.TheEndIsNigh.Controls
 	/// </summary>
 	public partial class DefaultCategoryControl : UserControl
 	{
+		private DefaultSplits defaultSplits;
+
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
 		public DefaultCategoryControl()
 		{
+			defaultSplits = new DefaultSplits();
+
 			InitializeComponent();
 		}
 
@@ -34,7 +38,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		private void friendPercentButton_Click(object sender, EventArgs e)
 		{
-			LoadDefaultSplits("FriendPercent.json");
+			CollectionControl.SetSplits(defaultSplits.FriendPercent);
 		}
 
 		/// <summary>
@@ -42,14 +46,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		private void anyPercentButton_Click(object sender, EventArgs e)
 		{
-			LoadDefaultSplits("AnyPercent.json");
-		}
-
-		/// <summary>
-		/// Loads default splits from the given Json file.
-		/// </summary>
-		private void LoadDefaultSplits(string filename)
-		{
+			CollectionControl.SetSplits(defaultSplits.AnyPercent);
 		}
 	}
 }

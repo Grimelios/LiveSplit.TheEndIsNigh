@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -166,6 +167,7 @@ namespace LiveSplit.TheEndIsNigh
 			{
 				if (((MapGrid)dataClasses[0]).QueryStart())
 				{
+					// Checking for null allows this function to be used in testing (where no timer exists).
 					timer?.Start();
 					runStarted = true;
 				}
@@ -207,6 +209,8 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		private void OnReset(object sender, TimerPhase e)
 		{
+			File.CreateText("ResetCalled.txt");
+
 			splitCollection.OnReset();
 
 			foreach (AutosplitDataClass dataClass in dataClasses)
