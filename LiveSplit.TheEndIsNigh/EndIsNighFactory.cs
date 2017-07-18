@@ -21,7 +21,7 @@ namespace LiveSplit.TheEndIsNigh
 		/// <summary>
 		/// Component name.
 		/// </summary>
-		public string ComponentName => "The End Is Nigh Autosplitter " + Version;
+		public string ComponentName => "The End Is Nigh Autosplitter v" + Version;
 
 		/// <summary>
 		/// Component description.
