@@ -165,7 +165,7 @@ namespace LiveSplit.TheEndIsNigh
 
 			if (!runStarted)
 			{
-				if (((MapGrid)dataClasses[0]).QueryStart())
+				if (memory.CheckFileSelect())
 				{
 					// Checking for null allows this function to be used in testing (where no timer exists).
 					timer?.Start();

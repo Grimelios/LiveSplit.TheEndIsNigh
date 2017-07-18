@@ -80,6 +80,14 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		}
 
 		/// <summary>
+		/// Checks whether a file was just selected (i.e. the autosplitter should start).
+		/// </summary>
+		public bool CheckFileSelect()
+		{
+			return process.Read<bool>(dataPointer, MemoryOffsets.FileSelect);
+		}
+
+		/// <summary>
 		/// Checks whether the player has collected the given body part.
 		/// </summary>
 		public bool CheckBodyPart(BodyParts bodyPart)

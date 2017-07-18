@@ -85,5 +85,10 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		/// Offset to the beat-end-two flag.
 		/// </summary>
 		public const int BeatEnd2 = BeatEnd1 + 0x1;
+
+		/// <summary>
+		/// Offset to the file-selected flag.
+		/// </summary>
+		public const int FileSelect = BeatEnd2 + 0x1;
 	}
 }

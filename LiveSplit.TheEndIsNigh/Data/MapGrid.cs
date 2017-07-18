@@ -9,8 +9,7 @@ using LiveSplit.TheEndIsNigh.Memory;
 namespace LiveSplit.TheEndIsNigh.Data
 {
 	/// <summary>
-	/// Data class used to track the player's location within the world grid. The map grid is unique in that it can trigger multiple kinds
-	/// of splits (zone and start).
+	/// Data class used to track the player's location within the world grid.
 	/// </summary>
 	public class MapGrid : AutosplitDataClass
 	{
@@ -63,17 +62,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 					visited[j, i] = false;
 				}
 			}
-		}
-
-		/// <summary>
-		/// Checks whether the game is starting (i.e. a new file was just selected).
-		/// </summary>
-		public bool QueryStart()
-		{
-			// The visited array is intentionally not updated here (because, when starting a new game, the player doesn't actually visit
-			// the (0, 37) cell. (0, 37) also happens to be the first level of The End Is Nigh, so marking it visited would cause the
-			// cartridge zone to not trigger when running categories that visit that cart.
-			return Memory.GetWorldLocation() == new Point(0, 37);
 		}
 		
 		/// <summary>
