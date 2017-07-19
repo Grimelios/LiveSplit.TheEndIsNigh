@@ -128,6 +128,14 @@ namespace LiveSplit.TheEndIsNigh.Memory
 				case WorldEvents.Escape:
 					offset = MemoryOffsets.Escaping;
 					break;
+
+				case WorldEvents.End1:
+					offset = MemoryOffsets.BeatEnd1;
+					break;
+
+				case WorldEvents.End2:
+					offset = MemoryOffsets.BeatEnd2;
+					break;
 			}
 
 			return process.Read<bool>(dataPointer, offset);

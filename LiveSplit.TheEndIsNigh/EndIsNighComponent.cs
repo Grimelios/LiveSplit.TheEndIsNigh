@@ -34,6 +34,8 @@ namespace LiveSplit.TheEndIsNigh
 		private bool runStarted;
 		private bool processHooked;
 
+		private int deathCount;
+
 		/// <summary>
 		/// Constructs the component.
 		/// </summary>
@@ -203,15 +205,43 @@ namespace LiveSplit.TheEndIsNigh
 				state.OnReset += OnReset;
 			}
 
+			bool processPreviouslyHooked = processHooked;
+
 			Autosplit();
 
 			if (processHooked)
 			{
-				textComponent.InformationValue = memory.GetDeathCount().ToString();
+				// If someone keeps the timer running after exiting to the menu, it's probably also useful to keep display death count for
+				// that run until the timer is reset.
+				deathCount = memory.CheckInGame() || timer.CurrentState.CurrentPhase == TimerPhase.Running
+					? Math.Max(deathCount, memory.GetDeathCount())
+					: 0;
+			}
+
+			// The death count should reset to zero when the game exits.
+			if (!processHooked && processPreviouslyHooked)
+			{
+				deathCount = 0;
+			}
+
+			if (processHooked || processPreviouslyHooked)
+			{
+				textComponent.InformationValue = deathCount.ToString();
 				textComponent.Update(invalidator, state, width, height, mode);
 
 				invalidator?.Invalidate(0, 0, width, height);
 			}
+		}
+
+		/// <summary>
+		/// Updates the death count display value.
+		/// </summary>
+		private void UpdateDeathCount(IInvalidator invalidator, LiveSplitState state, int width, int height, LayoutMode mode, int value)
+		{
+			textComponent.InformationValue = memory.GetDeathCount().ToString();
+			textComponent.Update(invalidator, state, width, height, mode);
+
+			invalidator?.Invalidate(0, 0, width, height);
 		}
 
 		/// <summary>

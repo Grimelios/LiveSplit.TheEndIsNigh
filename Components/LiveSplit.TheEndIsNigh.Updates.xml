@@ -1,32 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
-	<update version="1.0.0">
-		<files>
-			<file path="LiveSplit.TheEndIsNigh/Updates/LiveSplit.TheEndIsNigh.dll" status="changed" />
-		</files>
-		<changelog>
-			<change>Initial release.</change>
-		</changelog>
-	</update>
-	<update version="1.0.1">
-		<files>
-			<file path="LiveSplit.TheEndIsNigh/Updates/LiveSplit.TheEndIsNigh.dll" status="changed" />
-		</files>
-		<changelog>
-			<change>Fixed saving splits.</change>
-			<change>Updated the UI to save splits as splits are modified (rather than having to click Save Splits).</change>
-			<change>Runs now start on file select rather than at the opening cutscene.</change>
-		</changelog>
-	</update>
-	<update version="1.1.0">
+	<update version="1.2.2">
 		<files>
 			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
 		</files>
 		<changelog>
-			<change>Added level splits (based on X and Y coordinates).</change>
-			<change>Updated to save splits automatically when values are changed in the split data combo box.</change>
-			<change>Fixed cartridge count and tumor count loading.</change>
-			<change>The timer no longer instantly restarts if you reset while still in-game.</change>
+			<change>Fixed the End 1 and End 2 world events.</change>
+			<change>Updated the death count display to keep its value until the timer is reset.</change>
+			<change>Reset the death count display to zero when the game is closed.</change>
+		</changelog>
+	</update>
+	<update version="1.2.1">
+		<files>
+			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
+		</files>
+		<changelog>
+			<change>Fixed the autosplitter by updating the memory offset to Tyler's autosplit data structure.</change>
 		</changelog>
 	</update>
 	<update version="1.2.0">
@@ -41,12 +30,33 @@
 			<change>Added numbers to the beginning of each split (i.e. split indices).</change>
 		</changelog>
 	</update>
-	<update version="1.2.1">
+	<update version="1.1.0">
 		<files>
 			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
 		</files>
 		<changelog>
-			<change>Fixed the autosplitter by updating the memory offset to Tyler's autosplit data structure.</change>
+			<change>Added level splits (based on X and Y coordinates).</change>
+			<change>Updated to save splits automatically when values are changed in the split data combo box.</change>
+			<change>Fixed cartridge count and tumor count loading.</change>
+			<change>The timer no longer instantly restarts if you reset while still in-game.</change>
+		</changelog>
+	</update>
+	<update version="1.0.1">
+		<files>
+			<file path="LiveSplit.TheEndIsNigh/Updates/LiveSplit.TheEndIsNigh.dll" status="changed" />
+		</files>
+		<changelog>
+			<change>Fixed saving splits.</change>
+			<change>Updated the UI to save splits as splits are modified (rather than having to click Save Splits).</change>
+			<change>Runs now start on file select rather than at the opening cutscene.</change>
+		</changelog>
+	</update>
+	<update version="1.0.0">
+		<files>
+			<file path="LiveSplit.TheEndIsNigh/Updates/LiveSplit.TheEndIsNigh.dll" status="changed" />
+		</files>
+		<changelog>
+			<change>Initial release.</change>
 		</changelog>
 	</update>
 </updates>
