@@ -30,9 +30,9 @@
 		{
 			this.autosplitterLabel = new System.Windows.Forms.Label();
 			this.helpButton = new System.Windows.Forms.Button();
+			this.settingsControl1 = new LiveSplit.TheEndIsNigh.Controls.SettingsControl();
 			this.splitCollectionControl1 = new LiveSplit.TheEndIsNigh.Controls.SplitCollectionControl();
 			this.defaultCategoryControl1 = new LiveSplit.TheEndIsNigh.Controls.DefaultCategoryControl();
-			this.settingsControl1 = new LiveSplit.TheEndIsNigh.Controls.SettingsControl();
 			this.SuspendLayout();
 			// 
 			// autosplitterLabel
@@ -47,12 +47,24 @@
 			// helpButton
 			// 
 			this.helpButton.Image = global::LiveSplit.TheEndIsNigh.Properties.Resources.Question;
+			this.helpButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.helpButton.Location = new System.Drawing.Point(227, 8);
 			this.helpButton.Name = "helpButton";
-			this.helpButton.Size = new System.Drawing.Size(36, 23);
+			this.helpButton.Size = new System.Drawing.Size(54, 23);
 			this.helpButton.TabIndex = 3;
+			this.helpButton.Text = "Help";
+			this.helpButton.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.helpButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.helpButton.UseVisualStyleBackColor = true;
 			this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
+			// 
+			// settingsControl1
+			// 
+			this.settingsControl1.Location = new System.Drawing.Point(7, 38);
+			this.settingsControl1.Name = "settingsControl1";
+			this.settingsControl1.Settings = null;
+			this.settingsControl1.Size = new System.Drawing.Size(462, 51);
+			this.settingsControl1.TabIndex = 4;
 			// 
 			// splitCollectionControl1
 			// 
@@ -74,13 +86,6 @@
 			this.defaultCategoryControl1.Name = "defaultCategoryControl1";
 			this.defaultCategoryControl1.Size = new System.Drawing.Size(462, 65);
 			this.defaultCategoryControl1.TabIndex = 0;
-			// 
-			// settingsControl1
-			// 
-			this.settingsControl1.Location = new System.Drawing.Point(7, 38);
-			this.settingsControl1.Name = "settingsControl1";
-			this.settingsControl1.Size = new System.Drawing.Size(462, 51);
-			this.settingsControl1.TabIndex = 4;
 			// 
 			// EndIsNighControl
 			// 

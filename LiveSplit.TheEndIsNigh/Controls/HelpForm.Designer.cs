@@ -40,6 +40,8 @@
 			this.worldEventDescription = new System.Windows.Forms.Label();
 			this.zoneLabel = new System.Windows.Forms.Label();
 			this.zoneDescription = new System.Windows.Forms.Label();
+			this.levelLabel = new System.Windows.Forms.Label();
+			this.levelDescription = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// summaryLabel
@@ -77,7 +79,7 @@
 			// 
 			this.cartridgeLabel.AutoSize = true;
 			this.cartridgeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cartridgeLabel.Location = new System.Drawing.Point(13, 129);
+			this.cartridgeLabel.Location = new System.Drawing.Point(13, 128);
 			this.cartridgeLabel.Name = "cartridgeLabel";
 			this.cartridgeLabel.Size = new System.Drawing.Size(106, 13);
 			this.cartridgeLabel.TabIndex = 3;
@@ -86,7 +88,7 @@
 			// cartridgeDescription
 			// 
 			this.cartridgeDescription.AutoSize = true;
-			this.cartridgeDescription.Location = new System.Drawing.Point(22, 151);
+			this.cartridgeDescription.Location = new System.Drawing.Point(22, 150);
 			this.cartridgeDescription.Name = "cartridgeDescription";
 			this.cartridgeDescription.Size = new System.Drawing.Size(314, 26);
 			this.cartridgeDescription.TabIndex = 4;
@@ -97,7 +99,7 @@
 			// 
 			this.tumorLabel.AutoSize = true;
 			this.tumorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tumorLabel.Location = new System.Drawing.Point(13, 189);
+			this.tumorLabel.Location = new System.Drawing.Point(13, 188);
 			this.tumorLabel.Name = "tumorLabel";
 			this.tumorLabel.Size = new System.Drawing.Size(90, 13);
 			this.tumorLabel.TabIndex = 5;
@@ -106,7 +108,7 @@
 			// tumorDescription
 			// 
 			this.tumorDescription.AutoSize = true;
-			this.tumorDescription.Location = new System.Drawing.Point(22, 211);
+			this.tumorDescription.Location = new System.Drawing.Point(22, 210);
 			this.tumorDescription.Name = "tumorDescription";
 			this.tumorDescription.Size = new System.Drawing.Size(320, 39);
 			this.tumorDescription.TabIndex = 6;
@@ -118,7 +120,7 @@
 			// 
 			this.worldEventLabel.AutoSize = true;
 			this.worldEventLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.worldEventLabel.Location = new System.Drawing.Point(13, 262);
+			this.worldEventLabel.Location = new System.Drawing.Point(13, 334);
 			this.worldEventLabel.Name = "worldEventLabel";
 			this.worldEventLabel.Size = new System.Drawing.Size(88, 13);
 			this.worldEventLabel.TabIndex = 7;
@@ -127,7 +129,7 @@
 			// worldEventDescription
 			// 
 			this.worldEventDescription.AutoSize = true;
-			this.worldEventDescription.Location = new System.Drawing.Point(22, 284);
+			this.worldEventDescription.Location = new System.Drawing.Point(22, 356);
 			this.worldEventDescription.Name = "worldEventDescription";
 			this.worldEventDescription.Size = new System.Drawing.Size(318, 52);
 			this.worldEventDescription.TabIndex = 8;
@@ -137,7 +139,7 @@
 			// 
 			this.zoneLabel.AutoSize = true;
 			this.zoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.zoneLabel.Location = new System.Drawing.Point(13, 347);
+			this.zoneLabel.Location = new System.Drawing.Point(13, 420);
 			this.zoneLabel.Name = "zoneLabel";
 			this.zoneLabel.Size = new System.Drawing.Size(47, 13);
 			this.zoneLabel.TabIndex = 9;
@@ -146,18 +148,39 @@
 			// zoneDescription
 			// 
 			this.zoneDescription.AutoSize = true;
-			this.zoneDescription.Location = new System.Drawing.Point(22, 369);
+			this.zoneDescription.Location = new System.Drawing.Point(22, 442);
 			this.zoneDescription.Name = "zoneDescription";
 			this.zoneDescription.Size = new System.Drawing.Size(299, 26);
 			this.zoneDescription.TabIndex = 10;
 			this.zoneDescription.Text = "Splits when the selected zone is reached for the first time.\r\nSpecifically, you m" +
     "ust enter the first level of the selected zone.";
 			// 
+			// levelLabel
+			// 
+			this.levelLabel.AutoSize = true;
+			this.levelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.levelLabel.Location = new System.Drawing.Point(13, 261);
+			this.levelLabel.Name = "levelLabel";
+			this.levelLabel.Size = new System.Drawing.Size(49, 13);
+			this.levelLabel.TabIndex = 11;
+			this.levelLabel.Text = "• Level";
+			// 
+			// levelDescription
+			// 
+			this.levelDescription.AutoSize = true;
+			this.levelDescription.Location = new System.Drawing.Point(22, 283);
+			this.levelDescription.Name = "levelDescription";
+			this.levelDescription.Size = new System.Drawing.Size(317, 39);
+			this.levelDescription.TabIndex = 12;
+			this.levelDescription.Text = resources.GetString("levelDescription.Text");
+			// 
 			// HelpForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(380, 410);
+			this.ClientSize = new System.Drawing.Size(355, 479);
+			this.Controls.Add(this.levelDescription);
+			this.Controls.Add(this.levelLabel);
 			this.Controls.Add(this.zoneDescription);
 			this.Controls.Add(this.zoneLabel);
 			this.Controls.Add(this.worldEventDescription);
@@ -189,5 +212,7 @@
 		private System.Windows.Forms.Label worldEventDescription;
 		private System.Windows.Forms.Label zoneLabel;
 		private System.Windows.Forms.Label zoneDescription;
+		private System.Windows.Forms.Label levelLabel;
+		private System.Windows.Forms.Label levelDescription;
 	}
 }
