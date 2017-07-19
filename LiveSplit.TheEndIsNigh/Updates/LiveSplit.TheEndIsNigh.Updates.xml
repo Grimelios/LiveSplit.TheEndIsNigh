@@ -1,8 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
-	<update version="1.0.1">
+	<update version="1.1.0">
 		<files>
 			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
+		</files>
+		<changelog>
+			<change>Added level splits (based on X and Y coordinates).</change>
+			<change>Updated to save splits automatically when values are changed in the split data combo box.</change>
+			<change>Fixed cartridge count and tumor count loading.</change>
+			<change>The timer no longer instantly restarts if you reset while still in-game.</change>
+		</changelog>
+	</update>
+	<update version="1.0.1">
+		<files>
+			<file path="LiveSplit.TheEndIsNigh/Updates/LiveSplit.TheEndIsNigh.dll" status="changed" />
 		</files>
 		<changelog>
 			<change>Fixed saving splits.</change>
@@ -12,7 +23,7 @@
 	</update>
 	<update version="1.0.0">
 		<files>
-			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
+			<file path="LiveSplit.TheEndIsNigh/Updates/LiveSplit.TheEndIsNigh.dll" status="changed" />
 		</files>
 		<changelog>
 			<change>Initial release.</change>
