@@ -28,6 +28,7 @@ namespace LiveSplit.TheEndIsNigh
 		private AutosplitDataClass[] dataClasses;
 		private SplitCollection splitCollection;
 
+		private bool fileSelected;
 		private bool runStarted;
 
 		/// <summary>
@@ -165,15 +166,26 @@ namespace LiveSplit.TheEndIsNigh
 
 			if (!runStarted)
 			{
-				if (memory.CheckFileSelect())
+				if (!fileSelected && memory.CheckFileSelect())
 				{
 					// Checking for null allows this function to be used in testing (where no timer exists).
 					timer?.Start();
 					runStarted = true;
+					fileSelected = true;
 				}
 				else
 				{
 					return;
+				}
+			}
+
+			if (fileSelected)
+			{
+				fileSelected = memory.CheckFileSelect();
+
+				if (!fileSelected)
+				{
+					runStarted = false;
 				}
 			}
 
@@ -216,7 +228,11 @@ namespace LiveSplit.TheEndIsNigh
 				dataClass.Reset();
 			}
 
-			runStarted = false;
+			// This check prevents the timer from resetting and immediately restarting when you reset the timer in-game.
+			if (!fileSelected)
+			{
+				runStarted = false;
+			}
 		}
 
 		/// <summary>
