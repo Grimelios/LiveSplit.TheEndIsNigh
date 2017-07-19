@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 	{
 		BodyPart,
 		CartridgeCount,
+		Level,
 		TumorCount,
 		WorldEvent,
 		Zone,
@@ -65,6 +67,14 @@ namespace LiveSplit.TheEndIsNigh.Data
 				case SplitTypes.CartridgeCount:
 				case SplitTypes.TumorCount:
 					return int.Parse(data);
+
+				case SplitTypes.Level:
+					string[] tokens = data.Split(',');
+
+					int x = int.Parse(tokens[0]);
+					int y = int.Parse(tokens[1]);
+
+					return new Point(x, y);
 
 				case SplitTypes.WorldEvent:
 					return (WorldEvents)Enum.Parse(typeof(WorldEvents), data);

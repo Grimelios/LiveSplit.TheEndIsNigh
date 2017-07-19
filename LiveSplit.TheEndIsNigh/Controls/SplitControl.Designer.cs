@@ -34,6 +34,10 @@
 			this.deleteButton = new System.Windows.Forms.Button();
 			this.splitDataComboBox = new System.Windows.Forms.ComboBox();
 			this.dataCountTextbox = new System.Windows.Forms.TextBox();
+			this.xTextbox = new System.Windows.Forms.TextBox();
+			this.xLabel = new System.Windows.Forms.Label();
+			this.yLabel = new System.Windows.Forms.Label();
+			this.yTextbox = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// splitTypeComboBox
@@ -43,6 +47,7 @@
 			this.splitTypeComboBox.Items.AddRange(new object[] {
             "Body Part",
             "Cartridge Count",
+            "Level",
             "Tumor Count",
             "World Event",
             "Zone"});
@@ -91,6 +96,7 @@
 			this.splitDataComboBox.Size = new System.Drawing.Size(121, 21);
 			this.splitDataComboBox.TabIndex = 4;
 			this.splitDataComboBox.Visible = false;
+			this.splitDataComboBox.SelectedIndexChanged += new System.EventHandler(this.splitDataComboBox_SelectedIndexChanged);
 			// 
 			// dataCountTextbox
 			// 
@@ -102,10 +108,54 @@
 			this.dataCountTextbox.Visible = false;
 			this.dataCountTextbox.TextChanged += new System.EventHandler(this.dataCountTextbox_TextChanged);
 			// 
+			// xTextbox
+			// 
+			this.xTextbox.Location = new System.Drawing.Point(149, 4);
+			this.xTextbox.MaxLength = 3;
+			this.xTextbox.Name = "xTextbox";
+			this.xTextbox.Size = new System.Drawing.Size(40, 20);
+			this.xTextbox.TabIndex = 6;
+			this.xTextbox.Visible = false;
+			this.xTextbox.TextChanged += new System.EventHandler(this.xTextbox_TextChanged);
+			// 
+			// xLabel
+			// 
+			this.xLabel.AutoSize = true;
+			this.xLabel.Location = new System.Drawing.Point(132, 7);
+			this.xLabel.Name = "xLabel";
+			this.xLabel.Size = new System.Drawing.Size(17, 13);
+			this.xLabel.TabIndex = 7;
+			this.xLabel.Text = "X:";
+			this.xLabel.Visible = false;
+			// 
+			// yLabel
+			// 
+			this.yLabel.AutoSize = true;
+			this.yLabel.Location = new System.Drawing.Point(195, 7);
+			this.yLabel.Name = "yLabel";
+			this.yLabel.Size = new System.Drawing.Size(17, 13);
+			this.yLabel.TabIndex = 8;
+			this.yLabel.Text = "Y:";
+			this.yLabel.Visible = false;
+			// 
+			// yTextbox
+			// 
+			this.yTextbox.Location = new System.Drawing.Point(212, 4);
+			this.yTextbox.MaxLength = 2;
+			this.yTextbox.Name = "yTextbox";
+			this.yTextbox.Size = new System.Drawing.Size(40, 20);
+			this.yTextbox.TabIndex = 9;
+			this.yTextbox.Visible = false;
+			this.yTextbox.TextChanged += new System.EventHandler(this.yTextbox_TextChanged);
+			// 
 			// SplitControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.yTextbox);
+			this.Controls.Add(this.yLabel);
+			this.Controls.Add(this.xLabel);
+			this.Controls.Add(this.xTextbox);
 			this.Controls.Add(this.dataCountTextbox);
 			this.Controls.Add(this.splitDataComboBox);
 			this.Controls.Add(this.deleteButton);
@@ -127,5 +177,9 @@
 		private System.Windows.Forms.Button deleteButton;
 		private System.Windows.Forms.ComboBox splitDataComboBox;
 		private System.Windows.Forms.TextBox dataCountTextbox;
+		private System.Windows.Forms.TextBox xTextbox;
+		private System.Windows.Forms.Label xLabel;
+		private System.Windows.Forms.Label yLabel;
+		private System.Windows.Forms.TextBox yTextbox;
 	}
 }

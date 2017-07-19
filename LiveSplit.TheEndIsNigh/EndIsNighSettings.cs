@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,18 +57,31 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public XmlNode SaveSettings(XmlDocument document)
 		{
-			Split[] splits = splitCollection.Splits;
-
 			XmlElement settingsElement = document.CreateElement("Settings");
 			XmlElement splitsElement = document.CreateElement("Splits");
 
 			foreach (Split split in splitCollection.Splits)
 			{
+				SplitTypes type = split.Type;
+
+				string data;
+
+				if (type == SplitTypes.Level)
+				{
+					Point point = (Point)split.Data;
+
+					data = point.X + "," + point.Y;
+				}
+				else
+				{
+					data = split.Data.ToString();
+				}
+
 				XmlAttribute splitType = document.CreateAttribute("Type");
-				splitType.InnerText = split.Type.ToString();
+				splitType.InnerText = type.ToString();
 
 				XmlAttribute splitData = document.CreateAttribute("Data");
-				splitData.InnerText = split.Data.ToString();
+				splitData.InnerText = data;
 
 				XmlElement splitElement = document.CreateElement("Split");
 				splitElement.Attributes.Append(splitType);

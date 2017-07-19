@@ -69,7 +69,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 		/// </summary>
 		public override bool QueryData(object data)
 		{
-			Point targetLocation = zoneMap[(int)data];
+			Point targetLocation = data is Zones ? zoneMap[(int)data] : (Point)data;
 			Point location = Memory.GetWorldLocation();
 
 			int x = location.X;

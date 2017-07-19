@@ -107,56 +107,57 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		{
 			get
 			{
-				SplitTypes splitType = SplitType;
-
-				bool countType = splitType == SplitTypes.CartridgeCount || splitType == SplitTypes.TumorCount;
-				string data = countType ? dataCountTextbox.Text : splitDataComboBox.Text;
-
-				return ParseData(splitType, countType, splitDataComboBox.SelectedIndex, data);
+				return ParseData(SplitType);
 			}
 
 			private set
 			{
 				SplitTypes splitType = SplitType;
 
+				int selectedIndex = IsEnumeratedType(splitType) ? (int)value : -1;
+
 				switch (splitType)
 				{
 					case SplitTypes.BodyPart:
-						RepopulateData(bodyPartItems);
+						RepopulateData(bodyPartItems, selectedIndex);
 						break;
 
 					case SplitTypes.CartridgeCount:
 					case SplitTypes.TumorCount:
+						dataCountTextbox.Visible = true;
+						dataCountTextbox.Text = value.ToString();
+
+						break;
+
+					case SplitTypes.Level:
+						ToggleLevelItems(true);
+
+						Point data = (Point)value;
+
+						xTextbox.Text = data.X.ToString();
+						yTextbox.Text = data.Y.ToString();
+
 						break;
 
 					case SplitTypes.WorldEvent:
-						RepopulateData(worldEventItems);
+						RepopulateData(worldEventItems, selectedIndex);
 						break;
 
 					case SplitTypes.Zone:
-						RepopulateData(zoneItems);
+						RepopulateData(zoneItems, selectedIndex);
 						break;
-				}
-
-				if (splitType == SplitTypes.CartridgeCount || splitType == SplitTypes.TumorCount)
-				{
-					dataCountTextbox.Visible = true;
-					dataCountTextbox.Text = value.ToString();
-				}
-				else
-				{
-					splitDataComboBox.Visible = true;
-					splitDataComboBox.SelectedIndex = (int)value;
 				}
 			}
 		}
 
 		/// <summary>
-		/// Parses split data based on the given type and raw string.
+		/// Parses split data based on the given data.
 		/// </summary>
-		private object ParseData(SplitTypes splitType, bool countType, int dataIndex, string data)
+		private object ParseData(SplitTypes splitType)
 		{
-			if (!countType && dataIndex == -1)
+			int dataIndex = splitDataComboBox.SelectedIndex;
+
+			if (IsEnumeratedType(splitType) && dataIndex == -1)
 			{
 				return null;
 			}
@@ -170,23 +171,42 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				case SplitTypes.TumorCount:
 					int result;
 
-					if (int.TryParse(data, out result))
+					if (int.TryParse(dataCountTextbox.Text, out result))
 					{
 						return result;
 					}
 
 					return null;
 
+				case SplitTypes.Level:
+					int x;
+					int y;
+
+					if (int.TryParse(xTextbox.Text, out x) && int.TryParse(yTextbox.Text, out y))
+					{
+						return new Point(x, y);
+					}
+
+					return null;
+
 				case SplitTypes.WorldEvent:
-					return Enum.Parse(typeof(WorldEvents), RemoveSpaces(data));
+					return Enum.Parse(typeof(WorldEvents), RemoveSpaces(splitDataComboBox.Text));
 
 				case SplitTypes.Zone:
 					// Wall of Sorrow is the only string that won't correctly convert to an enumeration value when spaces are removed (due
 					// to the lower-case o).
-					return dataIndex == 4 ? Zones.WallOfSorrow : Enum.Parse(typeof(Zones), RemoveSpaces(data));
+					return dataIndex == 4 ? Zones.WallOfSorrow : Enum.Parse(typeof(Zones), RemoveSpaces(splitDataComboBox.Text));
 			}
 
 			return null;
+		}
+
+		/// <summary>
+		/// Checks whether the given split type is an enumerated type.
+		/// </summary>
+		private bool IsEnumeratedType(SplitTypes type)
+		{
+			return type == SplitTypes.BodyPart || type == SplitTypes.WorldEvent || type == SplitTypes.Zone;
 		}
 
 		/// <summary>
@@ -210,11 +230,18 @@ namespace LiveSplit.TheEndIsNigh.Controls
 
 				case SplitTypes.CartridgeCount:
 				case SplitTypes.TumorCount:
-					splitDataComboBox.Items.Clear();
-					splitDataComboBox.SelectedIndex = -1;
-					splitDataComboBox.Visible = false;
+					HideDataDropdown();
+					ToggleLevelItems(false);
+
+					// The count textbox will already be clear at this point.
 					dataCountTextbox.Visible = true;
-					dataCountTextbox.Text = "";
+
+					break;
+
+				case SplitTypes.Level:
+					HideDataDropdown();
+					ToggleCountTextbox(false);
+					ToggleLevelItems(true);
 
 					break;
 
@@ -231,6 +258,14 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		}
 
 		/// <summary>
+		/// Called when the selected index changes on the data combo box.
+		/// </summary>
+		private void splitDataComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			parent.SaveSplits(false);
+		}
+
+		/// <summary>
 		/// Called when the data textbox's value changes.
 		/// </summary>
 		private void dataCountTextbox_TextChanged(object sender, EventArgs e)
@@ -239,15 +274,76 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		}
 
 		/// <summary>
-		/// Repopulates items in the split data combo box.
+		/// Called when the X textbox's value changes.
 		/// </summary>
-		private void RepopulateData(string[] items)
+		private void xTextbox_TextChanged(object sender, EventArgs e)
+		{
+			parent.SaveSplits(false);
+		}
+
+		/// <summary>
+		/// Called when the Y textbox's value changes.
+		/// </summary>
+		private void yTextbox_TextChanged(object sender, EventArgs e)
+		{
+			parent.SaveSplits(false);
+		}
+
+		/// <summary>
+		/// Clears and hides the data dropdown.
+		/// </summary>
+		private void HideDataDropdown()
 		{
 			splitDataComboBox.Items.Clear();
+			splitDataComboBox.Visible = false;
+		}
+
+		/// <summary>
+		/// Repopulates items in the split data combo box.
+		/// </summary>
+		private void RepopulateData(string[] items, int selectedIndex = -1)
+		{
+			// The data dropdown will have already been cleared by this point.
 			splitDataComboBox.Items.AddRange(items);
 			splitDataComboBox.Visible = true;
 
-			dataCountTextbox.Visible = false;
+			if (selectedIndex != -1)
+			{
+				splitDataComboBox.SelectedIndex = selectedIndex;
+			}
+
+			ToggleCountTextbox(false);
+			ToggleLevelItems(false);
+		}
+
+		/// <summary>
+		/// Toggles visibility of the count textbox. Also clears the textbox's value if invisible.
+		/// </summary>
+		private void ToggleCountTextbox(bool visible)
+		{
+			dataCountTextbox.Visible = visible;
+
+			if (!visible)
+			{
+				dataCountTextbox.Text = "";
+			}
+		}
+
+		/// <summary>
+		/// Toggles visibility of the level controls (X and Y labels and textboxes).
+		/// </summary>
+		private void ToggleLevelItems(bool visible)
+		{
+			xLabel.Visible = visible;
+			yLabel.Visible = visible;
+			xTextbox.Visible = visible;
+			yTextbox.Visible = visible;
+
+			if (!visible)
+			{
+				xTextbox.Text = "";
+				yTextbox.Text = "";
+			}
 		}
 
 		/// <summary>
