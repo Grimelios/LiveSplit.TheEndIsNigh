@@ -1,15 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
-	<update version="1.2.0">
+	<update version="1.0.0">
 		<files>
-			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
+			<file path="LiveSplit.TheEndIsNigh/Updates/LiveSplit.TheEndIsNigh.dll" status="changed" />
 		</files>
 		<changelog>
-			<change>Added the death count display (toggleable).</change>
-			<change>Added the Settings box to the configuration screen.</change>
-			<change>Added a description for the Level split type on the help screen.</change>
-			<change>Added the word "Help" to the help button (previously just a question mark).</change>
-			<change>Added numbers to the beginning of each split (i.e. split indices).</change>
+			<change>Initial release.</change>
+		</changelog>
+	</update>
+	<update version="1.0.1">
+		<files>
+			<file path="LiveSplit.TheEndIsNigh/Updates/LiveSplit.TheEndIsNigh.dll" status="changed" />
+		</files>
+		<changelog>
+			<change>Fixed saving splits.</change>
+			<change>Updated the UI to save splits as splits are modified (rather than having to click Save Splits).</change>
+			<change>Runs now start on file select rather than at the opening cutscene.</change>
 		</changelog>
 	</update>
 	<update version="1.1.0">
@@ -23,22 +29,24 @@
 			<change>The timer no longer instantly restarts if you reset while still in-game.</change>
 		</changelog>
 	</update>
-	<update version="1.0.1">
+	<update version="1.2.0">
 		<files>
-			<file path="LiveSplit.TheEndIsNigh/Updates/LiveSplit.TheEndIsNigh.dll" status="changed" />
+			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
 		</files>
 		<changelog>
-			<change>Fixed saving splits.</change>
-			<change>Updated the UI to save splits as splits are modified (rather than having to click Save Splits).</change>
-			<change>Runs now start on file select rather than at the opening cutscene.</change>
+			<change>Added the death count display (toggleable).</change>
+			<change>Added the Settings box to the configuration screen.</change>
+			<change>Added a description for the Level split type on the help screen.</change>
+			<change>Added the word "Help" to the help button (previously just a question mark).</change>
+			<change>Added numbers to the beginning of each split (i.e. split indices).</change>
 		</changelog>
 	</update>
-	<update version="1.0.0">
+	<update version="1.2.1">
 		<files>
-			<file path="LiveSplit.TheEndIsNigh/Updates/LiveSplit.TheEndIsNigh.dll" status="changed" />
+			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
 		</files>
 		<changelog>
-			<change>Initial release.</change>
+			<change>Fixed the autosplitter by updating the memory offset to Tyler's autosplit data structure.</change>
 		</changelog>
 	</update>
 </updates>
