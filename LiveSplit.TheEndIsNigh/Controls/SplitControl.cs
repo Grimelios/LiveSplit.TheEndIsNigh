@@ -312,7 +312,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		private void RepopulateData(string[] items, int selectedIndex = -1)
 		{
-			// The data dropdown will have already been cleared by this point.
+			splitDataComboBox.Items.Clear();
 			splitDataComboBox.Items.AddRange(items);
 			splitDataComboBox.Visible = true;
 
