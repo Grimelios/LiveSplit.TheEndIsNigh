@@ -46,7 +46,7 @@ namespace LiveSplit.TheEndIsNigh
 		/// <summary>
 		/// Component version.
 		/// </summary>
-		public Version Version => Version.Parse("1.1.0");
+		public Version Version => Version.Parse("1.2.0");
 
 		/// <summary>
 		/// Creates the component.
