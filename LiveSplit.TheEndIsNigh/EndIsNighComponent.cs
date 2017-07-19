@@ -28,8 +28,11 @@ namespace LiveSplit.TheEndIsNigh
 		private AutosplitDataClass[] dataClasses;
 		private SplitCollection splitCollection;
 
+		private InfoTextComponent textComponent;
+
 		private bool fileSelected;
 		private bool runStarted;
+		private bool processHooked;
 
 		/// <summary>
 		/// Constructs the component.
@@ -51,6 +54,11 @@ namespace LiveSplit.TheEndIsNigh
 			settingsControl = new EndIsNighControl();
 			settingsControl.CollectionControl.SplitCollection = splitCollection;
 			settings = new EndIsNighSettings(splitCollection, settingsControl.CollectionControl);
+
+			textComponent = new InfoTextComponent("Death Count", "0")
+			{
+				LongestString = int.MaxValue.ToString()
+			};
 		}
 
 		/// <summary>
@@ -61,42 +69,42 @@ namespace LiveSplit.TheEndIsNigh
 		/// <summary>
 		/// Horizontal width of the component.
 		/// </summary>
-		public float HorizontalWidth => 0;
+		public float HorizontalWidth => settings.DisplayEnabled ? textComponent.HorizontalWidth : 0;
 
 		/// <summary>
 		/// Minimum height of the component.
 		/// </summary>
-		public float MinimumHeight => 0;
+		public float MinimumHeight => settings.DisplayEnabled ? textComponent.MinimumHeight : 0;
 
 		/// <summary>
 		/// Vertical height of the component.
 		/// </summary>
-		public float VerticalHeight => 0;
+		public float VerticalHeight => settings.DisplayEnabled ? textComponent.VerticalHeight : 0;
 
 		/// <summary>
 		/// Minimum width of the component.
 		/// </summary>
-		public float MinimumWidth => 0;
+		public float MinimumWidth => settings.DisplayEnabled ? textComponent.MinimumWidth : 0;
 
 		/// <summary>
 		/// Top padding of the component.
 		/// </summary>
-		public float PaddingTop => 0;
+		public float PaddingTop => settings.DisplayEnabled ? textComponent.PaddingTop : 0;
 
 		/// <summary>
 		/// Bottom padding of the component.
 		/// </summary>
-		public float PaddingBottom => 0;
+		public float PaddingBottom => settings.DisplayEnabled ? textComponent.PaddingBottom : 0;
 
 		/// <summary>
 		/// Left padding of the component.
 		/// </summary>
-		public float PaddingLeft => 0;
+		public float PaddingLeft => settings.DisplayEnabled ? textComponent.PaddingLeft : 0;
 
 		/// <summary>
 		/// Right padding of the component.
 		/// </summary>
-		public float PaddingRight => 0;
+		public float PaddingRight => settings.DisplayEnabled ? textComponent.PaddingRight : 0;
 
 		/// <summary>
 		/// Content menu controls for the component.
@@ -108,6 +116,13 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public void DrawHorizontal(Graphics g, LiveSplitState state, float height, Region clipRegion)
 		{
+			if (settings.DisplayEnabled)
+			{
+				FillBackground(g, state, HorizontalWidth, height);
+				PrepareDraw(state);
+
+				textComponent.DrawHorizontal(g, state, height, clipRegion);
+			}
 		}
 
 		/// <summary>
@@ -115,6 +130,43 @@ namespace LiveSplit.TheEndIsNigh
 		/// </summary>
 		public void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
 		{
+			if (settings.DisplayEnabled)
+			{
+				FillBackground(g, state, width, VerticalHeight);
+				PrepareDraw(state);
+
+				textComponent.DrawVertical(g, state, width, clipRegion);
+			}
+		}
+
+		/// <summary>
+		/// Fills the background for the LiveSplit display.
+		/// </summary>
+		private void FillBackground(Graphics g, LiveSplitState state, float width, float height)
+		{
+			Color backgroundColor = state.LayoutSettings.BackgroundColor;
+
+			if (backgroundColor.ToArgb() != Color.Transparent.ToArgb())
+			{
+				g.FillRectangle(new SolidBrush(backgroundColor), 0, 0, width, height);
+			}
+		}
+
+		/// <summary>
+		/// Prepares for drawing.
+		/// </summary>
+		private void PrepareDraw(LiveSplitState state)
+		{
+			Options.LayoutSettings layoutSettings = state.LayoutSettings;
+
+			textComponent.NameLabel.HasShadow = layoutSettings.DropShadows;
+			textComponent.ValueLabel.HasShadow = layoutSettings.DropShadows;
+			textComponent.NameLabel.HorizontalAlignment = StringAlignment.Near;
+			textComponent.ValueLabel.HorizontalAlignment = StringAlignment.Far;
+			textComponent.NameLabel.VerticalAlignment = StringAlignment.Near;
+			textComponent.ValueLabel.VerticalAlignment = StringAlignment.Near;
+			textComponent.NameLabel.ForeColor = layoutSettings.TextColor;
+			textComponent.ValueLabel.ForeColor = layoutSettings.TextColor;
 		}
 
 		/// <summary>
@@ -152,6 +204,14 @@ namespace LiveSplit.TheEndIsNigh
 			}
 
 			Autosplit();
+
+			if (processHooked)
+			{
+				textComponent.InformationValue = memory.GetDeathCount().ToString();
+				textComponent.Update(invalidator, state, width, height, mode);
+
+				invalidator?.Invalidate(0, 0, width, height);
+			}
 		}
 
 		/// <summary>
@@ -161,8 +221,12 @@ namespace LiveSplit.TheEndIsNigh
 		{
 			if (!memory.HookProcess())
 			{
+				processHooked = false;
+
 				return;
 			}
+
+			processHooked = true;
 
 			if (!runStarted)
 			{

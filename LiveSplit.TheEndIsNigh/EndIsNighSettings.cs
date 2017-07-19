@@ -28,6 +28,11 @@ namespace LiveSplit.TheEndIsNigh
 		}
 
 		/// <summary>
+		/// Whether the component should display death count.
+		/// </summary>
+		public bool DisplayEnabled { get; } = true;
+
+		/// <summary>
 		/// Loads settings from the given XML node.
 		/// </summary>
 		public void LoadSettings(XmlNode node)
