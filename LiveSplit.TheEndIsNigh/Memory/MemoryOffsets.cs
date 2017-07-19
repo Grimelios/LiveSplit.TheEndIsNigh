@@ -14,7 +14,7 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		/// <summary>
 		/// Static offset to the autosplit data structure created by Tyler.
 		/// </summary>
-		public const int StructureOffset = 0x25DFD0;
+		public const int StructureOffset = 0x25EFD0;
 
 		/// <summary>
 		/// Offset to in-game time (frame count).
