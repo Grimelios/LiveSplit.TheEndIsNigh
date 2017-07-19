@@ -32,6 +32,7 @@
 			this.helpButton = new System.Windows.Forms.Button();
 			this.splitCollectionControl1 = new LiveSplit.TheEndIsNigh.Controls.SplitCollectionControl();
 			this.defaultCategoryControl1 = new LiveSplit.TheEndIsNigh.Controls.DefaultCategoryControl();
+			this.settingsControl1 = new LiveSplit.TheEndIsNigh.Controls.SettingsControl();
 			this.SuspendLayout();
 			// 
 			// autosplitterLabel
@@ -58,9 +59,9 @@
 			this.splitCollectionControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.splitCollectionControl1.Location = new System.Drawing.Point(7, 87);
+			this.splitCollectionControl1.Location = new System.Drawing.Point(7, 148);
 			this.splitCollectionControl1.Name = "splitCollectionControl1";
-			this.splitCollectionControl1.Size = new System.Drawing.Size(462, 439);
+			this.splitCollectionControl1.Size = new System.Drawing.Size(462, 378);
 			this.splitCollectionControl1.SplitCollection = null;
 			this.splitCollectionControl1.TabIndex = 1;
 			// 
@@ -69,15 +70,23 @@
 			this.defaultCategoryControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.defaultCategoryControl1.CollectionControl = null;
-			this.defaultCategoryControl1.Location = new System.Drawing.Point(7, 32);
+			this.defaultCategoryControl1.Location = new System.Drawing.Point(7, 91);
 			this.defaultCategoryControl1.Name = "defaultCategoryControl1";
 			this.defaultCategoryControl1.Size = new System.Drawing.Size(462, 65);
 			this.defaultCategoryControl1.TabIndex = 0;
+			// 
+			// settingsControl1
+			// 
+			this.settingsControl1.Location = new System.Drawing.Point(7, 38);
+			this.settingsControl1.Name = "settingsControl1";
+			this.settingsControl1.Size = new System.Drawing.Size(462, 51);
+			this.settingsControl1.TabIndex = 4;
 			// 
 			// EndIsNighControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.settingsControl1);
 			this.Controls.Add(this.helpButton);
 			this.Controls.Add(this.autosplitterLabel);
 			this.Controls.Add(this.splitCollectionControl1);
@@ -95,5 +104,6 @@
 		private SplitCollectionControl splitCollectionControl1;
 		private System.Windows.Forms.Label autosplitterLabel;
 		private System.Windows.Forms.Button helpButton;
+		private SettingsControl settingsControl1;
 	}
 }

@@ -53,7 +53,7 @@ namespace LiveSplit.TheEndIsNigh
 			splitCollection = new SplitCollection(this, dataClasses);
 			settingsControl = new EndIsNighControl();
 			settingsControl.CollectionControl.SplitCollection = splitCollection;
-			settings = new EndIsNighSettings(splitCollection, settingsControl.CollectionControl);
+			settings = new EndIsNighSettings(splitCollection, settingsControl.CollectionControl, settingsControl.SettingsControl);
 
 			textComponent = new InfoTextComponent("Death Count", "0")
 			{
