@@ -44,7 +44,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		private void addSplitButton_Click(object sender, EventArgs e)
 		{
-			SplitControl newSplit = new SplitControl(this);
+			SplitControl newSplit = new SplitControl(this, splitControls.Count + 1);
 
 			if (splitControls.Count > 0)
 			{
@@ -122,7 +122,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			{
 				Split split = splits[i];
 
-				splitControls.Add(new SplitControl(this, split.Type, split.Data)
+				splitControls.Add(new SplitControl(this, i + 1, split.Type, split.Data)
 				{
 					Location = new Point(0, SplitSpacing * i)
 				});
@@ -148,8 +148,9 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			{
 				for (int i = index; i < splitControls.Count; i++)
 				{
-					Control toMove = splitControls[i];
+					SplitControl toMove = (SplitControl)splitControls[i];
 					toMove.Location = toMove.Location.Subtract(spacing);
+					toMove.Index = i + 1;
 				}
 
 				if (index == 0)
@@ -206,6 +207,9 @@ namespace LiveSplit.TheEndIsNigh.Controls
 
 			ToggleButtons(control1, index2);
 			ToggleButtons(control2, index1);
+
+			control1.Index = index2 + 1;
+			control2.Index = index1 + 1;
 		}
 
 		/// <summary>

@@ -68,21 +68,30 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// <summary>
 		/// Constructs the class.
 		/// </summary>
-		public SplitControl(SplitCollectionControl parent)
+		public SplitControl(SplitCollectionControl parent, int index)
 		{
 			this.parent = parent;
 
 			InitializeComponent();
+			Index = index;
 		}
 
 		/// <summary>
 		/// Constructs the class with split type and data given directly.
 		/// </summary>
-		public SplitControl(SplitCollectionControl parent, SplitTypes splitType, object splitData) :
-			this(parent)
+		public SplitControl(SplitCollectionControl parent, int index, SplitTypes splitType, object splitData) :
+			this(parent, index)
 		{
 			SplitType = splitType;
 			SplitData = splitData;
+		}
+
+		/// <summary>
+		/// Updates the index label for the control.
+		/// </summary>
+		public int Index
+		{
+			set { indexLabel.Text = value + "."; }
 		}
 
 		/// <summary>

@@ -42,7 +42,7 @@
 			// splitTypeLabel
 			// 
 			this.splitTypeLabel.AutoSize = true;
-			this.splitTypeLabel.Location = new System.Drawing.Point(10, 54);
+			this.splitTypeLabel.Location = new System.Drawing.Point(31, 54);
 			this.splitTypeLabel.Name = "splitTypeLabel";
 			this.splitTypeLabel.Size = new System.Drawing.Size(54, 13);
 			this.splitTypeLabel.TabIndex = 0;
@@ -51,7 +51,7 @@
 			// splitDataLabel
 			// 
 			this.splitDataLabel.AutoSize = true;
-			this.splitDataLabel.Location = new System.Drawing.Point(137, 54);
+			this.splitDataLabel.Location = new System.Drawing.Point(158, 54);
 			this.splitDataLabel.Name = "splitDataLabel";
 			this.splitDataLabel.Size = new System.Drawing.Size(53, 13);
 			this.splitDataLabel.TabIndex = 1;
