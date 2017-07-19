@@ -41,7 +41,7 @@ namespace LiveSplit.TheEndIsNigh
 		/// <summary>
 		/// XML update filename.
 		/// </summary>
-		public string XMLURL => UpdateURL + "Updates/LiveSplit.TheEndIsNigh.Updates.xml";
+		public string XMLURL => UpdateURL + "Components/LiveSplit.TheEndIsNigh.Updates.xml";
 
 		/// <summary>
 		/// Component version.

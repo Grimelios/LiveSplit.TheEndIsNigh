@@ -151,8 +151,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Updates\LiveSplit.TheEndIsNigh.dll" />
-    <Content Include="Updates\LiveSplit.TheEndIsNigh.Updates.xml" />
     <Content Include="Resources\Add.png" />
     <Content Include="Resources\Delete.png" />
     <Content Include="Resources\Down.png" />
