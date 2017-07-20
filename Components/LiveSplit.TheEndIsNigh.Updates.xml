@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
+	<!--
 	<update version="1.3.0">
 		<files>
 			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
@@ -8,6 +9,7 @@
 			<change>Modifying the autosplitter to display death count when downloaded through LiveSplit's build-in autosplitter list (in the Edit Splits menu).</change>
 		</changelog>
 	</update>
+	-->
 	<update version="1.2.3">
 		<files>
 			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
