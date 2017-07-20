@@ -47,7 +47,15 @@ namespace LiveSplit.TheEndIsNigh
 		/// <summary>
 		/// Component version.
 		/// </summary>
-		public Version Version => Assembly.GetExecutingAssembly().GetName().Version;
+		public Version Version
+		{
+			get
+			{
+				Version version = Assembly.GetExecutingAssembly().GetName().Version;
+
+				return Version.Parse($"{version.Major}.{version.Minor}.{version.Build}");
+			}
+		}
 
 		/// <summary>
 		/// Creates the component.
