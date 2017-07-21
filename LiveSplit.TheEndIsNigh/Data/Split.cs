@@ -14,6 +14,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 	{
 		BodyPart,
 		CartridgeCount,
+		FutureCompletion,
 		Level,
 		TumorCount,
 		WorldEvent,
@@ -66,6 +67,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 
 				case SplitTypes.CartridgeCount:
 				case SplitTypes.TumorCount:
+				case SplitTypes.FutureCompletion:
 					return int.Parse(data);
 
 				case SplitTypes.Level:

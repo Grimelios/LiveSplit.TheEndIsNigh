@@ -20,7 +20,9 @@ namespace LiveSplit.TheEndIsNigh.Data
 		// Even though much of the map grid is empty (i.e. there's not a level in every cell), it still seemed simpler to just use a 2D
 		// boolean grid to track visited levels.
 		private bool[,] visited;
+		private bool withinTargetFutureZone;
 
+		private Point[] futureMap;
 		private Point[] zoneMap;
 
 		/// <summary>
@@ -29,6 +31,14 @@ namespace LiveSplit.TheEndIsNigh.Data
 		public MapGrid(EndIsNighMemory memory) : base(memory)
 		{
 			visited = new bool[GridWidth, GridHeight];
+
+			futureMap = new []
+			{
+				new Point(11, 28),
+				new Point(11, 35),
+				new Point(12, 30),
+				new Point(11, 32),   
+			};
 
 			zoneMap = new []
 			{
@@ -63,7 +73,49 @@ namespace LiveSplit.TheEndIsNigh.Data
 				}
 			}
 		}
-		
+
+		/// <summary>
+		/// Checks whether the given future zone (by index) has been completed.
+		/// </summary>
+		public bool QueryFuture(object data)
+		{
+			Point targetLocation = futureMap[(int)data];
+			Point location = Memory.GetWorldLocation();
+
+			if (!withinTargetFutureZone)
+			{
+				if (location == targetLocation)
+				{
+					withinTargetFutureZone = true;
+				}
+			}
+			// This means you reached the target future zone and then moved or teleported to another screen.
+			else if (location != targetLocation)
+			{
+				withinTargetFutureZone = false;
+
+				// Using Manhattan distance ensures you don't split when you enter the last room of a future section and then just walk
+				// back into the previous room.
+				if (ComputeManhattanDistance(location, targetLocation) > 1)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Computes the Manhattan distance betweeen the two given points.
+		/// </summary>
+		private int ComputeManhattanDistance(Point point1, Point point2)
+		{
+			int dX = Math.Abs(point1.X - point2.X);
+			int dY = Math.Abs(point1.Y - point2.Y);
+
+			return dX + dY;
+		}
+
 		/// <summary>
 		/// Checks whether the given zone (i.e. map cell) has been reached. Only returns true the first time the zone is entered.
 		/// </summary>

@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
+	<update version="1.3.0">
+		<files>
+			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
+		</files>
+		<changelog>
+			<change>Adding future completion splits.</change>
+		</changelog>
+	</update>
 	<update version="1.2.4">
 		<files>
 			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />

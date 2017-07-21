@@ -144,6 +144,9 @@ namespace LiveSplit.TheEndIsNigh.Data
 				case SplitTypes.TumorCount:
 					return tumorCollection.QueryData((int)data);
 
+				case SplitTypes.FutureCompletion:
+					return mapGrid.QueryFuture((int)data);
+
 				case SplitTypes.Level:
 					return mapGrid.QueryData((Point)data);
 

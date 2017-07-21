@@ -48,6 +48,7 @@
 			this.splitTypeComboBox.Items.AddRange(new object[] {
             "Body Part",
             "Cartridge Count",
+            "Future Completion",
             "Level",
             "Tumor Count",
             "World Event",

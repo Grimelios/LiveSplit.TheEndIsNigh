@@ -121,7 +121,7 @@
     <value>Splits when the selected world event is triggered. The friend event
 triggers immediately when you fully assemble and activate the
 friend. The escape event, in contrast, starts after the cutscene
-end and the actual escape begins.</value>
+ends and the actual escape begins.</value>
   </data>
   <data name="levelDescription.Text" xml:space="preserve">
     <value>Splits when the given level is reached for the first time (by X and Y

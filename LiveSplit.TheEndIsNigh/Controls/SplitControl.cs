@@ -17,6 +17,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 	public partial class SplitControl : UserControl
 	{
 		private static string[] bodyPartItems;
+		private static string[] futureItems;
 		private static string[] worldEventItems;
 		private static string[] zoneItems;
 
@@ -30,6 +31,14 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				"Head",
 				"Heart",
 				"Body"
+			};
+
+			futureItems = new []
+			{
+				"Future 1",
+				"Future 2",
+				"Future 3",
+				"Future 4"
 			};
 
 			worldEventItems = new []
@@ -106,7 +115,10 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				return typeIndex != -1 ? (SplitTypes)typeIndex : SplitTypes.Unassigned;
 			}
 
-			private set { splitTypeComboBox.SelectedIndex = (int)value; }
+			private set
+			{
+				splitTypeComboBox.SelectedIndex = (int)value;
+			}
 		}
 
 		/// <summary>
@@ -136,6 +148,10 @@ namespace LiveSplit.TheEndIsNigh.Controls
 						dataCountTextbox.Visible = true;
 						dataCountTextbox.Text = value.ToString();
 
+						break;
+
+					case SplitTypes.FutureCompletion:
+						RepopulateData(futureItems, selectedIndex);
 						break;
 
 					case SplitTypes.Level:
@@ -176,6 +192,9 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				case SplitTypes.BodyPart:
 					return (BodyParts)dataIndex;
 
+				case SplitTypes.FutureCompletion:
+					return dataIndex;
+
 				case SplitTypes.CartridgeCount:
 				case SplitTypes.TumorCount:
 					int result;
@@ -199,12 +218,10 @@ namespace LiveSplit.TheEndIsNigh.Controls
 					return null;
 
 				case SplitTypes.WorldEvent:
-					return Enum.Parse(typeof(WorldEvents), RemoveSpaces(splitDataComboBox.Text));
+					return (WorldEvents)dataIndex;
 
 				case SplitTypes.Zone:
-					// Wall of Sorrow is the only string that won't correctly convert to an enumeration value when spaces are removed (due
-					// to the lower-case o).
-					return dataIndex == 4 ? Zones.WallOfSorrow : Enum.Parse(typeof(Zones), RemoveSpaces(splitDataComboBox.Text));
+					return (Zones)dataIndex;
 			}
 
 			return null;
@@ -215,15 +232,8 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		private bool IsEnumeratedType(SplitTypes type)
 		{
-			return type == SplitTypes.BodyPart || type == SplitTypes.WorldEvent || type == SplitTypes.Zone;
-		}
-
-		/// <summary>
-		/// Removes spaces from the given string. Used to more easily parse enumeration values from human-readable strings.
-		/// </summary>
-		private string RemoveSpaces(string value)
-		{
-			return value.Replace(" ", "");
+			return type == SplitTypes.BodyPart || type == SplitTypes.FutureCompletion || type == SplitTypes.WorldEvent ||
+				type == SplitTypes.Zone;
 		}
 
 		/// <summary>
@@ -235,6 +245,10 @@ namespace LiveSplit.TheEndIsNigh.Controls
 			{
 				case SplitTypes.BodyPart:
 					RepopulateData(bodyPartItems);
+					break;
+
+				case SplitTypes.FutureCompletion:
+					RepopulateData(futureItems);
 					break;
 
 				case SplitTypes.CartridgeCount:
