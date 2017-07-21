@@ -6,6 +6,7 @@
 		</files>
 		<changelog>
 			<change>Fixing duplicate dropdown values for enumerated split types.</change>
+			<change>Fixing the memory offset to the autosplit data structure after a game update.</change>
 		</changelog>
 	</update>
 	<update version="1.2.2">
