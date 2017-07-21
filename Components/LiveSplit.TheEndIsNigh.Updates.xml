@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <updates>
+	<update version="1.2.4">
+		<files>
+			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />
+		</files>
+		<changelog>
+			<change>Slightly changing default splits for Friend% and Any%.</change>
+		</changelog>
+	</update>
 	<update version="1.2.3">
 		<files>
 			<file path="Components/LiveSplit.TheEndIsNigh.dll" status="changed" />

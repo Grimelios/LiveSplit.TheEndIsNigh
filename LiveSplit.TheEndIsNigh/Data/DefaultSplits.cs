@@ -27,7 +27,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 				new Split(SplitTypes.BodyPart, BodyParts.Heart),
 				new Split(SplitTypes.Zone, Zones.Golgotha),
 				new Split(SplitTypes.BodyPart, BodyParts.Body),
-				new Split(SplitTypes.WorldEvent, WorldEvents.Friend),
 				new Split(SplitTypes.Zone, Zones.Gloom),
 				new Split(SplitTypes.Zone, Zones.Blight),
 				new Split(SplitTypes.Zone, Zones.Ruin),
@@ -45,7 +44,6 @@ namespace LiveSplit.TheEndIsNigh.Data
 				new Split(SplitTypes.Zone, Zones.TheMachine),
 				new Split(SplitTypes.BodyPart, BodyParts.Heart),
 				new Split(SplitTypes.Zone, Zones.Golgotha),
-				new Split(SplitTypes.BodyPart, BodyParts.Body),
 				new Split(SplitTypes.WorldEvent, WorldEvents.Friend),
 			};
 		}
