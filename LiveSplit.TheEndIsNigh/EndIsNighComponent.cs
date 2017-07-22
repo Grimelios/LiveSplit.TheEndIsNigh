@@ -234,17 +234,6 @@ namespace LiveSplit.TheEndIsNigh
 		}
 
 		/// <summary>
-		/// Updates the death count display value.
-		/// </summary>
-		private void UpdateDeathCount(IInvalidator invalidator, LiveSplitState state, int width, int height, LayoutMode mode, int value)
-		{
-			textComponent.InformationValue = memory.GetDeathCount().ToString();
-			textComponent.Update(invalidator, state, width, height, mode);
-
-			invalidator?.Invalidate(0, 0, width, height);
-		}
-
-		/// <summary>
 		/// Secondary update function used to do most of the actual autosplitting work. Also useful for testing.
 		/// </summary>
 		public void Autosplit()

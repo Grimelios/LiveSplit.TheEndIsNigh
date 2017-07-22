@@ -32,8 +32,10 @@ namespace LiveSplit.TheEndIsNigh.Memory
 				{
 					return false;
 				}
-				
-				dataPointer = process.MainModule.BaseAddress + MemoryOffsets.StructureOffset;
+
+				dataPointer = process.FindSignatures("4C6F6F6B48657265496E4D656D6F7279|-16")[0];
+
+				Console.WriteLine($"Process hooked (data pointer: {dataPointer}).");
 			}
 
 			return true;
