@@ -47,6 +47,7 @@
 			this.splitTypeComboBox.FormattingEnabled = true;
 			this.splitTypeComboBox.Items.AddRange(new object[] {
             "Body Part",
+            "Cartridge Completion",
             "Cartridge Count",
             "Future Completion",
             "Level",

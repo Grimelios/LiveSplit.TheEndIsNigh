@@ -138,6 +138,9 @@ namespace LiveSplit.TheEndIsNigh.Data
 				case SplitTypes.BodyPart:
 					return bodyPartCollection.QueryData((BodyParts)data);
 
+				case SplitTypes.CartridgeCompletion:
+					return mapGrid.QueryCartridge((int)data);
+
 				case SplitTypes.CartridgeCount:
 					return cartridgeCollection.QueryData((int)data);
 

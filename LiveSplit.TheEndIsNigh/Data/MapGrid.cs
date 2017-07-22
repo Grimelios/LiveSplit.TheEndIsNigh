@@ -20,8 +20,11 @@ namespace LiveSplit.TheEndIsNigh.Data
 		// Even though much of the map grid is empty (i.e. there's not a level in every cell), it still seemed simpler to just use a 2D
 		// boolean grid to track visited levels.
 		private bool[,] visited;
-		private bool withinTargetFutureZone;
+		private bool withinTargetZone;
 
+		private int startingCount;
+
+		private Point[] cartridgeMap;
 		private Point[] futureMap;
 		private Point[] zoneMap;
 
@@ -31,6 +34,32 @@ namespace LiveSplit.TheEndIsNigh.Data
 		public MapGrid(EndIsNighMemory memory) : base(memory)
 		{
 			visited = new bool[GridWidth, GridHeight];
+
+			cartridgeMap = new []
+			{
+				new Point(9, 28),
+				new Point(9, 29),
+				new Point(9, 30),
+				new Point(9, 33),
+				new Point(9, 36),
+				new Point(9, 31),
+				new Point(9, 34),
+				new Point(9, 32),
+				new Point(9, 35),
+				new Point(99, 40),
+				new Point(0, 56),
+				new Point(1, 54),
+				new Point(1, 52),
+				new Point(2, 49),
+				new Point(6, 49),
+				new Point(9, 43),
+				new Point(9, 44),
+				new Point(9, 45),
+				new Point(9, 46),
+				new Point(9, 47),
+				new Point(9, 42),
+				new Point(9, 37),
+			};
 
 			futureMap = new []
 			{
@@ -75,30 +104,50 @@ namespace LiveSplit.TheEndIsNigh.Data
 		}
 
 		/// <summary>
+		/// Checks whether the given cartrdige (by index) has been completed.
+		/// </summary>
+		public bool QueryCartridge(object data)
+		{
+			Point targetLocation = cartridgeMap[(int)data];
+
+			return CheckAreaCompletion(targetLocation, Memory.GetTumorCount());
+		}
+
+		/// <summary>
 		/// Checks whether the given future zone (by index) has been completed.
 		/// </summary>
 		public bool QueryFuture(object data)
 		{
 			Point targetLocation = futureMap[(int)data];
+
+			return CheckAreaCompletion(targetLocation, Memory.GetCartridgeCount());
+		}
+
+		/// <summary>
+		/// Checks whether an area has been completed (either a future zone or a cartridge).
+		/// </summary>
+		private bool CheckAreaCompletion(Point targetLocation, int itemCount)
+		{
 			Point location = Memory.GetWorldLocation();
 
-			if (!withinTargetFutureZone)
+			if (!withinTargetZone)
 			{
 				if (location == targetLocation)
 				{
-					withinTargetFutureZone = true;
+					withinTargetZone = true;
+					startingCount = itemCount;
 				}
 			}
-			// This means you reached the target future zone and then moved or teleported to another screen.
+			// This means you reached the target zone and then moved or teleported to another screen.
 			else if (location != targetLocation)
 			{
-				withinTargetFutureZone = false;
+				withinTargetZone = false;
 
-				// Using Manhattan distance ensures you don't split when you enter the last room of a future section and then just walk
-				// back into the previous room.
+				// Using Manhattan distance ensures you don't split when you enter the last room of a section and then just walk back into
+				// the previous room.
 				if (ComputeManhattanDistance(location, targetLocation) > 1)
 				{
-					return true;
+					return itemCount > startingCount;
 				}
 			}
 

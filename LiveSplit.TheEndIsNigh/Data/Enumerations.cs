@@ -18,6 +18,35 @@ namespace LiveSplit.TheEndIsNigh.Data
 	}
 
 	/// <summary>
+	/// Enumeration storing all cartridges.
+	/// </summary>
+	public enum Cartridges
+	{
+		Martaman,
+		BlasterMassacre,
+		RiverCityRancid,
+		Catastrovania,
+		DigDead,
+		AshClimber,
+		FallenFantasy,
+		RubbleBobble,
+		MorbidGear,
+		SuperMegaCart,
+		Denial,
+		Anger,
+		Bargaining,
+		Depression,
+		Acceptance,
+		ScabOrDie,
+		TombsAndTorture,
+		PusMan,
+		GhostsNGrieving,
+		DeadRacer,
+		SpikeTales,
+		TheEndIsNigh
+	}
+
+	/// <summary>
 	/// Enumeration storing world events (often triggered by player interaction).
 	/// </summary>
 	public enum WorldEvents

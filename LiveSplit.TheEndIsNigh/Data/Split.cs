@@ -13,6 +13,7 @@ namespace LiveSplit.TheEndIsNigh.Data
 	public enum SplitTypes
 	{
 		BodyPart,
+		CartridgeCompletion,
 		CartridgeCount,
 		FutureCompletion,
 		Level,
@@ -63,12 +64,15 @@ namespace LiveSplit.TheEndIsNigh.Data
 			switch (type)
 			{
 				case SplitTypes.BodyPart:
-					return (BodyParts)Enum.Parse(typeof(BodyParts), data);
+					return ParseEnum<BodyParts>(data);
 
 				case SplitTypes.CartridgeCount:
 				case SplitTypes.TumorCount:
 				case SplitTypes.FutureCompletion:
 					return int.Parse(data);
+
+				case SplitTypes.CartridgeCompletion:
+					return ParseEnum<Cartridges>(data);
 
 				case SplitTypes.Level:
 					string[] tokens = data.Split(',');
@@ -79,13 +83,21 @@ namespace LiveSplit.TheEndIsNigh.Data
 					return new Point(x, y);
 
 				case SplitTypes.WorldEvent:
-					return (WorldEvents)Enum.Parse(typeof(WorldEvents), data);
+					return ParseEnum<WorldEvents>(data);
 
 				case SplitTypes.Zone:
-					return (Zones)Enum.Parse(typeof(Zones), data);
+					return ParseEnum<Zones>(data);
 			}
 
 			return null;
+		}
+
+		/// <summary>
+		/// Parses an enumerated value from the given string.
+		/// </summary>
+		private T ParseEnum<T>(string data)
+		{
+			return (T)Enum.Parse(typeof(T), data);
 		}
 	}
 }

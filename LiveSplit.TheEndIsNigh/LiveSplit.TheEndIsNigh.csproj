@@ -151,6 +151,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Reference\Carts.png" />
     <Content Include="Resources\Add.png" />
     <Content Include="Resources\Delete.png" />
     <Content Include="Resources\Down.png" />

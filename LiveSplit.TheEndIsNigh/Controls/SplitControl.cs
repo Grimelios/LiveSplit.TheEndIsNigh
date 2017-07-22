@@ -17,6 +17,7 @@ namespace LiveSplit.TheEndIsNigh.Controls
 	public partial class SplitControl : UserControl
 	{
 		private static string[] bodyPartItems;
+		private static string[] cartridgeItems;
 		private static string[] futureItems;
 		private static string[] worldEventItems;
 		private static string[] zoneItems;
@@ -31,6 +32,32 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				"Head",
 				"Heart",
 				"Body"
+			};
+
+			cartridgeItems = new []
+			{
+				"Martaman",
+				"Blaster Massacre",
+				"River City Rancid",
+				"Catastrovania",
+				"Dig Dead",
+				"Ash Climber",
+				"Fallen Fantasy",
+				"Rubble Bobble",
+				"Morbid Gear",
+				"+Super Mega Cart!",
+				"!Denial",
+				"!Anger",
+				"!Bargaining",
+				"!Depression",
+				"!Acceptance",
+				"%Scab or Die!",
+				"%Tombs & Torture",
+				"%Pus-Man",
+				"%Ghosts N Grieving",
+				"%Dead Racer",
+				"%Spike Tales",
+				"The End Is Nigh",
 			};
 
 			futureItems = new []
@@ -143,6 +170,10 @@ namespace LiveSplit.TheEndIsNigh.Controls
 						RepopulateData(bodyPartItems, selectedIndex);
 						break;
 
+					case SplitTypes.CartridgeCompletion:
+						RepopulateData(cartridgeItems, selectedIndex);
+						break;
+
 					case SplitTypes.CartridgeCount:
 					case SplitTypes.TumorCount:
 						dataCountTextbox.Visible = true;
@@ -192,8 +223,8 @@ namespace LiveSplit.TheEndIsNigh.Controls
 				case SplitTypes.BodyPart:
 					return (BodyParts)dataIndex;
 
-				case SplitTypes.FutureCompletion:
-					return dataIndex;
+				case SplitTypes.CartridgeCompletion:
+					return (Cartridges)dataIndex;
 
 				case SplitTypes.CartridgeCount:
 				case SplitTypes.TumorCount:
@@ -205,6 +236,9 @@ namespace LiveSplit.TheEndIsNigh.Controls
 					}
 
 					return null;
+
+				case SplitTypes.FutureCompletion:
+					return dataIndex;
 
 				case SplitTypes.Level:
 					int x;
@@ -232,8 +266,8 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		private bool IsEnumeratedType(SplitTypes type)
 		{
-			return type == SplitTypes.BodyPart || type == SplitTypes.FutureCompletion || type == SplitTypes.WorldEvent ||
-				type == SplitTypes.Zone;
+			return type == SplitTypes.BodyPart || type == SplitTypes.CartridgeCompletion || type == SplitTypes.FutureCompletion ||
+				type == SplitTypes.WorldEvent || type == SplitTypes.Zone;
 		}
 
 		/// <summary>
@@ -247,8 +281,8 @@ namespace LiveSplit.TheEndIsNigh.Controls
 					RepopulateData(bodyPartItems);
 					break;
 
-				case SplitTypes.FutureCompletion:
-					RepopulateData(futureItems);
+				case SplitTypes.CartridgeCompletion:
+					RepopulateData(cartridgeItems);
 					break;
 
 				case SplitTypes.CartridgeCount:
@@ -259,6 +293,10 @@ namespace LiveSplit.TheEndIsNigh.Controls
 					// The count textbox will already be clear at this point.
 					dataCountTextbox.Visible = true;
 
+					break;
+
+				case SplitTypes.FutureCompletion:
+					RepopulateData(futureItems);
 					break;
 
 				case SplitTypes.Level:
