@@ -36,6 +36,8 @@ namespace LiveSplit.TheEndIsNigh
 
 		private int deathCount;
 
+		private long startingFrames;
+
 		/// <summary>
 		/// Constructs the component.
 		/// </summary>
@@ -251,6 +253,8 @@ namespace LiveSplit.TheEndIsNigh
 			{
 				if (!fileSelected && memory.CheckFileSelect())
 				{
+					startingFrames = memory.GetRawFrames();
+
 					// Checking for null allows this function to be used in testing (where no timer exists).
 					timer?.Start();
 					runStarted = true;
@@ -272,6 +276,9 @@ namespace LiveSplit.TheEndIsNigh
 				}
 			}
 
+			long runFrames = memory.GetRawFrames() - startingFrames;
+
+			timer.CurrentState.SetGameTime(TimeSpan.FromSeconds(runFrames / 60f));
 			splitCollection.Update();
 		}
 

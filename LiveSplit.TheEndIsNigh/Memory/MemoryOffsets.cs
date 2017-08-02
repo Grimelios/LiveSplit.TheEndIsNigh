@@ -14,12 +14,12 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		/// <summary>
 		/// Offset to in-game time (frame count).
 		/// </summary>
-		public const int InGameTime = 0x10;
+		public const int IGTFrames = 0x10;
 
 		/// <summary>
 		/// Offset to death count.
 		/// </summary>
-		public const int DeathCount = InGameTime + 0x8;
+		public const int DeathCount = IGTFrames + 0x8;
 
 		/// <summary>
 		/// Offset to the player's X coordinate in the world grid.
@@ -85,5 +85,15 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		/// Offset to the file-selected flag.
 		/// </summary>
 		public const int FileSelect = BeatEnd2 + 0x1;
+
+		/// <summary>
+		/// Offset to the modded-resources flag.
+		/// </summary>
+		public const int ModdedResources = FileSelect + 0x1;
+
+		/// <summary>
+		/// Offset to the count of raw app frames (used to properly compute loadless RTA).
+		/// </summary>
+		public const int RawFrames = ModdedResources + 0x3;
 	}
 }

@@ -151,13 +151,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Reference\AutosplitData.png" />
     <Content Include="Reference\Carts.png" />
     <Content Include="Resources\Add.png" />
     <Content Include="Resources\Delete.png" />
     <Content Include="Resources\Down.png" />
     <Content Include="Resources\Question.png" />
     <Content Include="Resources\Up.png" />
-    <Content Include="Reference\AutosplitData.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

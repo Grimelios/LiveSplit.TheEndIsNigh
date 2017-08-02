@@ -42,11 +42,21 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		}
 
 		/// <summary>
-		/// Returns the number of frames the game has been running (i.e. in-game frames). This value only updates during gameplay.
+		/// Returns the number of in-game time (IGT frames). This value only updates during gameplay. It does not update during cutscenes,
+		/// menus, or during lag on screen transitions.
 		/// </summary>
-		public long GetInGameTime()
+		public long GetIGTFrames()
 		{
-			return process.Read<long>(dataPointer, MemoryOffsets.InGameTime);
+			return process.Read<long>(dataPointer, MemoryOffsets.IGTFrames);
+		}
+
+		/// <summary>
+		/// Returns the total number of frames the game has been running. As opposed to IGT frames, this value updates every frame, so it
+		/// can be used to accurately measure loadless RTA (i.e. real-time minus lag on level transitions).
+		/// </summary>
+		public long GetRawFrames()
+		{
+			return process.Read<long>(dataPointer, MemoryOffsets.RawFrames);
 		}
 
 		/// <summary>
@@ -87,6 +97,14 @@ namespace LiveSplit.TheEndIsNigh.Memory
 		public bool CheckFileSelect()
 		{
 			return process.Read<bool>(dataPointer, MemoryOffsets.FileSelect);
+		}
+
+		/// <summary>
+		/// Checks whether any resources for the game have been modified.
+		/// </summary>
+		public bool CheckModdedResources()
+		{
+			return process.Read<bool>(dataPointer, MemoryOffsets.ModdedResources);
 		}
 
 		/// <summary>
