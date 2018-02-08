@@ -3,7 +3,18 @@ Autosplitter for The End Is Nigh.
 
 ## Setup instructions
 
-- Before you start, you'll need [LiveSplit](http://livesplit.github.io/downloads) (the most recent version is 1.7.4).
+There are two ways to set up the autosplitter. Before you start, you'll need [LiveSplit](http://livesplit.github.io/downloads) (the most recent version is 1.7.5).
+
+Method one:
+
+- Launch LiveSplit, then go to Edit Splits.
+- Choose The End Is Nigh as your game. After a moment, you should see the autosplitter section activate (with the text "Autosplitter for The End Is Nigh").
+- Click **Activate**, then modify settings as needed.
+
+**Important note:** Using this first method, the death count display will not appear. In the autosplitter settings, there's a checkbox to display death count. It works using the second method (described below), but not when activated through Edit Split. This is a design choice by LiveSplit.
+
+Method two:
+
 - Go to the [releases](https://github.com/Grimelios/LiveSplit.TheEndIsNigh/releases) section of this repository.
 - Download **LiveSplit.TheEndIsNigh.dll**. You do **not** need to download the full source code.
 - Place the DLL inside your LiveSplit/Components folder.
