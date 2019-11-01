@@ -33,7 +33,12 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		/// </summary>
 		public bool DeathCheckbox
 		{
-			set { deathCountCheckbox.Checked = value; }
+			set => deathCountCheckbox.Checked = value;
+		}
+
+		public bool FileTimeCheckbox
+		{
+			set => fileTimeCheckbox.Checked = value;
 		}
 
 		/// <summary>
@@ -42,6 +47,14 @@ namespace LiveSplit.TheEndIsNigh.Controls
 		private void deathCountCheckbox_CheckedChanged(object sender, EventArgs e)
 		{
 			Settings.DisplayEnabled = deathCountCheckbox.Checked;
+		}
+
+		/// <summary>
+		/// Called when the file time checkbox changes.
+		/// </summary>
+		private void fileTimeCheckbox_CheckedChanged(object sender, EventArgs e)
+		{
+			Settings.MatchFileTime = fileTimeCheckbox.Checked;
 		}
 	}
 }

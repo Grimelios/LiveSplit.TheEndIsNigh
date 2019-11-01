@@ -27,7 +27,6 @@ namespace LiveSplit.TheEndIsNigh
 		private EndIsNighSettings settings;
 		private AutosplitDataClass[] dataClasses;
 		private SplitCollection splitCollection;
-
 		private InfoTextComponent textComponent;
 
 		private bool fileSelected;
@@ -249,9 +248,24 @@ namespace LiveSplit.TheEndIsNigh
 
 			processHooked = true;
 
+			bool matchFileTime = settings.MatchFileTime;
+
 			if (!runStarted)
 			{
-				if (!fileSelected && memory.CheckFileSelect())
+				// The autostart condition changes depending on whether file time is matched. When matching file time,
+				// the timer doesn't start until the first proper IGT frame (when the player gains control).
+				bool shouldAutostart;
+
+				if (matchFileTime)
+				{
+					shouldAutostart = memory.GetIGTFrames() > 0;
+				}
+				else
+				{
+					shouldAutostart = memory.CheckFileSelect();
+				}
+
+				if (shouldAutostart)
 				{
 					startingFrames = memory.GetRawFrames();
 
@@ -275,10 +289,11 @@ namespace LiveSplit.TheEndIsNigh
 					runStarted = false;
 				}
 			}
-
-			long runFrames = memory.GetRawFrames() - startingFrames;
-
-			timer.CurrentState.SetGameTime(TimeSpan.FromSeconds(runFrames / 60f));
+			
+			// File time (i.e. the time shown on the file select screen) excludes cutscenes and menus.
+			long frames = matchFileTime ? memory.GetIGTFrames() : memory.GetRawFrames() - startingFrames;
+			
+			timer?.CurrentState.SetGameTime(TimeSpan.FromSeconds(frames / 60f));
 			splitCollection.Update();
 		}
 

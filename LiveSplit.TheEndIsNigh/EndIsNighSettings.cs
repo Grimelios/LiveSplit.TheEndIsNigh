@@ -38,6 +38,12 @@ namespace LiveSplit.TheEndIsNigh
 		public bool DisplayEnabled { get; set; }
 
 		/// <summary>
+		/// If set, game time is set to exactly match the time shown on the file select screen (i.e. using pure in-game
+		/// time). File time excludes cutscenes and menus.
+		/// </summary>
+		public bool MatchFileTime { get; set; }
+
+		/// <summary>
 		/// Loads settings from the given XML node.
 		/// </summary>
 		public void LoadSettings(XmlNode node)
@@ -59,7 +65,18 @@ namespace LiveSplit.TheEndIsNigh
 			}
 
 			DisplayEnabled = bool.Parse(node["DisplayEnabled"].InnerText);
+
+			var matchElement = node["MatchFileTime"];
+
+			// This null check protects again versioning differences (since the option to match file time was added
+			// roughly two years after the original autosplitter release).
+			if (matchElement != null)
+			{
+				MatchFileTime = bool.Parse(matchElement.InnerText);
+			}
+			
 			settingsControl.DeathCheckbox = DisplayEnabled;
+			settingsControl.FileTimeCheckbox = MatchFileTime;
 
 			// Setting splits on the collection control also updates the split collection.
 			collectionControl.SetSplits(splits);
@@ -106,7 +123,11 @@ namespace LiveSplit.TheEndIsNigh
 			XmlElement displayElement = document.CreateElement("DisplayEnabled");
 			displayElement.InnerText = DisplayEnabled.ToString();
 
+			XmlElement fileTimeElement = document.CreateElement("MatchFileTime");
+			fileTimeElement.InnerText = MatchFileTime.ToString();
+
 			settingsElement.AppendChild(displayElement);
+			settingsElement.AppendChild(fileTimeElement);
 			settingsElement.AppendChild(splitsElement);
 
 			return settingsElement;
